@@ -1,0 +1,4 @@
+Host pi
+	Hostname cic.xconstruct.net
+	User pi
+	Port 40

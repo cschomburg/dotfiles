@@ -1,0 +1,11 @@
+vim/.netrwhist
+vim/tmp/*
+ranger/__pycache__
+ranger/bookmarks
+ranger/history
+ranger/tagged
+
+bin/hub
+z.sh
+
+subtle/private.rb
