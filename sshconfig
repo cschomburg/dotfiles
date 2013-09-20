@@ -1,4 +1,8 @@
-Host pi
+Host tesla
 	Hostname cic.xconstruct.net
 	User pi
 	Port 40
+Host vm
+	Hostname 192.168.56.102
+Host wintermute
+	Hostname wintermute.xconstruct.net

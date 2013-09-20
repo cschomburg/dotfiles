@@ -37,6 +37,8 @@ set smartcase					" Upper-case sensitive search
 set wrapscan					" searches wrap back to the top of file
 
 " Other stuff
+set number
+set relativenumber
 set mat=5						" How many tenth of a second to blink matching brackets for
 set foldmethod=marker			" Auto-folding in files with markers
 set fileformats=unix,dos,mac	" Support in this order
@@ -49,7 +51,6 @@ set directory=$HOME/.vim/tmp
 "set autochdir					" Switch working directory to current file
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
-set shell=/bin/zsh				" Default shell type
 set history=23					" Lines of command history
 set undolevels=24				" Set undo level
 set title						" Set window title with the vim files
