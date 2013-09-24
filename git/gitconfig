@@ -1,6 +1,6 @@
 [user]
-    name = xconstruct
-    email = me@xconstruct.net
+    name = Constantin Schomburg
+    email = me@cschomburg.com
 
 [push]
     default = matching
@@ -8,7 +8,6 @@
 [core]
 	autocrlf = input
 	editor = vim
-	excludesfile = /home/xconstruct/.gitignore
 
 [github]
 	user = xconstruct
