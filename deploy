@@ -28,20 +28,14 @@ for filepair in ${files[@]} ; do
 	fi
 done
 
-mkdir -p $srcdir/vim/tmp
-
-git submodule init
-git submodule update
-
-# Fetch newest hub
-rm $srcdir/bin/hub &> /dev/null
-curl http://defunkt.io/hub/standalone -sLo $srcdir/bin/hub && chmod 755 $srcdir/bin/hub
-
 # Fetch newest z
 rm $srcdir/z.sh &> /dev/null
 curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
 
-# Fetch newest pathogen
-rm $srcdir/vim/autoload/pathogen.vim &> /dev/null
-mkdir -p $srcdir/vim/autoload $srcdir/vim/bundle
-curl -so $srcdir/vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+for opt in "$@"; do
+	case $opt in
+		vimbundle)
+			git clone git://github.com/Shougo/neobundle.vim $srcdir/vim/bundle/neobundle.vim
+			;;
+	esac
+done
