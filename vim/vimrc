@@ -20,15 +20,6 @@ set showmode					" Show mode in status line
 set cmdheight=1					" Set height of command
 set laststatus=2				" Always show status line
 
-" Credits to http://jasonwryan.com/
-set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
-set statusline+=\ ::\ %y        " filetype
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}] "file type
-set statusline+=\ [%{&ff}]      " file encoding
-set statusline+=%=              " left/right separator
-set statusline+=\ [%p%%:\       " scroll percent
-set statusline+=%l/%L\ %c]\     " line/lines, column
-
 " Search
 set nohlsearch					" Do not highlight the string we searched
 set incsearch					" Incremental search: Highlight the searched string while typing
@@ -48,7 +39,6 @@ set nobackup					" Disable backup
 set swapfile
 set updatecount=2000
 set directory=$HOME/.vim/tmp
-"set autochdir					" Switch working directory to current file
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
@@ -64,6 +54,7 @@ set scrolloff=3					" minimum lines to keep above and below cursor
 set gdefault					" the /g flag on :s substitutions by default
 set cursorline                  " Highlight current line
 set colorcolumn=80,120			" Mark 80px column
+set conceallevel=2				" Conceal
 
 " GUI options
 set guioptions-=m				" Remove menu bar
@@ -100,8 +91,46 @@ if exists('*neobundle#rc')
 	NeoBundleFetch 'Shougo/neobundle.vim'
 	NeoBundle 'sheerun/vim-polyglot'
 	NeoBundle 'Shougo/unite.vim'
+	NeoBundle 'bling/vim-airline'
+	NeoBundle 'tpope/vim-surround'
+	NeoBundle 'scrooloose/syntastic'
 
+	" Unite
 	nnoremap <space>s :Unite -quick-match buffer<cr>
+
+	" Airline
+	let g:airline#extensions#tabline#buffer_min_count = 2
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline_theme='serene'
+	let g:airline_mode_map = {
+				\ '__' : '-',
+				\ 'n'  : 'N',
+				\ 'i'  : 'I',
+				\ 'R'  : 'R',
+				\ 'c'  : 'C',
+				\ 'v'  : 'V',
+				\ 'V'  : 'V',
+				\ '' : 'V',
+				\ 's'  : 'S',
+				\ 'S'  : 'S',
+				\ '' : 'S',
+				\ }
+
+	" Syntastic
+	let g:syntastic_auto_jump=1
+	let g:syntastic_auto_loc_list=1
+	let g:syntastic_mode_map = { 'mode': 'active',
+				\ 'active_filetypes': [],
+				\ 'passive_filetypes': ['cpp'] }
+else
+	" Credits to http://jasonwryan.com/
+	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
+	set statusline+=\ ::\ %y        " filetype
+	set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}] "file type
+	set statusline+=\ [%{&ff}]      " file encoding
+	set statusline+=%=              " left/right separator
+	set statusline+=\ [%p%%:\       " scroll percent
+	set statusline+=%l/%L\ %c]\     " line/lines, column
 endif
 
 
@@ -112,13 +141,6 @@ filetype indent on
 " turn on syntax highlighting
 syntax on
 
-" Conceal
-set conceallevel=2
-hi Conceal ctermbg=234 ctermfg=81
-
-" Syntastic
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['cpp'] }
+if exists('*neobundle#rc')
+	NeoBundleCheck
+end
