@@ -94,12 +94,15 @@ cmap w!! w !sudo tee % >/dev/null
 filetype off
 
 set rtp+=~/.vim/bundle/neobundle.vim/
-call neobundle#rc(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'Shougo/unite.vim'
+if exists('neobundle#rc')
+	call neobundle#rc(expand('~/.vim/bundle/'))
+	NeoBundleFetch 'Shougo/neobundle.vim'
+	NeoBundle 'sheerun/vim-polyglot'
+	NeoBundle 'Shougo/unite.vim'
 
-nnoremap <space>s :Unite -quick-match buffer<cr>
+	nnoremap <space>s :Unite -quick-match buffer<cr>
+endif
+
 
 " load ftplugins and indent files
 filetype plugin on
