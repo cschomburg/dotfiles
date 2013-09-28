@@ -32,6 +32,11 @@ done
 rm $srcdir/z.sh &> /dev/null
 curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
 
+# Fetch newest molokai
+rm $srcdir/vim/colors/molokai.vim &> /dev/null
+curl https://raw.github.com/tomasr/molokai/master/colors/molokai.vim -sLo $srcdir/vim/colors/molokai.vim
+
+# Optional tasks
 for opt in "$@"; do
 	case $opt in
 		vimbundle)
