@@ -90,14 +90,16 @@ vnoremap <C-C> "+y
 " For when you forget to sudo.. Really write the file
 cmap w!! w !sudo tee % >/dev/null
 
-" necessary on some Linux distros for pathogen to properly load bundles
+" necessary on some Linux distros to properly load bundles
 filetype off
 
-" load Go vim files
-set rtp+=/usr/share/go/misc/vim
+set rtp+=~/.vim/bundle/neobundle.vim/
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'Shougo/unite.vim'
 
-" load pathogen managed plugins
-silent! call pathogen#infect()
+nnoremap <space>s :Unite -quick-match buffer<cr>
 
 " load ftplugins and indent files
 filetype plugin on

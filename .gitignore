@@ -1,5 +1,6 @@
 vim/.netrwhist
 vim/tmp/*
+vim/bundle/*
 ranger/__pycache__
 ranger/bookmarks
 ranger/history
