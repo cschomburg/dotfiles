@@ -29,3 +29,7 @@ fi
 if ! type ack &> /dev/null; then
 	alias ack='grep -R'
 fi
+
+export BUP_DIR=/srv/bup
+export EDITOR=vim
+export VISUAL=vim
