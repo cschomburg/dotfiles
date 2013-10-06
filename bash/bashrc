@@ -22,7 +22,7 @@ alias gco='git checkout'
 alias gln='git log --name-status'
 alias gb='git branch'
 
-if type ruby &> /dev/null; then
+if type hub &> /dev/null; then
 	alias git=hub
 fi
 
@@ -33,3 +33,8 @@ fi
 export BUP_DIR=/srv/bup
 export EDITOR=vim
 export VISUAL=vim
+
+# TMUX
+if which tmux 2>&1 >/dev/null; then
+	test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
