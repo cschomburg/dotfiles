@@ -9,6 +9,7 @@ files=(	'vim:.vim'
 		'git/gitignore:.gitignore'
 		'sshconfig:.ssh/config'
 		'bash/bashrc:.bashrc'
+		'tmux:.tmux.conf'
 )
 
 for filepair in ${files[@]} ; do
