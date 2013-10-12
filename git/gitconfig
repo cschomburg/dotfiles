@@ -17,3 +17,4 @@
 [color]
 	branch = true
 	status = true
+	diff = true

@@ -10,6 +10,7 @@ files=(	'vim:.vim'
 		'sshconfig:.ssh/config'
 		'bash/bashrc:.bashrc'
 		'tmux:.tmux.conf'
+		'minttyrc:.minttyrc'
 )
 
 for filepair in ${files[@]} ; do
