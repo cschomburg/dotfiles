@@ -11,6 +11,7 @@ PATH="$DF/bin:$PATH"
 test -d "$HOME/bin" &&
 	PATH="$HOME/bin:$PATH"
 
+alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
 
