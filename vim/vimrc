@@ -11,6 +11,7 @@ set smartindent					" Smart indenting
 set backspace=indent,eol,start	" Make  backspace work as usual
 set tabstop=4					" an indentation every 4 columns
 set shiftwidth=4				" Use indents of 4 spaces
+set noexpandtab                 " do not insert spaces when tab pressed
 
 " Status line
 set showcmd						" Show (partial) command in status line
@@ -53,6 +54,9 @@ set gdefault					" the /g flag on :s substitutions by default
 set cursorline                  " Highlight current line
 set colorcolumn=80,120			" Mark 80px column
 set conceallevel=2				" Conceal
+set list                        " show special chars
+set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:·\ 
+set hidden                      " allow unsaved changes in hidden buffers
 
 " GUI options
 set guioptions-=m				" Remove menu bar
@@ -124,7 +128,7 @@ if exists('*neobundle#rc')
 	let g:syntastic_auto_loc_list=1
 	let g:syntastic_mode_map = { 'mode': 'active',
 				\ 'active_filetypes': [],
-				\ 'passive_filetypes': ['cpp'] }
+				\ 'passive_filetypes': ['cpp', 'html'] }
 else
 	" Credits to http://jasonwryan.com/
 	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
