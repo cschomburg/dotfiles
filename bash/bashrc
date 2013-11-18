@@ -29,7 +29,13 @@ alias gco='git checkout'
 alias gln='git log --name-status'
 alias gb='git branch'
 
-c () { echo "$*" | bc -l; }
+c () {
+	if type bc &> /dev/null; then
+		echo "$*" | bc -l;
+	else
+		echo "$(($*))"
+	fi
+}
 
 if type hub &> /dev/null; then
 	alias git=hub
