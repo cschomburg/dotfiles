@@ -39,7 +39,7 @@ w3magg () { wgetagg -O - $1 | w3m -T 'text/html'; }
 
 c () {
 	if type bc &> /dev/null; then
-		echo "$*" | bc -l;
+		echo "$*" | bc -l
 	else
 		echo "$(($*))"
 	fi
