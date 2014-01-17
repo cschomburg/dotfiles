@@ -67,6 +67,7 @@ colorscheme molokai
 set undofile
 set undolevels=1000
 set undoreload=10000
+set undodir=$HOME/.vim/tmp
 
 " GUI options
 set guioptions-=m				" Remove menu bar
