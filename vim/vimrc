@@ -57,6 +57,16 @@ set conceallevel=2				" Conceal
 set list                        " show special chars
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:·\ 
 set hidden                      " allow unsaved changes in hidden buffers
+set pastetoggle=<F12>			" sane indentation on pastes
+
+" Colorscheme
+set background=dark
+colorscheme molokai
+
+" Persistent undo
+set undofile
+set undolevels=1000
+set undoreload=10000
 
 " GUI options
 set guioptions-=m				" Remove menu bar
@@ -84,6 +94,19 @@ vnoremap <C-C> "+y
 " For when you forget to sudo.. Really write the file
 cmap w!! w !sudo tee % >/dev/null
 
+" Wrapped lines go down/up to next row, rather than next line in file
+noremap j gj
+noremap k gk
+
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
+
+" toggle search highlighting
+nmap <silent> <leader>/ :set invhlsearch<CR>
+
+" allow using repeat operator with a visual selection
+vnoremap . :normal .<CR>
+
 " necessary on some Linux distros to properly load bundles
 filetype off
 
@@ -96,11 +119,6 @@ if exists('*neobundle#rc')
 	NeoBundle 'bling/vim-airline'
 	NeoBundle 'tpope/vim-surround'
 	NeoBundle 'scrooloose/syntastic'
-	NeoBundle 'chriskempson/base16-vim'
-
-	let base16colorspace=256
-	colorscheme base16-default
-	set background=dark
 
 	" Unite
 	nnoremap <space>s :Unite -quick-match buffer<cr>
