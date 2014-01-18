@@ -43,9 +43,12 @@ if ! type ack &> /dev/null; then
 	alias ack='grep -R'
 fi
 
-export BUP_DIR=/srv/bup
 export EDITOR=vim
 export VISUAL=vim
+
+if [[ -r ~/.bash_local ]]; then
+	. ~/.bashrc_local
+fi
 
 # TMUX
 if which tmux &>/dev/null; then
