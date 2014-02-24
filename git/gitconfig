@@ -12,9 +12,14 @@
 [github]
 	user = xconstruct
 [alias]
+	s = status -u -s
+	c = commit
 	co = checkout
+	l = log --stat -C
+	ld = log --pretty=format:'%h %Cblue%ad%Creset %an %Cgreen%s%Creset' --date=relative
+	lg = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	spull = !git-svn fetch && git-svn rebase
+	spush = !git-svn dcommit
 
 [color]
-	branch = true
-	status = true
-	diff = true
+	ui = auto
