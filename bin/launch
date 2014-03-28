@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! wmctrl -a $1; then
+	$1 &
+	sleep 2
+	wmctrl -a $1
+fi
