@@ -3,7 +3,7 @@
     email = me@cschomburg.com
 
 [push]
-    default = matching
+    default = simple
 
 [core]
 	autocrlf = input
@@ -23,3 +23,6 @@
 
 [color]
 	ui = auto
+
+[pager]
+	status = true

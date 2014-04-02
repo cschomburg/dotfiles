@@ -20,7 +20,6 @@ test -d "$HOME/bin" &&
 alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
-
 alias g='git'
 
 c () {
@@ -31,28 +30,15 @@ c () {
 	fi
 }
 
-btc () {
-	curl -s http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast | grep -Po '"last_local":{"value":"\K[0-9\.]+'
-}
-
-if type hub &> /dev/null; then
-	alias git=hub
-fi
-
-if ! type ack &> /dev/null; then
-	alias ack='grep -R'
-fi
+type hub &> /dev/null && alias git=hub
+type ack &> /dev/null || alias ack='grep -R'
 
 export EDITOR=vim
 export VISUAL=vim
 
-if [[ -r ~/.bash_local ]]; then
-	. ~/.bashrc_local
-fi
+test -r ~/.bashrc_local && . ~/.bashrc_local
 
 # TMUX
-if which tmux &>/dev/null; then
+if type tmux &>/dev/null; then
 	test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
-
-. $DF/bash/base16-default.dark.sh
