@@ -13,9 +13,9 @@ files=(	'vim:.vim'
 		'minttyrc:.minttyrc'
 )
 
-for filepair in ${files[@]} ; do
-	src="$srcdir/${filepair%%:*}"
-	dst="$dstdir/${filepair##*:}"
+install_filepair () {
+	src="$srcdir/${1%%:*}"
+	dst="$dstdir/${1##*:}"
 
 	mkdir -p ${dst%/*}
 
@@ -28,6 +28,10 @@ for filepair in ${files[@]} ; do
 	else
 		ln -s $src $dst
 	fi
+}
+
+for filepair in ${files[@]} ; do
+	install_filepair $filepair
 done
 
 # Fetch newest z
