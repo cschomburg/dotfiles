@@ -14,9 +14,9 @@ files=(	'vim:.vim'
 )
 
 install_filepair () {
-	src="$srcdir/${1%%:*}"
-	dst="$dstdir/${1##*:}"
-
+	src="$srcdir/$1"
+	dst="$dstdir/$2"
+	echo "$1 -> $2"
 	mkdir -p ${dst%/*}
 
 	if [ -L $dst ] ; then
@@ -31,7 +31,7 @@ install_filepair () {
 }
 
 for filepair in ${files[@]} ; do
-	install_filepair $filepair
+	install_filepair "${filepair%%:*}" "${filepair##*:}"
 done
 
 # Fetch newest z
