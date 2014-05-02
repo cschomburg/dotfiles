@@ -127,6 +127,8 @@ if exists('*neobundle#rc')
 	NeoBundle 'tpope/vim-surround'
 	NeoBundle 'scrooloose/syntastic'
 	NeoBundle 'airblade/vim-gitgutter'
+	NeoBundle 'justinmk/vim-sneak'
+	NeoBundle 'tpope/vim-vinegar'
 
 	" Unite
 	nnoremap <space>s :Unite -quick-match buffer<cr>
