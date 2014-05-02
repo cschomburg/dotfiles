@@ -1,8 +1,9 @@
 #!/bin/bash
 
-if ! wmctrl -a $1; then
-	$1 &
+wcmd=$1
+wclass=${2-$1}
+if ! wmctrl -xa $wclass; then
+	$wcmd &
 	sleep 1
-	${2:=$1}
-	wmctrl -a $2
+	wmctrl -xa $wclass
 fi
