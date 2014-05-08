@@ -1,0 +1,21 @@
+---
+- name: shell command test
+  debug: msg="{{ greeting }} world!"
+
+- name: shell extension Always Zoom Workspaces 
+  shell_extension: id=503 uuid=alwayszoomworkspaces@jamie.thenicols.net
+
+- name: shell extension Autohide Battery
+  shell_extension: id=595 uuid=autohide-battery@sitnik.ru
+
+- name: shell extension Dash to Dock
+  shell_extension: id=307 uuid=dash-to-dock@micxgx.gmail.com
+
+- name: shell extension Hide Activities
+  shell_extension: id=744 uuid=Hide_Activities@shay.shayel.org
+
+- name: shell extension Media player indicator
+  shell_extension: id=55 uuid=mediaplayer@patapon.info
+
+- name: shell extension Weather
+  shell_extension: id=613 uuid=weather-extension@xeked.com

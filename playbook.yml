@@ -1,0 +1,17 @@
+---
+- hosts: all
+
+  vars:
+    greeting: "hello"
+
+  vars_prompt:
+    - name: "greeting"
+      prompt: "Your greeting?"
+      private: yes
+
+  tasks:
+  - include: tasks/apt.yml
+  - include: tasks/gnome-shell.yml
+
+  - name: shell command test
+    debug: msg="{{ greeting }} world!"
