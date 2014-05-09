@@ -10,10 +10,14 @@ name=${name,,}
 PS1="\[\e[32m\]$name \[\e[33m\]\w\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
-export DF=$HOME/dotfiles
-source $DF/z.sh
+# find dotfiles dir
+BASHRC_PATH=$(readlink -f ${BASH_SOURCE[0]})
+BASHDIR_PATH=$(dirname $BASHRC_PATH)
+DOTFILES=$(dirname $BASHDIR_PATH)
 
-PATH="$DF/bin:$PATH"
+source $DOTFILES/z.sh
+
+PATH="$DOTFILES/bin:$PATH"
 test -d "$HOME/bin" &&
 	PATH="$HOME/bin:$PATH"
 
