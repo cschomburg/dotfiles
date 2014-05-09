@@ -1,0 +1,8 @@
+---
+- name: ensure important packages are installed
+  apt: pkg={{ item }} state=installed
+  sudo: True
+  with_items:
+    - tmux
+    - git
+    - bzr

@@ -1,7 +1,4 @@
 ---
-- name: shell command test
-  debug: msg="{{ greeting }} world!"
-
 - name: shell extension Always Zoom Workspaces 
   shell_extension: id=503 uuid=alwayszoomworkspaces@jamie.thenicols.net
 

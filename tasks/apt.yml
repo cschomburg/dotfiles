@@ -1,4 +1,0 @@
----
-- name: ensure tmux is installed
-  apt: pkg=tmux state=latest
-  sudo: True
