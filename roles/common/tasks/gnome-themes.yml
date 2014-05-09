@@ -15,3 +15,7 @@
   unarchive: src=../files/iris-dark.tar.gz
              dest=/usr/share/themes
   sudo: True
+
+- name: install flattr icons
+  git: repo=https://github.com/NitruxSA/flattr-icons.git
+       dest=~/.icons/flattr-icons
