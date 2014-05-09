@@ -1,3 +1,4 @@
 ---
 - include: apt.yml
 - include: gnome-shell.yml
+- include: gnome-themes.yml
