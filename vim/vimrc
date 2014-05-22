@@ -58,6 +58,17 @@ set list                        " show special chars
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:·\ 
 set hidden                      " allow unsaved changes in hidden buffers
 set pastetoggle=<F12>			" sane indentation on pastes
+set lazyredraw
+
+" Completion
+set pumheight=5
+set completeopt+=longest		" only complete longest match
+set completeopt+=menuone        " show popup menu even for single matches
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 
 " Colorscheme
 set background=dark
@@ -95,6 +106,7 @@ noremap k gk
 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
