@@ -1,0 +1,50 @@
+#!/bin/sh
+
+REPO_URL=git@xco.me
+DROP_URL=https://scripts.xco.me/drop.php
+CLIP_URL=https://clipboard.xco.me
+CODE_DIR=$HOME/code
+
+clone_code () {
+	REPO=$1
+	if [ -e "$CODE_DIR/$REPO" ]; then
+		return
+	fi
+	
+	git clone $REPO_URL:$REPO "$CODE_DIR/$REPO"
+}
+
+drop_file () {
+	name=$(basename $1)
+	tar czv $@ | curl -skF f=@- "$DROP_URL?n=${name}.tgz"
+}
+
+clip_copy () {
+	if [ -z "$1" ]; then
+		cat | curl -skF "text=<-" "$CLIP_URL" > /dev/null
+	else
+		curl -skF "text=$*" "$CLIP_URL" > /dev/null
+	fi
+}
+
+if [ -z "$1" ]; then
+	cat <<EOF
+Usage: xco <command> [<args>...]
+
+commands:
+   clone <repo>
+   drop <file>
+   clip [<text>...]
+EOF
+exit 1
+fi
+
+cmd=$1
+shift
+
+case $cmd in
+	clone) clone_code $1 ;;
+	drop) drop_file $@ ;;
+	clip) clip_copy $@ ;;
+	*) echo "unknown command: $2"
+esac
