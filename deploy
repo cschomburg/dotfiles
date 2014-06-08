@@ -50,5 +50,15 @@ for opt in "$@"; do
 		private)
 			. $srcdir/private/deploy
 			;;
+		base16-gnome)
+			wget -nv https://raw.githubusercontent.com/chriskempson/base16-gnome-terminal/master/base16-default.dark.sh
+			chmod +x base16-default.dark.sh
+			if [[ -z "$TMUX" ]]; then
+				./base16-default.dark.sh
+				rm base16-default-dark.sh
+			else
+				echo "You have to manually install base16 outside of tmux"
+			fi
+			;;
 	esac
 done
