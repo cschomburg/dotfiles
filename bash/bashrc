@@ -18,6 +18,8 @@ DOTFILES=$(dirname $BASHDIR_PATH)
 source $DOTFILES/z.sh
 
 PATH="$DOTFILES/bin:$PATH"
+test -d "$DOTFILES/private/bin" &&
+	PATH="$DOTFILES/private/bin:$PATH"
 test -d "$HOME/bin" &&
 	PATH="$HOME/bin:$PATH"
 
@@ -25,6 +27,12 @@ alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
 alias g='git'
+
+alias uncomm="sed '/^$\|^#/d'"
+
+alias wgetagg='wget -c -t 0 -T 3 --waitretry=1'
+
+w3magg () { wgetagg -O - $1 | w3m -T 'text/html'; }
 
 c () {
 	if type bc &> /dev/null; then
