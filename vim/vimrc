@@ -43,7 +43,8 @@ set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
 set undolevels=24				" Set undo level
 set title						" Set window title with the vim files
-set wildmode=list:longest		" Bash-like tab completion list
+set wildmode=longest:full,full	" Bash-like tab completion list
+set wildmenu
 set formatoptions-=o			" don't continue comments when pushing o/O
 set scrolljump=5				" lines to scroll when cursor leaves screen
 set scrolloff=3					" minimum lines to keep above and below cursor
@@ -55,7 +56,7 @@ set cursorline                  " Highlight current line
 set colorcolumn=80,120			" Mark 80px column
 set conceallevel=2				" Conceal
 set list                        " show special chars
-set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:·\ 
+set listchars=trail:·,precedes:«,extends:»,tab:·\ ,eol:↲
 set hidden                      " allow unsaved changes in hidden buffers
 set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
@@ -67,7 +68,7 @@ set completeopt+=menuone        " show popup menu even for single matches
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+	\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 
 " Colorscheme
@@ -122,10 +123,10 @@ silent! call neobundle#rc(expand('~/.vim/bundle/'))
 if exists('*neobundle#rc')
 	NeoBundleFetch 'Shougo/neobundle.vim'
 	NeoBundle 'sheerun/vim-polyglot'
-	NeoBundle 'Shougo/unite.vim'
 	NeoBundle 'bling/vim-airline'
 	NeoBundle 'tpope/vim-surround'
 	NeoBundle 'scrooloose/syntastic'
+	NeoBundle 'airblade/vim-gitgutter'
 
 	" Unite
 	nnoremap <space>s :Unite -quick-match buffer<cr>
@@ -164,6 +165,10 @@ else
 	set statusline+=\ [%p%%:\       " scroll percent
 	set statusline+=%l/%L\ %c]\     " line/lines, column
 endif
+
+let php_sql_query = 1
+let php_html_in_strings = 1
+
 
 
 " load ftplugins and indent files
