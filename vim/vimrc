@@ -129,6 +129,14 @@ if exists('*neobundle#rc')
 	NeoBundle 'airblade/vim-gitgutter'
 	NeoBundle 'justinmk/vim-sneak'
 	NeoBundle 'tpope/vim-vinegar'
+	NeoBundle 'Valloric/YouCompleteMe'
+	NeoBundle 'SirVer/ultisnips'
+	NeoBundle 'honza/vim-snippets'
+
+	" Ultisnips
+	let g:UltiSnipsExpandTrigger="<c-j>"
+	let g:UltiSnipsJumpForwardTrigger="<c-j>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 	" Unite
 	nnoremap <space>s :Unite -quick-match buffer<cr>
