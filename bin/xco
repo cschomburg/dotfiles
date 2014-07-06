@@ -27,6 +27,23 @@ clip_copy () {
 	fi
 }
 
+check () {
+	curr_dir=$(pwd)
+	root_dir=${1:-~/code}
+	for file in $(find "$root_dir" -name .git); do
+		repo=$(dirname "$file")
+		cd "$repo"
+		if ! git diff --exit-code > /dev/null; then
+			echo $repo has unstaged changes
+		elif ! git diff --cached --exit-code > /dev/null; then
+			echo $repo has uncommitted changes
+		elif [ -n "$(git cherry 2>/dev/null)" ]; then
+			echo $repo has unpushed changes
+		fi
+		cd "$curr_dir"
+	done
+}
+
 if [ -z "$1" ]; then
 	cat <<EOF
 Usage: xco <command> [<args>...]
@@ -35,6 +52,7 @@ commands:
    clone <repo>
    drop <file>
    clip [<text>...]
+   check [<dir>]
 EOF
 exit 1
 fi
@@ -46,5 +64,6 @@ case $cmd in
 	clone) clone_code $1 ;;
 	drop) drop_file $@ ;;
 	clip) clip_copy $@ ;;
+	check) check $@ ;;
 	*) echo "unknown command: $2"
 esac
