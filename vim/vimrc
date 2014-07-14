@@ -11,6 +11,7 @@ set smartindent					" Smart indenting
 set backspace=indent,eol,start	" Make  backspace work as usual
 set tabstop=4					" an indentation every 4 columns
 set shiftwidth=4				" Use indents of 4 spaces
+set softtabstop=-1				" spaces for editing
 set noexpandtab                 " do not insert spaces when tab pressed
 
 " Status line
@@ -20,15 +21,13 @@ set cmdheight=1					" Set height of command
 set laststatus=2				" Always show status line
 
 " Search
-set nohlsearch					" Do not highlight the string we searched
+set hlsearch					" Highlight the string we searched
 set incsearch					" Incremental search: Highlight the searched string while typing
 set ignorecase					" Case-insensitive search
 set smartcase					" Upper-case sensitive search
 set wrapscan					" searches wrap back to the top of file
 
 " Other stuff
-set number
-set relativenumber
 set mat=5						" How many tenth of a second to blink matching brackets for
 set foldmethod=marker			" Auto-folding in files with markers
 set fileformats=unix,dos,mac	" Support in this order
@@ -41,16 +40,12 @@ set directory=$HOME/.vim/tmp
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
-set undolevels=24				" Set undo level
 set title						" Set window title with the vim files
 set wildmode=longest:full,full	" Bash-like tab completion list
 set wildmenu
 set formatoptions-=o			" don't continue comments when pushing o/O
 set scrolljump=5				" lines to scroll when cursor leaves screen
-set scrolloff=3					" minimum lines to keep above and below cursor
-set gdefault					" the /g flag on :s substitutions by default
-set scrolljump=5				" lines to scroll when cursor leaves screen
-set scrolloff=3					" minimum lines to keep above and below cursor
+set scrolloff=5					" minimum lines to keep above and below cursor
 set gdefault					" the /g flag on :s substitutions by default
 set cursorline                  " Highlight current line
 set colorcolumn=80,120			" Mark 80px column
@@ -61,14 +56,14 @@ set hidden                      " allow unsaved changes in hidden buffers
 set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
 
+let mapleader = " "
+" simple buffer switch
+map <leader>b <esc>:ls<cr>:b<space>
+
 " Completion
 set pumheight=5
 set completeopt+=longest		" only complete longest match
 set completeopt+=menuone        " show popup menu even for single matches
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-	\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 
 " Colorscheme
@@ -105,6 +100,12 @@ cmap w!! w !sudo tee % >/dev/null
 noremap j gj
 noremap k gk
 
+" very magic regexes per default
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %s/\v
+cnoremap >s/ >smagic/
+
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
@@ -127,7 +128,7 @@ if exists('*neobundle#rc')
 	NeoBundle 'bling/vim-airline'
 	NeoBundle 'tpope/vim-surround'
 	NeoBundle 'scrooloose/syntastic'
-	NeoBundle 'airblade/vim-gitgutter'
+	"NeoBundle 'airblade/vim-gitgutter'
 	NeoBundle 'justinmk/vim-sneak'
 	NeoBundle 'tpope/vim-vinegar'
 	NeoBundle 'Valloric/YouCompleteMe'
@@ -139,8 +140,12 @@ if exists('*neobundle#rc')
 	let g:UltiSnipsJumpForwardTrigger="<c-j>"
 	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+	" YouCompleteMe
+	let g:ycm_add_preview_to_completeopt = 1
+	let g:ycm_autoclose_preview_window_after_insertion = 1
+
 	" Unite
-	nnoremap <space>s :Unite -quick-match buffer<cr>
+	nnoremap <leader>s :Unite -quick-match buffer<cr>
 
 	" Airline
 	let g:airline#extensions#tabline#buffer_min_count = 2
@@ -179,6 +184,19 @@ endif
 
 let php_sql_query = 1
 let php_html_in_strings = 1
+
+" bracketed paste mode
+let &t_ti = &t_ti . "\e[?2004h"
+let &t_te = "\e[?2004l" . &t_te
+function XTermPasteBegin(ret)
+	set pastetoggle=<Esc>[201~
+	set paste
+	return a:ret
+endfunction
+map <expr> <Esc>[200~ XTermPasteBegin("i")
+imap <expr> <Esc>[200~ XTermPasteBegin("")
+cmap <Esc>[200~ <nop>
+cmap <Esc>[201~ <nop>
 
 
 
