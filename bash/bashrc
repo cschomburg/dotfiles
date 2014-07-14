@@ -60,5 +60,11 @@ test -r ~/.bashrc_local && . ~/.bashrc_local
 
 # TMUX
 if type tmux &>/dev/null; then
-	test -z "$TMUX" && (tmux attach || tmux new-session)
+	if [ -z "$TMUX" ]; then
+		if tmux -q has-session; then
+			exec tmux attach-session
+		else
+			exec tmux new-session
+		fi
+	fi
 fi
