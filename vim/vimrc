@@ -110,6 +110,7 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
