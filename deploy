@@ -10,6 +10,7 @@ files=(	'vim:.vim'
 		'bash/bashrc:.bashrc'
 		'tmux:.tmux.conf'
 		'minttyrc:.minttyrc'
+		'claws/clawsrc:.claws-mail/clawsrc'
 )
 
 install_filepair () {
