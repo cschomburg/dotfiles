@@ -1,0 +1,11 @@
+---
+- name: ensure texlive is installed
+  apt: pkg={{ item }} state=installed
+  sudo: True
+  with_items:
+    - texlive-base
+    - texlive-lang-german
+    - texlive-latex-recommended
+    - texlive-latex-extra
+    - texlive-fonts-recommended
+    - latexmk
