@@ -17,11 +17,17 @@ DOTFILES=$(dirname $BASHDIR_PATH)
 
 source $DOTFILES/z.sh
 
+# setup Go language environment and path
+test -d "$HOME/code/go" &&
+	export GOPATH="$HOME/code/go" &&
+	PATH="$HOME/code/go/bin:$PATH"
+
 PATH="$DOTFILES/bin:$PATH"
 test -d "$DOTFILES/private/bin" &&
 	PATH="$DOTFILES/private/bin:$PATH"
 test -d "$HOME/bin" &&
 	PATH="$HOME/bin:$PATH"
+
 
 bind "set show-all-if-ambiguous on"
 
