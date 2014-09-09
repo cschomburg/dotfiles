@@ -30,7 +30,10 @@ set -g set-titles-string "#W.#T"
 set -g terminal-overrides "xterm*:XT:smcup@:rmcup@"
 
 #set-option -g pane-border-fg colour8
+unbind C-b
 set-option -g prefix C-a
+bind C-a send-prefix
+
 set-option -g pane-border-fg red
 set-option -g pane-active-border-fg red
 setw -g aggressive-resize
