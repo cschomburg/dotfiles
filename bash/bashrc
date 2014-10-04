@@ -7,7 +7,7 @@ esac
 name=`whoami`
 name=${name:0:2}
 name=${name,,}
-PS1="\[\e[32m\]$name \[\e[33m\]\w\[\e[0m\] "
+PS1="\[\e[31m\]$name \[\e[34m\]\w\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
 # find dotfiles dir
@@ -17,11 +17,17 @@ DOTFILES=$(dirname $BASHDIR_PATH)
 
 source $DOTFILES/z.sh
 
+# setup Go language environment and path
+test -d "$HOME/code/go" &&
+	export GOPATH="$HOME/code/go" &&
+	PATH="$HOME/code/go/bin:$PATH"
+
 PATH="$DOTFILES/bin:$PATH"
 test -d "$DOTFILES/private/bin" &&
 	PATH="$DOTFILES/private/bin:$PATH"
 test -d "$HOME/bin" &&
 	PATH="$HOME/bin:$PATH"
+
 
 bind "set show-all-if-ambiguous on"
 
@@ -29,6 +35,7 @@ alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
 alias g='git'
+alias o='xdg-open'
 
 alias uncomm="sed '/^$\|^#/d'"
 alias sshfs-sane='sshfs -o reconnect'
@@ -63,5 +70,11 @@ test -r ~/.bashrc_local && . ~/.bashrc_local
 
 # TMUX
 if type tmux &>/dev/null; then
-	test -z "$TMUX" && (tmux attach || tmux new-session)
+	if [ -z "$TMUX" ]; then
+		if tmux -q has-session; then
+			exec tmux attach-session
+		else
+			exec tmux new-session
+		fi
+	fi
 fi
