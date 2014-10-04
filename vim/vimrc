@@ -15,8 +15,8 @@ set softtabstop=-1				" spaces for editing
 set noexpandtab                 " do not insert spaces when tab pressed
 
 " Status line
-set showcmd						" Show (partial) command in status line
-set showmode					" Show mode in status line
+set showcmd					" Show (partial) command in status line
+set noshowmode					" Show mode in status line
 set cmdheight=1					" Set height of command
 set laststatus=2				" Always show status line
 
@@ -57,8 +57,6 @@ set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
 
 let mapleader = " "
-" simple buffer switch
-map <leader>b <esc>:ls<cr>:b<space>
 
 " Completion
 set pumheight=5
@@ -133,10 +131,25 @@ if exists('*neobundle#rc')
 	NeoBundle 'Valloric/YouCompleteMe'
 	NeoBundle 'SirVer/ultisnips'
 	NeoBundle 'honza/vim-snippets'
+	NeoBundle 'junegunn/vim-easy-align'
+	NeoBundle 'Shougo/unite.vim'
+	NeoBundle 'Shougo/vimproc.vim'
+
+	" Unite
+	call unite#filters#matcher_default#use(['matcher_fuzzy'])
+	nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
+	nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
 
 	" Go programming language
 	if !empty($GOPATH)
-		NeoBundle 'fatih/vim-go'
+		NeoBundle 'fatih/vim-go', {
+					\ 'lazy' : 1,
+					\ 'autoload' : {
+					\	'filetypes' : ['go']
+					\ }
+					\}
+
+		let g:go_fmt_command = "goimports"
 
 		au FileType go nmap <Leader>i <Plug>(go-info)
 		au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
@@ -153,13 +166,8 @@ if exists('*neobundle#rc')
 	let g:ycm_add_preview_to_completeopt = 1
 	let g:ycm_autoclose_preview_window_after_insertion = 1
 
-	" Unite
-	nnoremap <leader>s :Unite -quick-match buffer<cr>
-
 	" Airline
-	let g:airline#extensions#tabline#buffer_min_count = 2
-	let g:airline#extensions#tabline#enabled = 1
-	let g:airline_theme='serene'
+	let g:airline_theme='wombat'
 	let g:airline_mode_map = {
 				\ '__' : '-',
 				\ 'n'  : 'N',
@@ -180,6 +188,12 @@ if exists('*neobundle#rc')
 	let g:syntastic_mode_map = { 'mode': 'active',
 				\ 'active_filetypes': [],
 				\ 'passive_filetypes': ['cpp', 'html'] }
+
+	" Easy Align
+	vmap <Enter> <Plug>(EasyAlign)
+	nmap <Leader>a <Plug>(EasyAlign)
+
+	let g:hardtime_default_on = 1
 else
 	" Credits to http://jasonwryan.com/
 	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
@@ -189,6 +203,9 @@ else
 	set statusline+=%=              " left/right separator
 	set statusline+=\ [%p%%:\       " scroll percent
 	set statusline+=%l/%L\ %c]\     " line/lines, column
+
+	" simple buffer switch
+	map <leader>e <esc>:ls<cr>:b<space>
 endif
 
 let php_sql_query = 1
