@@ -7,7 +7,7 @@ esac
 name=`whoami`
 name=${name:0:2}
 name=${name,,}
-PS1="\[\e[32m\]$name \[\e[33m\]\w\[\e[0m\] "
+PS1="\[\e[31m\]$name \[\e[34m\]\w\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
 # find dotfiles dir
@@ -35,6 +35,7 @@ alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
 alias g='git'
+alias o='xdg-open'
 
 alias uncomm="sed '/^$\|^#/d'"
 alias sshfs-sane='sshfs -o reconnect'
