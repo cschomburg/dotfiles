@@ -48,13 +48,16 @@ set scrolljump=5				" lines to scroll when cursor leaves screen
 set scrolloff=5					" minimum lines to keep above and below cursor
 set gdefault					" the /g flag on :s substitutions by default
 set cursorline                  " Highlight current line
-set colorcolumn=80,120			" Mark 80px column
+set colorcolumn=80				" Mark 80px column
 set conceallevel=2				" Conceal
 set list                        " show special chars
 set listchars=trail:·,precedes:«,extends:»,tab:·\ ,eol:↲
 set hidden                      " allow unsaved changes in hidden buffers
 set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
+set breakindent
+set showbreak=\ ↪\ 
+set fillchars+=vert:\ 
 
 let mapleader = " "
 
