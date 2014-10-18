@@ -1,7 +1,6 @@
 vim/.netrwhist
 vim/tmp/*
 vim/bundle/*
-vim/colors/molokai.vim
 ranger/__pycache__
 ranger/bookmarks
 ranger/history
