@@ -11,10 +11,10 @@
              key=org.gnome.shell.extensions.user-theme.name
              value="'elegance-colors-custom'"
 
-- name: install iris-dark
-  unarchive: src=../files/iris-dark.tar.gz
-             dest=/usr/share/themes
+- name: install iris
   sudo: True
+  git: repo=https://github.com/xyl0n/iris.git
+       dest=/usr/share/themes/iris
 
 - name: install flattr icons
   git: repo=https://github.com/NitruxSA/flattr-icons.git
