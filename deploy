@@ -56,5 +56,10 @@ for opt in "$@"; do
 				echo "You have to manually install base16 outside of tmux"
 			fi
 			;;
+		ansible)
+			cd $srcdir/ansible
+			./run
+			cd $srcdir
+			;;
 	esac
 done
