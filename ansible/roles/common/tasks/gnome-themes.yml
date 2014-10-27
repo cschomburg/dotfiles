@@ -1,0 +1,21 @@
+---
+- name: ensure ~/.themes is present
+  file: path=~/.themes state=directory
+
+- name: install elegance-colors
+  unarchive: src=../files/elegance-colors-custom.tar.gz
+             dest=~/.themes
+- name: apply elegance-colors theme
+  sudo: True
+  gsetting: user=xconstruct
+             key=org.gnome.shell.extensions.user-theme.name
+             value="'elegance-colors-custom'"
+
+- name: install iris
+  sudo: True
+  git: repo=https://github.com/xyl0n/iris.git
+       dest=/usr/share/themes/iris
+
+- name: install flattr icons
+  git: repo=https://github.com/NitruxSA/flattr-icons.git
+       dest=~/.icons/flattr-icons
