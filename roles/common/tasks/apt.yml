@@ -5,3 +5,4 @@
   with_items:
     - tmux
     - git
+    - vim

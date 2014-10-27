@@ -9,3 +9,14 @@
     - texlive-latex-extra
     - texlive-fonts-recommended
     - latexmk
+
+- name: ensure scipy and friends are installed
+  apt: pkg={{ item }} state=installed
+  sudo: True
+  with_items:
+    - python3-numpy
+    - python3-scipy
+    - python3-matplotlib
+    - python3-pandas
+    - ipython3-qtconsole
+    - ipython3-notebook
