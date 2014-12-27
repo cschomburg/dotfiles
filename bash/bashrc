@@ -31,6 +31,7 @@ test -d "$HOME/bin" &&
 
 bind "set show-all-if-ambiguous on"
 
+eval "$(dircolors $DOTFILES/dircolors)";
 alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
@@ -45,7 +46,13 @@ alias wgetagg='wget -c -t 0 -T 3 --waitretry=1'
 w3magg () { wgetagg -O - $1 | w3m -T 'text/html'; }
 
 c () {
-	if type bc &> /dev/null; then
+	if type python &> /dev/null; then
+		if [ $# -gt 0 ]; then
+			echo "$*" | python -i $DOTFILES/calc.py
+		else
+			python -i $DOTFILES/calc.py
+		fi
+	elif type bc &> /dev/null; then
 		echo "$*" | bc -l
 	else
 		echo "$(($*))"
