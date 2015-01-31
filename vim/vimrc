@@ -32,7 +32,7 @@ set mat=5						" How many tenth of a second to blink matching brackets for
 set foldmethod=marker			" Auto-folding in files with markers
 set fileformats=unix,dos,mac	" Support in this order
 set ruler
-set nowrap						" Don't wrap long lines to fit terminal width
+set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
 set swapfile
 set updatecount=2000
@@ -144,6 +144,7 @@ if exists('*neobundle#rc')
 	NeoBundle 'ivanov/vim-ipython'
 	NeoBundle 'shawncplus/phpcomplete.vim'
 	NeoBundle 'joonty/vdebug'
+	NeoBundle 'airblade/vim-gitgutter'
 
 	" Unite
 	call unite#filters#matcher_default#use(['matcher_fuzzy'])
