@@ -145,6 +145,8 @@ if exists('*neobundle#rc')
 	NeoBundle 'shawncplus/phpcomplete.vim'
 	NeoBundle 'joonty/vdebug'
 	NeoBundle 'airblade/vim-gitgutter'
+	NeoBundle 'takac/vim-hardtime'
+	NeoBundle 'kshenoy/vim-signature'
 
 	" Unite
 	call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -213,7 +215,9 @@ if exists('*neobundle#rc')
 	vmap <Enter> <Plug>(EasyAlign)
 	nmap <Leader>a <Plug>(EasyAlign)
 
+	" Hardtime
 	let g:hardtime_default_on = 1
+	let g:hardtime_maxcount = 2
 else
 	" Credits to http://jasonwryan.com/
 	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile

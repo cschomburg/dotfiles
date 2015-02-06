@@ -20,7 +20,7 @@ source $DOTFILES/z.sh
 # setup Go language environment and path
 test -d "$HOME/code/go" &&
 	export GOPATH="$HOME/code/go" &&
-	PATH="$HOME/code/go/bin:$PATH"
+	PATH="$HOME/code/go/bin:$HOME/code/goroot/bin:$PATH"
 
 PATH="$DOTFILES/bin:$PATH"
 test -d "$DOTFILES/private/bin" &&
