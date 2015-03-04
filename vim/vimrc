@@ -142,11 +142,12 @@ if exists('*neobundle#rc')
 	NeoBundle 'Shougo/unite.vim'
 	NeoBundle 'Shougo/vimproc.vim'
 	NeoBundle 'ivanov/vim-ipython'
-	NeoBundle 'shawncplus/phpcomplete.vim'
 	NeoBundle 'joonty/vdebug'
 	NeoBundle 'airblade/vim-gitgutter'
-	NeoBundle 'takac/vim-hardtime'
 	NeoBundle 'kshenoy/vim-signature'
+
+	NeoBundle 'shawncplus/phpcomplete.vim'
+	NeoBundle 'captbaritone/better-indent-support-for-php-with-html'
 
 	" Unite
 	call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -216,8 +217,9 @@ if exists('*neobundle#rc')
 	nmap <Leader>a <Plug>(EasyAlign)
 
 	" Hardtime
-	let g:hardtime_default_on = 1
-	let g:hardtime_maxcount = 2
+	let g:hardtime_default_on = 0
+	let g:hardtime_maxcount = 1
+	let g:hardtime_timeout = 2000
 else
 	" Credits to http://jasonwryan.com/
 	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
