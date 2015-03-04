@@ -91,10 +91,10 @@ bind '"\C-o":"ranger-cd\C-m"'
 # TMUX
 if type tmux &>/dev/null; then
 	if [ -z "$TMUX" ]; then
-		if tmux -q has-session; then
-			exec tmux attach-session
+		if tmux -q has-session -t main; then
+			exec tmux attach-session -t main
 		else
-			exec tmux new-session
+			exec tmux new-session -s main
 		fi
 	fi
 fi
