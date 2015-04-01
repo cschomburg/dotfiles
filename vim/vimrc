@@ -115,6 +115,8 @@ autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
+nnoremap <leader>j :%!python -m json.tool<CR>
+
 " allow using repeat operator with a visual selection
 vnoremap . :normal .<CR>
 
