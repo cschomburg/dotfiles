@@ -53,7 +53,7 @@ c () {
 }
 
 type hub &> /dev/null && alias git=hub
-type ack &> /dev/null || alias ack='grep -R'
+type ag &> /dev/null || alias ag='grep -R'
 
 export EDITOR=vim
 export VISUAL=vim
