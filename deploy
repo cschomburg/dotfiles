@@ -10,6 +10,7 @@ files=(	'vim:.vim'
 		'bash/bashrc:.bashrc'
 		'tmux:.tmux.conf'
 		'minttyrc:.minttyrc'
+		'latexmkrc:.latexmkrc'
 )
 
 install_filepair () {
