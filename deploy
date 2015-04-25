@@ -5,6 +5,8 @@ dstdir=$HOME
 
 files=(	'vim:.vim'
 		'vim/vimrc:.vimrc'
+		'nvim:.nvim'
+		'nvim/nvimrc:.nvimrc'
 		'git/gitconfig:.gitconfig'
 		'git/gitignore:.gitignore'
 		'bash/bashrc:.bashrc'

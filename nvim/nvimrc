@@ -36,7 +36,7 @@ set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
 set swapfile
 set updatecount=2000
-set directory=$HOME/.vim/tmp
+set directory=$HOME/.nvim/tmp
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
@@ -75,7 +75,7 @@ colorscheme molokai
 set undofile
 set undolevels=1000
 set undoreload=10000
-set undodir=$HOME/.vim/tmp
+set undodir=$HOME/.nvim/tmp
 
 " NetRW
 let g:netrw_liststyle=3
@@ -129,8 +129,8 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-set rtp+=~/.vim/bundle/neobundle.vim/
-silent! call neobundle#rc(expand('~/.vim/bundle/'))
+set rtp+=~/.nvim/bundle/neobundle.vim/
+silent! call neobundle#rc(expand('~/.nvim/bundle/'))
 if exists('*neobundle#rc')
 	NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -155,13 +155,23 @@ if exists('*neobundle#rc')
 	NeoBundle 'kshenoy/vim-signature'
 	NeoBundle 'ryanss/vim-hackernews'
 
-	NeoBundle 'shawncplus/phpcomplete.vim'
+	"NeoBundle 'shawncplus/phpcomplete.vim'
 	NeoBundle 'captbaritone/better-indent-support-for-php-with-html'
 
 	" Unite
 	silent! call unite#filters#matcher_default#use(['matcher_fuzzy'])
+	silent! call unite#custom#source('buffer,file,file_rec,file_rec/async',
+				\ 'sorters', 'sorter_rank')
 	nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
 	nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
+	nnoremap <leader>t :Unite -no-split -buffer-name=tags outline<cr>
+	nnoremap <leader>g :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<cr>
+	if executable('ag')
+		let g:unite_source_grep_command = 'ag'
+		let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+		let g:unite_source_grep_recursive_opt = ''
+		let g:unite_source_grep_encoding = 'utf-8'
+	endif
 
 	" Go programming language
 	if !empty($GOPATH)
