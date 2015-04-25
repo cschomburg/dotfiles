@@ -40,6 +40,7 @@ alias o='xdg-open'
 
 alias uncomm="sed '/^$\|^#/d'"
 alias sshfs-sane='sshfs -o reconnect'
+alias latexmk="latexmk -pdf -pvc"
 
 alias wgetagg='wget -c -t 0 -T 3 --waitretry=1'
 
