@@ -120,6 +120,8 @@ autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 nnoremap <leader>j :%!python -m json.tool<CR>
+nnoremap <leader>h :%!xxd<CR>
+nnoremap <leader>H :%!xxd -r<CR>
 
 " allow using repeat operator with a visual selection
 vnoremap . :normal .<CR>
@@ -152,7 +154,7 @@ if exists('*neobundle#rc')
 	NeoBundle 'captbaritone/better-indent-support-for-php-with-html'
 
 	" Unite
-	call unite#filters#matcher_default#use(['matcher_fuzzy'])
+	silent! call unite#filters#matcher_default#use(['matcher_fuzzy'])
 	nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
 	nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
 
