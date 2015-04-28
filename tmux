@@ -3,6 +3,7 @@ set -g status-bg black
 set -g status-fg white
 set -g status-left '#[fg=green]#H'
 set-window-option -g window-status-current-fg red
+set -s escape-time 0
 
 # vim-like key bindings
 unbind h
