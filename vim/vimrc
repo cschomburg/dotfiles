@@ -125,98 +125,17 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-set rtp+=~/.vim/bundle/neobundle.vim/
-silent! call neobundle#rc(expand('~/.vim/bundle/'))
-if exists('*neobundle#rc')
-	NeoBundleFetch 'Shougo/neobundle.vim'
-	NeoBundle 'sheerun/vim-polyglot'
-	NeoBundle 'bling/vim-airline'
-	NeoBundle 'tpope/vim-surround'
-	NeoBundle 'scrooloose/syntastic'
-	NeoBundle 'justinmk/vim-sneak'
-	NeoBundle 'tpope/vim-vinegar'
-	NeoBundle 'Valloric/YouCompleteMe'
-	NeoBundle 'SirVer/ultisnips'
-	NeoBundle 'honza/vim-snippets'
-	NeoBundle 'junegunn/vim-easy-align'
-	NeoBundle 'Shougo/unite.vim'
-	NeoBundle 'Shougo/vimproc.vim'
+" Credits to http://jasonwryan.com/
+set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
+set statusline+=\ ::\ %y        " filetype
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}] "file type
+set statusline+=\ [%{&ff}]      " file encoding
+set statusline+=%=              " left/right separator
+set statusline+=\ [%p%%:\       " scroll percent
+set statusline+=%l/%L\ %c]\     " line/lines, column
 
-	" Unite
-	silent! call unite#filters#matcher_default#use(['matcher_fuzzy'])
-	nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
-	nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
-
-	" Go programming language
-	if !empty($GOPATH)
-		NeoBundle 'fatih/vim-go', {
-					\ 'lazy' : 1,
-					\ 'autoload' : {
-					\	'filetypes' : ['go']
-					\ }
-					\}
-
-		let g:go_fmt_command = "goimports"
-		let g:go_highlight_functions = 1
-		let g:go_highlight_methods = 1
-		let g:go_highlight_structs = 1
-
-		au FileType go nmap <Leader>i <Plug>(go-info)
-		au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
-		au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-		au FileType go nmap <Leader>t <Plug>(go-test)
-	endif
-
-	" Ultisnips
-	let g:UltiSnipsExpandTrigger="<c-j>"
-	let g:UltiSnipsJumpForwardTrigger="<c-j>"
-	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-	" YouCompleteMe
-	let g:ycm_add_preview_to_completeopt = 1
-	let g:ycm_autoclose_preview_window_after_insertion = 1
-
-	" Airline
-	let g:airline_theme='wombat'
-	let g:airline_mode_map = {
-				\ '__' : '-',
-				\ 'n'  : 'N',
-				\ 'i'  : 'I',
-				\ 'R'  : 'R',
-				\ 'c'  : 'C',
-				\ 'v'  : 'V',
-				\ 'V'  : 'V',
-				\ '' : 'V',
-				\ 's'  : 'S',
-				\ 'S'  : 'S',
-				\ '' : 'S',
-				\ }
-
-	" Syntastic
-	let g:syntastic_auto_jump=1
-	let g:syntastic_auto_loc_list=1
-	let g:syntastic_mode_map = { 'mode': 'active',
-				\ 'active_filetypes': [],
-				\ 'passive_filetypes': ['cpp', 'html'] }
-
-	" Easy Align
-	vmap <Enter> <Plug>(EasyAlign)
-	nmap <Leader>a <Plug>(EasyAlign)
-
-	let g:hardtime_default_on = 1
-else
-	" Credits to http://jasonwryan.com/
-	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
-	set statusline+=\ ::\ %y        " filetype
-	set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}] "file type
-	set statusline+=\ [%{&ff}]      " file encoding
-	set statusline+=%=              " left/right separator
-	set statusline+=\ [%p%%:\       " scroll percent
-	set statusline+=%l/%L\ %c]\     " line/lines, column
-
-	" simple buffer switch
-	map <leader>e <esc>:ls<cr>:b<space>
-endif
+" simple buffer switch
+map <leader>e <esc>:ls<cr>:b<space>
 
 let php_sql_query = 1
 let php_html_in_strings = 1
@@ -242,7 +161,3 @@ filetype indent on
 
 " turn on syntax highlighting
 syntax on
-
-if exists('*neobundle#rc')
-	NeoBundleCheck
-end
