@@ -110,6 +110,7 @@ vnoremap / /\v
 cnoremap %s/ %s/\v
 cnoremap >s/ >smagic/
 
+autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
@@ -129,34 +130,33 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-set rtp+=~/.nvim/bundle/neobundle.vim/
-silent! call neobundle#rc(expand('~/.nvim/bundle/'))
-if exists('*neobundle#rc')
-	NeoBundleFetch 'Shougo/neobundle.vim'
+if 1
+	call plug#begin('~/.nvim/bundle')
+	Plug 'Shougo/neobundle.vim'
 
-	NeoBundle 'tpope/vim-surround'
-	NeoBundle 'tpope/vim-vinegar'
-	NeoBundle 'tpope/vim-fugitive'
-	NeoBundle 'tpope/vim-commentary'
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-vinegar'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-commentary'
 
-	NeoBundle 'sheerun/vim-polyglot'
-	NeoBundle 'bling/vim-airline'
-	NeoBundle 'scrooloose/syntastic'
-	NeoBundle 'justinmk/vim-sneak'
-	NeoBundle 'Valloric/YouCompleteMe'
-	NeoBundle 'SirVer/ultisnips'
-	NeoBundle 'honza/vim-snippets'
-	NeoBundle 'junegunn/vim-easy-align'
-	NeoBundle 'Shougo/unite.vim'
-	NeoBundle 'Shougo/vimproc.vim'
-	NeoBundle 'ivanov/vim-ipython'
-	NeoBundle 'joonty/vdebug'
-	NeoBundle 'airblade/vim-gitgutter'
-	NeoBundle 'kshenoy/vim-signature'
-	NeoBundle 'ryanss/vim-hackernews'
+	Plug 'sheerun/vim-polyglot'
+	Plug 'bling/vim-airline'
+	Plug 'scrooloose/syntastic'
+	Plug 'justinmk/vim-sneak'
+	Plug 'Valloric/YouCompleteMe'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'junegunn/vim-easy-align'
+	Plug 'Shougo/unite.vim'
+	Plug 'Shougo/vimproc.vim'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'kshenoy/vim-signature'
 
-	"NeoBundle 'shawncplus/phpcomplete.vim'
-	NeoBundle 'captbaritone/better-indent-support-for-php-with-html'
+	Plug 'joonty/vdebug', { 'for': 'php' }
+	Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+	"Plug 'shawncplus/phpcomplete.vim'
+	Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 	" Unite
 	silent! call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -175,12 +175,7 @@ if exists('*neobundle#rc')
 
 	" Go programming language
 	if !empty($GOPATH)
-		NeoBundle 'fatih/vim-go', {
-					\ 'lazy' : 1,
-					\ 'autoload' : {
-					\	'filetypes' : ['go']
-					\ }
-					\}
+		Plug 'fatih/vim-go', { 'for': 'go' }
 
 		let g:go_fmt_command = "goimports"
 		let g:go_highlight_functions = 1
@@ -239,6 +234,8 @@ if exists('*neobundle#rc')
 	let g:hardtime_default_on = 0
 	let g:hardtime_maxcount = 1
 	let g:hardtime_timeout = 2000
+
+	call plug#end()
 else
 	" Credits to http://jasonwryan.com/
 	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
@@ -277,7 +274,3 @@ filetype indent on
 
 " turn on syntax highlighting
 syntax on
-
-if exists('*neobundle#rc')
-	NeoBundleCheck
-end

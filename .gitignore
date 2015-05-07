@@ -4,6 +4,7 @@ vim/bundle/*
 nvim/.netrwhist
 nvim/tmp/*
 nvim/bundle/*
+nvim/autoload/plug.vim
 ranger/__pycache__
 ranger/bookmarks
 ranger/history
