@@ -58,6 +58,7 @@ set lazyredraw
 set breakindent
 set showbreak=\ ↪\ 
 set fillchars+=vert:\ 
+set previewheight=20
 
 let mapleader = " "
 
@@ -65,11 +66,6 @@ let mapleader = " "
 set pumheight=5
 set completeopt+=longest		" only complete longest match
 set completeopt+=menuone        " show popup menu even for single matches
-
-
-" Colorscheme
-set background=dark
-colorscheme molokai
 
 " Persistent undo
 set undofile
@@ -130,128 +126,113 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-if 1
-	call plug#begin('~/.nvim/bundle')
-	Plug 'Shougo/neobundle.vim'
+call plug#begin('~/.nvim/bundle')
 
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-vinegar'
-	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 
-	Plug 'sheerun/vim-polyglot'
-	Plug 'bling/vim-airline'
-	Plug 'scrooloose/syntastic'
-	Plug 'justinmk/vim-sneak'
-	Plug 'Valloric/YouCompleteMe'
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
-	Plug 'junegunn/vim-easy-align'
-	Plug 'Shougo/unite.vim'
-	Plug 'Shougo/vimproc.vim'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'kshenoy/vim-signature'
+Plug 'sheerun/vim-polyglot'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+Plug 'justinmk/vim-sneak'
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-easy-align'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'kshenoy/vim-signature'
+Plug 'morhetz/gruvbox'
 
-	Plug 'joonty/vdebug', { 'for': 'php' }
-	Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'joonty/vdebug',     { 'for': 'php' }
+Plug 'fatih/vim-go',      { 'for': 'go' }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
-	"Plug 'shawncplus/phpcomplete.vim'
-	Plug 'captbaritone/better-indent-support-for-php-with-html'
+"Plug 'shawncplus/phpcomplete.vim'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
 
-	" Unite
-	silent! call unite#filters#matcher_default#use(['matcher_fuzzy'])
-	silent! call unite#custom#source('buffer,file,file_rec,file_rec/async',
-				\ 'sorters', 'sorter_rank')
-	nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
-	nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
-	nnoremap <leader>t :Unite -no-split -buffer-name=tags outline<cr>
-	nnoremap <leader>g :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<cr>
-	if executable('ag')
-		let g:unite_source_grep_command = 'ag'
-		let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-		let g:unite_source_grep_recursive_opt = ''
-		let g:unite_source_grep_encoding = 'utf-8'
-	endif
+call plug#end()
 
-	" Go programming language
-	if !empty($GOPATH)
-		Plug 'fatih/vim-go', { 'for': 'go' }
-
-		let g:go_fmt_command = "goimports"
-		let g:go_highlight_functions = 1
-		let g:go_highlight_methods = 1
-		let g:go_highlight_structs = 1
-
-		au FileType go nmap <Leader>i <Plug>(go-info)
-		au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
-		au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-		au FileType go nmap <Leader>t <Plug>(go-test)
-	endif
-
-	" PHP
-    let g:vdebug_options = {
-				\ 'path_maps': {"var/cakephp3/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
-				\ 'server': '0.0.0.0'
-				\}
-
-	" Ultisnips
-	let g:UltiSnipsExpandTrigger="<c-j>"
-	let g:UltiSnipsJumpForwardTrigger="<c-j>"
-	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-	" YouCompleteMe
-	let g:ycm_add_preview_to_completeopt = 1
-	let g:ycm_autoclose_preview_window_after_insertion = 1
-
-	" Airline
-	let g:airline_theme='wombat'
-	let g:airline_mode_map = {
-				\ '__' : '-',
-				\ 'n'  : 'N',
-				\ 'i'  : 'I',
-				\ 'R'  : 'R',
-				\ 'c'  : 'C',
-				\ 'v'  : 'V',
-				\ 'V'  : 'V',
-				\ '' : 'V',
-				\ 's'  : 'S',
-				\ 'S'  : 'S',
-				\ '' : 'S',
-				\ }
-
-	" Syntastic
-	let g:syntastic_auto_jump=1
-	let g:syntastic_auto_loc_list=1
-	let g:syntastic_mode_map = { 'mode': 'active',
-				\ 'active_filetypes': [],
-				\ 'passive_filetypes': ['cpp', 'html'] }
-
-	" Easy Align
-	vmap <Enter> <Plug>(EasyAlign)
-	nmap <Leader>a <Plug>(EasyAlign)
-
-	" Hardtime
-	let g:hardtime_default_on = 0
-	let g:hardtime_maxcount = 1
-	let g:hardtime_timeout = 2000
-
-	call plug#end()
-else
-	" Credits to http://jasonwryan.com/
-	set statusline=\ \%t%m%r%h%w    " file, modified, readonly, helpfile
-	set statusline+=\ ::\ %y        " filetype
-	set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}] "file type
-	set statusline+=\ [%{&ff}]      " file encoding
-	set statusline+=%=              " left/right separator
-	set statusline+=\ [%p%%:\       " scroll percent
-	set statusline+=%l/%L\ %c]\     " line/lines, column
-
-	" simple buffer switch
-	map <leader>e <esc>:ls<cr>:b<space>
+" Unite
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
+nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
+nnoremap <leader>t :Unite -no-split -buffer-name=tags outline<cr>
+nnoremap <leader>g :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<cr>
+if executable('ag')
+	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+	let g:unite_source_grep_recursive_opt = ''
+	let g:unite_source_grep_encoding = 'utf-8'
 endif
+
+" Go programming language
+if !empty($GOPATH)
+	let g:go_fmt_command = "goimports"
+	let g:go_highlight_functions = 1
+	let g:go_highlight_methods = 1
+	let g:go_highlight_structs = 1
+
+	au FileType go nmap <Leader>i <Plug>(go-info)
+	au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
+	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+	au FileType go nmap <Leader>t <Plug>(go-test)
+endif
+
+" PHP
+let g:vdebug_options = {
+			\ 'path_maps': {"var/cakephp3/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
+			\ 'server': '0.0.0.0'
+			\}
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" YouCompleteMe
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Airline
+let g:airline_theme='gruvbox'
+let g:airline_mode_map = {
+			\ '__' : '-',
+			\ 'n'  : 'N',
+			\ 'i'  : 'I',
+			\ 'R'  : 'R',
+			\ 'c'  : 'C',
+			\ 'v'  : 'V',
+			\ 'V'  : 'V',
+			\ '' : 'V',
+			\ 's'  : 'S',
+			\ 'S'  : 'S',
+			\ '' : 'S',
+			\ }
+
+" Syntastic
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active',
+			\ 'active_filetypes': [],
+			\ 'passive_filetypes': ['cpp', 'html'] }
+
+" Easy Align
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+
+" Hardtime
+let g:hardtime_default_on = 0
+let g:hardtime_maxcount = 1
+let g:hardtime_timeout = 2000
 
 let php_sql_query = 1
 let php_html_in_strings = 1
+let php_var_selector_is_identifier = 1
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"
@@ -274,3 +255,7 @@ filetype indent on
 
 " turn on syntax highlighting
 syntax on
+
+" Colorscheme
+set background=dark
+colorscheme gruvbox
