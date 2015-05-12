@@ -4,6 +4,22 @@ case $- in
       *) return;;
 esac
 
+# GNOME-Terminal: correctly advertise 256 color support
+if [ -z "$TMUX" -a "$TERM" == "xterm" ]; then
+	export TERM=xterm-256color
+fi
+
+# TMUX
+if type tmux &>/dev/null; then
+	if [ -z "$TMUX" ]; then
+		if tmux -q has-session -t main; then
+			exec tmux attach-session -t main
+		else
+			exec tmux new-session -s main
+		fi
+	fi
+fi
+
 name=`whoami`
 name=${name:0:2}
 name=${name,,}
@@ -69,11 +85,8 @@ export VISUAL=vim
 # Vim as MANPAGER
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma laststatus=0' -\""
 
-# GNOME-Terminal: correctly advertise 256 color support
-if [ -z "$TMUX" -a "$TERM" == "xterm" ]; then
-	export TERM=xterm-256color
-fi
-
+test -r ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh &&
+	. ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh
 test -r ~/.bashrc_local && . ~/.bashrc_local
 
 ranger-cd () {
@@ -88,14 +101,3 @@ ranger-cd () {
 
 # This binds Ctrl-O to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
-
-# TMUX
-if type tmux &>/dev/null; then
-	if [ -z "$TMUX" ]; then
-		if tmux -q has-session -t main; then
-			exec tmux attach-session -t main
-		else
-			exec tmux new-session -s main
-		fi
-	fi
-fi

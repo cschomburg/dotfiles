@@ -3,17 +3,8 @@ set -g status-bg black
 set -g status-fg white
 set -g status-left '#[fg=green]#H'
 set-window-option -g window-status-current-fg red
-set -s escape-time 0
-
-# vim-like key bindings
-unbind h
-bind h select-pane -L
-unbind j
-bind j select-pane -D
-unbind k
-bind k select-pane -U
-unbind l # normally used for last-window
-bind l select-pane -R
+set-window-option -g mode-keys vi
+set -sg escape-time 0
 
 # simple resizing
 unbind Left
