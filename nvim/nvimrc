@@ -247,7 +247,25 @@ imap <expr> <Esc>[200~ XTermPasteBegin("")
 cmap <Esc>[200~ <nop>
 cmap <Esc>[201~ <nop>
 
+" GPG config
+set backupskip+=*.gpg
+set viminfo=
 
+augroup encrypted
+  au!
+  autocmd BufReadPre,FileReadPre *.gpg
+    \ setlocal noswapfile bin
+  autocmd BufReadPost,FileReadPost *.gpg
+    \ execute "'[,']!gpg --decrypt --default-recipient-self" |
+    \ setlocal nobin |
+    \ execute "doautocmd BufReadPost " . expand("%:r")
+  autocmd BufWritePre,FileWritePre *.gpg
+    \ setlocal bin |
+    \ '[,']!gpg --encrypt --default-recipient-self
+  autocmd BufWritePost,FileWritePost *.gpg
+    \ silent u |
+    \ setlocal nobin
+augroup END
 
 " load ftplugins and indent files
 filetype plugin on

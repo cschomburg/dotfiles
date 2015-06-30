@@ -1,7 +1,8 @@
 set -g default-terminal "screen-256color"
 set -g status-bg black
 set -g status-fg white
-set -g status-left '#[fg=green]#H'
+set -g status-left '#[fg=green]#H '
+set -g status-right '#[fg=green]#T '
 set-window-option -g window-status-current-fg red
 set-window-option -g mode-keys vi
 set -sg escape-time 0
