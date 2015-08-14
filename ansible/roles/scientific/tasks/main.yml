@@ -1,6 +1,6 @@
 ---
 - name: ensure texlive is installed
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed install_recommends=no
   sudo: True
   with_items:
     - texlive-base
