@@ -3,7 +3,8 @@
 srcdir=`pwd`
 dstdir=$HOME
 
-files=(	'vim:.vim'
+files=( '.:.dotfiles'
+		'vim:.vim'
 		'vim/vimrc:.vimrc'
 		'nvim:.nvim'
 		'git/gitconfig:.gitconfig'
@@ -62,6 +63,10 @@ for opt in "$@"; do
 			cd $srcdir/ansible
 			./run
 			cd $srcdir
+			;;
+		fzf)
+			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+			~/.fzf/install
 			;;
 	esac
 done

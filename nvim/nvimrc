@@ -146,6 +146,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 Plug 'joonty/vdebug',     { 'for': 'php' }
 Plug 'fatih/vim-go',      { 'for': 'go' }

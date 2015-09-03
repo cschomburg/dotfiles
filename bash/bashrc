@@ -107,3 +107,5 @@ ranger-cd () {
 
 # This binds Ctrl-O to ranger-cd:
 bind '"\C-o":"ranger-cd\C-m"'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
