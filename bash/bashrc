@@ -26,6 +26,12 @@ name=${name,,}
 PS1="\[\e[31m\]$name \[\e[34m\]\w\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
+HISTTIMEFORMAT="%y-%m-%d %T "
+HISTSIZE=5000
+HISTFILESIZE=100000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+
 # find dotfiles dir
 BASHRC_PATH=$(readlink -f ${BASH_SOURCE[0]})
 BASHDIR_PATH=$(dirname $BASHRC_PATH)
