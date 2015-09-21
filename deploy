@@ -12,6 +12,7 @@ files=( '.:.dotfiles'
 		'bash/bashrc:.bashrc'
 		'tmux:.tmux.conf'
 		'latexmkrc:.latexmkrc'
+		'firejail:.config/firejail'
 )
 
 install_filepair () {
