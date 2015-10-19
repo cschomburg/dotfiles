@@ -8,20 +8,16 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-  boot.initrd.luks.devices = [ { device = "/dev/disk/by-uuid/547f13b5-63f6-4d33-845f-3b7ae866c48d"; name = "crypt"; } ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" ];
+  boot.initrd.luks.devices = [ { device = "/dev/disk/by-uuid/d0aeb950-ad78-4679-8cea-2e617ad5ab03"; name = "crypt"; } ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  hardware.enableAllFirmware = true;
-
-  swapDevices = [ ];
-
-  nix.maxJobs = 4;
 
   fileSystems."/" = {
     device = "/dev/mapper/crypt";
     fsType = "btrfs";
-    options = "defaults,compress,subvolid=302";
+    options = "defaults,compress,subvol=vol/nixos";
   };
+
+  nix.maxJobs = 4;
 }
