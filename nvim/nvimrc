@@ -154,6 +154,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 "Plug 'shawncplus/phpcomplete.vim'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 

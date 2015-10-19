@@ -4,8 +4,10 @@
   environment.systemPackages = with pkgs; [
     cmake
     gdb
+    gnumake
     mercurial
     neovim
+    python
     subversionClient
     vagrant
   ];

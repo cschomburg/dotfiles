@@ -1,18 +1,15 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   nixpkgs.config = {
     allowUnfree = true;
 
     firefox = {
-      #jre = true;
-      #enableGoogleTalkPlugin = true;
+      enableGnomeExtensions = true;
       enableAdobeFlash = false;
     };
 
     chromium = {
-      #jre = true;
-      #enableGoogleTalkPlugin = true;
       enablePepperFlash = true;
       enablePepperPDF = true;
     };
@@ -20,20 +17,24 @@
 
   environment.systemPackages = with pkgs; [
     chromium
-    firefox
+    deluge
+    firefoxWrapper
     firejail
+    haskellPackages.git-annex-with-assistant
+    keepassx2
     openjdk
+    rxvt_unicode
+    vlc
     xsel
   ];
 
   fonts = {
+    enableCoreFonts = true;
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      corefonts
       dejavu_fonts
       inconsolata
-      ubuntu_font_family
     ];
   };
 
@@ -60,5 +61,22 @@
     enable = true;
     latitude = "52.5";
     longitude = "9.5";
+  };
+
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    rxvt_unicode = lib.overrideDerivation pkgs.rxvt_unicode (attrs: rec {
+      desktopItem = pkgs.makeDesktopItem {
+        name = "urxvt";
+        exec = "urxvt";
+        icon = "utilities-terminal";
+        desktopName = "URxvt";
+        genericName = "Terminal emulator";
+      };
+
+      postInstall = attrs.postInstall + ''
+        mkdir -p $out/share/applications
+        cp $desktopItem/share/applications/* $out/share/applications
+      '';
+    });
   };
 }
