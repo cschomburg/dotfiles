@@ -5,15 +5,16 @@
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     binutils
-    bashCompletion
     curl
     file
     git
     p7zip
+    patchelf
+    silver-searcher
     tmux
     vim
     wget
   ];
 
-  nixpkgs.config.bash.enableCompletion = true;
+  programs.bash.enableCompletion = true;
 }

@@ -17,12 +17,14 @@
 
   environment.systemPackages = with pkgs; [
     chromium
+    clawsMail
     deluge
     firefoxWrapper
     firejail
     haskellPackages.git-annex-with-assistant
     keepassx2
     openjdk
+    pidgin
     rxvt_unicode
     vlc
     xsel
