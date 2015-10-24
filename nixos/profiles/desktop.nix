@@ -26,9 +26,12 @@
     openjdk
     pidgin
     rxvt_unicode
+    syncthing
     vlc
     xsel
   ];
+
+  networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
 
   fonts = {
     enableCoreFonts = true;
