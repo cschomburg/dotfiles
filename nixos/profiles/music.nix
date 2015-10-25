@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     mpc_cli
     mpd
+    mpdris2
     mpdscribble
     ncmpcpp
   ];

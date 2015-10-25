@@ -7,5 +7,7 @@
       ../profiles/development.nix
       ../profiles/music.nix
     ];
+
+    environment.systemPackages = with pkgs; [ gnucash ];
 }
 

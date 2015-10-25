@@ -21,6 +21,7 @@
     deluge
     firefoxWrapper
     firejail
+    gimp
     haskellPackages.git-annex-with-assistant
     keepassx2
     openjdk
