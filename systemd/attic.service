@@ -3,4 +3,4 @@ Description=Attic backup
 
 [Service]
 Type=oneshot
-ExecStart=/home/xconstruct/code/conf/dotfiles/bin/attic-home.sh
+ExecStart=/home/xconstruct/code/conf/dotfiles/util/attic-home.sh

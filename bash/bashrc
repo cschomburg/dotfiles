@@ -9,7 +9,7 @@ if [ -z "$TMUX" -a "$TERM" == "xterm" ]; then
 	export TERM=xterm-256color
 fi
 
-# TMUX
+# TMUX autostart new session or connect to previous
 if type tmux &>/dev/null; then
 	if [ -z "$TMUX" ]; then
 		if tmux -q has-session -t main; then
@@ -20,12 +20,14 @@ if type tmux &>/dev/null; then
 	fi
 fi
 
+# prompt
 name=`whoami`
 name=${name:0:2}
 name=${name,,}
 PS1="\[\e[31m\]$name \[\e[34m\]\w\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
+# gigantic history
 HISTTIMEFORMAT="%y-%m-%d %T "
 HISTSIZE=5000
 HISTFILESIZE=100000
@@ -57,23 +59,17 @@ eval "$(dircolors $DOTFILES/dircolors)";
 alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
-alias g='git'
-alias o='xdg-open'
 
-alias uncomm="sed '/^$\|^#/d'"
 alias sshfs-sane='sshfs -o reconnect'
 alias latexmk="latexmk -pdf -pvc"
 
-alias wgetagg='wget -c -t 0 -T 3 --waitretry=1'
-
-w3magg () { wgetagg -O - $1 | w3m -T 'text/html'; }
-
+# calculator
 c () {
 	if type python &> /dev/null; then
 		if [ $# -gt 0 ]; then
-			echo "$*" | python -i $DOTFILES/calc.py
+			echo "$*" | python -i $DOTFILES/util/calc.py
 		else
-			python -i $DOTFILES/calc.py
+			python -i $DOTFILES/util/calc.py
 		fi
 	elif type bc &> /dev/null; then
 		echo "$*" | bc -l
@@ -82,30 +78,15 @@ c () {
 	fi
 }
 
-type hub &> /dev/null && alias git=hub
 type ag &> /dev/null || alias ag='grep -R'
 
 export EDITOR=vim
 export VISUAL=vim
 
-# Vim as MANPAGER
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma laststatus=0' -\""
+# other extensions
 
-test -r ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh &&
+[ -f ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh ] &&
 	. ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh
-test -r ~/.bashrc_local && . ~/.bashrc_local
-
-ranger-cd () {
-    tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-}
-
-# This binds Ctrl-O to ranger-cd:
-bind '"\C-o":"ranger-cd\C-m"'
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
