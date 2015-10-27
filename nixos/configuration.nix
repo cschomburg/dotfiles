@@ -7,17 +7,18 @@
 # that the same configuration files can be used with both conventionally
 # installed NixOS (see nixos-install) and NixOS installed by Nixops.
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let hostName = "${builtins.readFile ./hostname}";
+  optionalImport = file: if builtins.pathExists file then [file] else [];
 in
 rec {
   imports =
     [
-      ./hardware-configuration.nix  # FIXME: what to do with this?
+      ./hardware-configuration.nix
       ./configuration-common.nix
       (./machines + "/${hostName}.nix")
-    ];
+    ] ++ optionalImport (./private/machines + "/${hostName}.nix");
 
   networking.hostName = "${hostName}";
 }

@@ -12,5 +12,8 @@
     vagrant
   ];
 
+  networking.nat.enable = true;
+  networking.nat.internalInterfaces = [ "ve-+" ];
+
   virtualisation.virtualbox.host.enable = true;
 }
