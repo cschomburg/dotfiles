@@ -63,6 +63,9 @@
     };
   };
 
+  services.dbus.packages = [ pkgs.gnome3.gconf ];
+  environment.pathsToLink = [ "/etc/gconf" ];
+
   services.redshift = {
     enable = true;
     latitude = "52.5";
