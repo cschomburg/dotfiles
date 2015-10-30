@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 srcdir=`pwd`
 dstdir=$HOME
 
@@ -20,31 +22,31 @@ files=( '.:.dotfiles'
 install_filepair () {
 	src="$srcdir/$1"
 	dst="$dstdir/$2"
-	echo "$1 -> $2"
-	mkdir -p ${dst%/*}
 
 	if [ -L $dst ] ; then
 		rm $dst
+	elif [ -f $dst ] || [ -d $dst ]; then
+		echo "Warning! File '$dst' already exists and won't be overwritten!"
+		return 1
+	else
+		echo "$1 -> $2"
 	fi
 
-	if [ -f $dst ] || [ -d $dst ]; then
-		echo "Warning! File '$dst' already exists and won't be overwritten!"
-	else
-		ln -s $src $dst
-	fi
+	mkdir -p ${dst%/*}
+	ln -sf $src $dst
 }
 
 for filepair in ${files[@]} ; do
 	install_filepair "${filepair%%:*}" "${filepair##*:}"
 done
 
-# Fetch newest z
-rm $srcdir/z.sh &> /dev/null
-curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
-
 # Optional tasks
 for opt in "$@"; do
 	case $opt in
+		z)
+			rm $srcdir/z.sh &> /dev/null
+			curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
+			;;
 		vimbundle)
 			curl -fLo $srcdir/nvim/autoload/plug.vim --create-dirs \
 				https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -52,24 +54,15 @@ for opt in "$@"; do
 		private)
 			. $srcdir/private/deploy
 			;;
-		base16-gnome)
-			wget -nv https://raw.githubusercontent.com/chriskempson/base16-gnome-terminal/master/base16-default.dark.sh
-			chmod +x base16-default.dark.sh
-			if [[ -z "$TMUX" ]]; then
-				./base16-default.dark.sh
-				rm base16-default-dark.sh
-			else
-				echo "You have to manually install base16 outside of tmux"
-			fi
-			;;
 		ansible)
-			cd $srcdir/ansible
-			./run
-			cd $srcdir
+			cd $srcdir/ansible && ./run && cd $srcdir
 			;;
 		fzf)
 			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 			~/.fzf/install
+			;;
+		nixos)
+			cd $srcdir/nixos && ./rebuild.sh && cd $srcdir
 			;;
 	esac
 done

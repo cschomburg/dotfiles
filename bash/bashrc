@@ -39,8 +39,6 @@ BASHRC_PATH=$(readlink -f ${BASH_SOURCE[0]})
 BASHDIR_PATH=$(dirname $BASHRC_PATH)
 DOTFILES=$(dirname $BASHDIR_PATH)
 
-source $DOTFILES/z.sh
-
 # setup Go language environment and path
 test -d "$HOME/code/go" &&
 	export GOPATH="$HOME/code/go" &&
@@ -87,6 +85,9 @@ export VISUAL=vim
 
 [ -f ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh ] &&
 	. ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh
+
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
+
+[ -f $DOTFILES/z.sh ] && source $DOTFILES/z.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
