@@ -22,6 +22,8 @@
     firefoxWrapper
     firejail
     gimp
+    gitAndTools.gitRemoteGcrypt
+    libreoffice
     haskellPackages.git-annex-with-assistant
     keepassx2
     openjdk
