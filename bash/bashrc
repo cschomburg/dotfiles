@@ -21,10 +21,19 @@ if type tmux &>/dev/null; then
 fi
 
 # prompt
-name=`whoami`
-name=${name:0:2}
-name=${name,,}
-PS1="\[\e[31m\]$name \[\e[34m\]\w\[\e[0m\] "
+function nonzero_return() {
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] &&  echo -n "»" || echo -n "!"
+}
+
+PS1="\[\e[31m\]"
+if [ "$USER" != "xconstruct" ]; then
+	PS1="$PS1\u"
+fi
+if [ -n "$SSH_CONNECTION" ]; then
+	PS1="$PS1@\h"
+fi
+PS1="$PS1 \[\e[34m\]\w \[\e[1m\]\[\e[31m\]\`nonzero_return\`\[\e[0m\] "
 PROMPT_DIRTRIM=2
 
 # gigantic history
