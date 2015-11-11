@@ -31,18 +31,6 @@
     uid = 1000;
   };
 
-  system.activationScripts.zzz_dotfiles = {
-    text = ''
-      dotfiles=/home/xconstruct/codetwo/conf/dotfiles
-      if [ ! -e $dotfiles ]; then
-        /var/setuid-wrappers/su - xconstruct -c "git clone https://github.com/xconstruct/dotfiles $dotfiles"
-        cd $dotfiles
-        /var/setuid-wrappers/su - xconstruct -c "./deploy"
-      fi
-    '';
-    deps = [];
-  };
-
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
 }
