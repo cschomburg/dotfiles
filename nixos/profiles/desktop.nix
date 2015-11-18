@@ -26,6 +26,7 @@
     libreoffice
     haskellPackages.git-annex-with-assistant
     keepassx2
+    kde4.kdeconnect
     openjdk
     pidgin
     rxvt_unicode
@@ -35,6 +36,9 @@
   ];
 
   networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
+  networking.firewall.allowedUDPPortRanges = [
+    { from = 1714; to = 1764; }
+  ];
 
   fonts = {
     enableCoreFonts = true;
