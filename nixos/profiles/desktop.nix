@@ -16,6 +16,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    attic
     chromium
     clawsMail
     deluge
@@ -23,6 +24,7 @@
     firejail
     gimp
     gitAndTools.gitRemoteGcrypt
+    irssi
     libreoffice
     haskellPackages.git-annex-with-assistant
     keepassx2
