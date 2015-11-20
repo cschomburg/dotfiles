@@ -22,6 +22,9 @@
 
   time.timeZone = "Europe/Berlin";
 
+  services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+
   users.extraUsers.xconstruct = {
     createHome = true;
     description = "Constantin Schomburg";
@@ -31,6 +34,23 @@
     uid = 1000;
   };
 
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
+  systemd.services."dotfiles-setup" = {
+    description = "Setup dotfiles for xconstruct";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    script = ''
+      . ${config.system.build.setEnvironment}
+      dotfiles=/home/xconstruct/code/conf/dotfiles
+      if [ ! -e "$dotfiles" ]; then
+        ${pkgs.git}/bin/git clone https://github.com/xconstruct/dotfiles "$dotfiles"
+        cd "$dotfiles"
+        ./deploy
+      fi
+    '';
+    serviceConfig = {
+      User = "xconstruct";
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 }
