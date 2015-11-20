@@ -9,11 +9,15 @@
       ../profiles/scientific.nix
     ];
 
-    environment.systemPackages = with pkgs; [
-      calibre
-      electrum
-      gnucash
-      speedcrunch
-    ];
+  environment.systemPackages = with pkgs; [
+    calibre
+    electrum
+    gnucash
+    speedcrunch
+  ];
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "nodev";
 }
 
