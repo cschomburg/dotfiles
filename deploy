@@ -7,6 +7,7 @@ dstdir=$HOME
 
 files_default=(
 	'.:.dotfiles'
+	'profile:.profile'
 	'vim:.vim'
 	'vim/vimrc:.vimrc'
 	'git/gitconfig:.gitconfig'
