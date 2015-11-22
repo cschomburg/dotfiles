@@ -53,7 +53,7 @@ for opt in "$@"; do
 			done
 			;;
 		z)
-			rm $srcdir/z.sh &> /dev/null
+			rm -f $srcdir/z.sh &> /dev/null
 			curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
 			;;
 		vimbundle)
