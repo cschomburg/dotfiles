@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    bind-tools
     cmake
     gdb
     gnumake
@@ -9,11 +10,5 @@
     neovim
     python
     subversionClient
-    vagrant
   ];
-
-  networking.nat.enable = true;
-  networking.nat.internalInterfaces = [ "ve-+" ];
-
-  virtualisation.virtualbox.host.enable = true;
 }
