@@ -36,7 +36,7 @@ set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
 set swapfile
 set updatecount=2000
-set directory=$HOME/.nvim/tmp
+set directory=$HOME/.config/nvim/tmp
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
@@ -71,7 +71,7 @@ set completeopt+=menuone        " show popup menu even for single matches
 set undofile
 set undolevels=1000
 set undoreload=10000
-set undodir=$HOME/.nvim/tmp
+set undodir=$HOME/.config/nvim/tmp
 
 " NetRW
 let g:netrw_liststyle=3
@@ -126,7 +126,7 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-call plug#begin('~/.nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -155,6 +155,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 "Plug 'shawncplus/phpcomplete.vim'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'LnL7/vim-nix'
+Plug 'motus/pig.vim'
 
 call plug#end()
 

@@ -17,7 +17,7 @@ files_default=(
 )
 
 files_desktop=(
-	'nvim:.nvim'
+	'nvim:.config/nvim'
 	'latexmkrc:.latexmkrc'
 	'firejail:.config/firejail'
 	'xresources:.Xresources'
