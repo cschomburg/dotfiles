@@ -4,6 +4,7 @@
   imports =
     [
       ../profiles/vpn.nix
+      ../profiles/seed.nix
     ];
 
   environment.systemPackages = with pkgs; [

@@ -8,6 +8,8 @@
 
   services.openvpn.servers.main = {
     config = ''
+      port 636
+      proto tcp
       dev tun
 
       ca /etc/openvpn/ca.crt
@@ -35,9 +37,18 @@
 
   services.sslh.enable = true;
   services.sslh.host = "0.0.0.0";
+  services.sslh.appendConfig = ''
+    protocols:
+    (
+      { name: "ssh"; service: "ssh"; host: "localhost"; port: "22"; probe: "builtin"; },
+      { name: "openvpn"; host: "localhost"; port: "636"; probe: "builtin"; },
+      { name: "http"; host: "localhost"; port: "80"; probe: "builtin"; },
+      { name: "ssl"; host: "localhost"; port: "444"; probe: "builtin"; },
+      { name: "anyprot"; host: "localhost"; port: "444"; probe: "builtin"; }
+    );
+  '';
 
-  networking.firewall.allowedTCPPorts = [ 443 ];
-  networking.firewall.allowedUDPPorts = [ 443 ];
+  networking.firewall.allowedTCPPorts = [ 636 443 ];
 
   users.extraUsers.forward = {
     createHome = true;
