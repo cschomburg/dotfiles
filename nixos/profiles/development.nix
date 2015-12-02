@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    bind-tools
+    bind
     cmake
     gdb
     gnumake

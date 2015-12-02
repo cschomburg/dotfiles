@@ -25,6 +25,9 @@
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
 
+  nix.trustedBinaryCaches = [ http://hydra.nixos.org/ ];
+  nix.binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+
   users.extraUsers.xconstruct = {
     createHome = true;
     description = "Constantin Schomburg";
