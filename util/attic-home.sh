@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ATTIC=/usr/local/bin/attic
+ATTIC=/run/current-system/sw/bin/attic
 
 $ATTIC create --stats -v \
 	~/sync/attic::`date +%Y-%m-%d` \

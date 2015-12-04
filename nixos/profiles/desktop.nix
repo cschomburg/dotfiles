@@ -37,6 +37,8 @@
     xsel
   ];
 
+  boot.cleanTmpDir = true;
+
   networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
   networking.firewall.allowedUDPPortRanges = [
     { from = 1714; to = 1764; }
@@ -52,6 +54,7 @@
     ];
   };
 
+  security.pam.enableEcryptfs = true;
   security.setuidPrograms = [ "firejail" ];
   services.printing.enable = true;
 
@@ -62,7 +65,7 @@
     xkbOptions = "eurosign:e";
 
     displayManager.gdm.enable = true;
-	desktopManager.gnome3.enable = true;
+    desktopManager.gnome3.enable = true;
 
     synaptics = {
       twoFingerScroll = true;
@@ -70,8 +73,9 @@
       accelFactor = "0.0615";
     };
   };
+  environment.gnome3.packageSet = pkgs.gnome3_18;
 
-  services.dbus.packages = [ pkgs.gnome3.gconf ];
+  services.dbus.packages = [ config.environment.gnome3.packageSet.gconf ];
   environment.pathsToLink = [ "/etc/gconf" ];
 
   services.redshift = {

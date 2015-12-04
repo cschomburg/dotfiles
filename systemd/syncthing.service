@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Environment=STNORESTART=yes
-ExecStart=/usr/local/bin/syncthing -no-browser -logflags=0
+ExecStart=/run/current-system/sw/bin/syncthing -no-browser
 Restart=on-failure
 SuccessExitStatus=2 3 4
 RestartForceExitStatus=3 4
