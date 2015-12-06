@@ -40,6 +40,7 @@
   boot.cleanTmpDir = true;
 
   networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
+  networking.firewall.allowedUDPPorts = [ 21027 ]; # syncthing
   networking.firewall.allowedUDPPortRanges = [
     { from = 1714; to = 1764; }
   ];

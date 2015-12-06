@@ -1,4 +1,3 @@
-set nocompatible
 set showmatch					"  Show matching brackets
 
 set encoding=utf-8				" Unicode support
@@ -37,7 +36,6 @@ set nobackup					" Disable backup
 set swapfile
 set updatecount=2000
 set directory=$HOME/.config/nvim/tmp
-set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
 set history=23					" Lines of command history
 set title						" Set window title with the vim files
@@ -146,7 +144,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 
 Plug 'joonty/vdebug',     { 'for': 'php' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
