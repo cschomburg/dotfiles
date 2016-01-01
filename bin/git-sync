@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -eu
+
+if [[ $(git config sync.enabled) != "true" ]]; then
+	echo "sync.enabled not set"
+	exit 1
+fi
+
+git pull
+git add .
+git commit -am sync
+git push
