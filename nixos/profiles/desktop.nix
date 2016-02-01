@@ -16,25 +16,28 @@
   };
 
   environment.systemPackages = with pkgs; [
-    attic
     chromium
     clawsMail
     deluge
     firefoxWrapper
     firejail
     gimp
-    gitAndTools.gitRemoteGcrypt
     irssi
     libreoffice
-    haskellPackages.git-annex-with-assistant
     keepassx2
     kde4.kdeconnect
     openjdk
     pidgin
     rxvt_unicode
-    syncthing
     vlc
     xsel
+
+    # sync/backup/encryption stuff
+    attic
+    encfs
+    gitAndTools.gitRemoteGcrypt
+    haskellPackages.git-annex-with-assistant
+    syncthing
   ];
 
   boot.cleanTmpDir = true;
@@ -42,7 +45,7 @@
   networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
   networking.firewall.allowedUDPPorts = [ 21027 ]; # syncthing
   networking.firewall.allowedUDPPortRanges = [
-    { from = 1714; to = 1764; }
+    { from = 1714; to = 1764; } # kdeconnect
   ];
 
   fonts = {
@@ -74,7 +77,6 @@
       accelFactor = "0.0615";
     };
   };
-  environment.gnome3.packageSet = pkgs.gnome3_18;
 
   services.dbus.packages = [ config.environment.gnome3.packageSet.gconf ];
   environment.pathsToLink = [ "/etc/gconf" ];

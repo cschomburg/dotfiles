@@ -20,6 +20,8 @@
   nixpkgs.config.allowUnfree = true;
   programs.bash.enableCompletion = true;
 
+  networking.firewall.allowPing = true;
+
   time.timeZone = "Europe/Berlin";
 
   services.openssh.enable = true;
