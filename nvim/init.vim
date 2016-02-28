@@ -98,18 +98,13 @@ cmap w!! w !sudo tee % >/dev/null
 noremap j gj
 noremap k gk
 
-" very magic regexes per default
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %s/\v
-cnoremap >s/ >smagic/
-
 autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
-autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4 commentstring=//\ %s
+autocmd FileType vue setlocal expandtab tabstop=4 shiftwidth=2
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
@@ -154,6 +149,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'LnL7/vim-nix'
 Plug 'motus/pig.vim'
+Plug 'posva/vim-vue'
 
 call plug#end()
 

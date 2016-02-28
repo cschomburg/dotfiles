@@ -34,6 +34,7 @@
 
     # sync/backup/encryption stuff
     attic
+    cryptsetup
     encfs
     gitAndTools.gitRemoteGcrypt
     haskellPackages.git-annex-with-assistant
