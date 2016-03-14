@@ -10,7 +10,10 @@
 { config, pkgs, lib, ... }:
 
 let hostName = "${builtins.readFile ./hostname}";
-  optionalImport = file: if builtins.pathExists file then [file] else [];
+  unlockFile = ./private/state;
+  isUnlocked = if builtins.pathExists unlockFile && (builtins.readFile unlockFile) == "unlocked"
+    then true else throw "private directory is locked";
+  optionalImport = file: if builtins.pathExists file && isUnlocked then [file] else [];
 in
 rec {
   imports =

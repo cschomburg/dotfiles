@@ -14,5 +14,6 @@ bin/hub
 z.sh
 
 private
+!nixos/private
 
 systemd/default.target.wants
