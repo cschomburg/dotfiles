@@ -34,6 +34,10 @@
 
   services.postgresql.enable = true;
 
+  services.udev.extraRules = ''
+    ACTION=="add", KERNEL=="hci0", RUN+="${pkgs.bluez5}/bin/hciconfig hci0 up"
+  '';
+
   services.mpd = {
     enable = true;
     group = "files";
