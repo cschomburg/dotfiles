@@ -7,6 +7,7 @@
       ../profiles/development.nix
       ../profiles/music.nix
       ../profiles/scientific.nix
+      ../profiles/sync.nix
     ];
 
   environment.systemPackages = with pkgs; [
