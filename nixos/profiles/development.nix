@@ -9,6 +9,6 @@
     mercurial
     neovim
     python
-    subversionClient
+    #subversionClient
   ];
 }

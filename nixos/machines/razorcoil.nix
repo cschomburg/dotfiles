@@ -5,6 +5,7 @@
     [
       ../profiles/desktop.nix
       ../profiles/development.nix
+      ../profiles/sync.nix
     ];
 
   #networking.nat.enable = true;
@@ -13,6 +14,9 @@
 
   services.timesyncd.enable = true;
   services.xserver.synaptics.enable = true;
+
+  services.syncthing.enable = true;
+  services.syncthing.user = "xconstruct";
 
   services.samba = {
     enable = true;

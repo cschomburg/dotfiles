@@ -33,6 +33,7 @@ set fileformats=unix,dos,mac	" Support in this order
 set ruler
 set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
+set backupcopy=yes				" Overwrite files for live reloading
 set swapfile
 set updatecount=2000
 set directory=$HOME/.config/nvim/tmp
@@ -57,6 +58,7 @@ set breakindent
 set showbreak=\ ↪\ 
 set fillchars+=vert:\ 
 set previewheight=20
+set mouse=
 
 let mapleader = " "
 
@@ -130,16 +132,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-sneak'
-Plug 'Valloric/YouCompleteMe'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf.vim'
 
 Plug 'joonty/vdebug',     { 'for': 'php' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
@@ -147,25 +145,15 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 "Plug 'shawncplus/phpcomplete.vim'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'LnL7/vim-nix'
 Plug 'motus/pig.vim'
 Plug 'posva/vim-vue'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
-" Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <leader>e :Unite -no-split -buffer-name=buffer -start-insert buffer<cr>
-nnoremap <leader>f :Unite -no-split -buffer-name=file -start-insert file_rec/async:!<cr>
-nnoremap <leader>t :Unite -no-split -buffer-name=tags outline<cr>
-nnoremap <leader>g :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<cr>
-if executable('ag')
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-	let g:unite_source_grep_recursive_opt = ''
-	let g:unite_source_grep_encoding = 'utf-8'
-endif
+" FZF
+nmap <Leader>e :Buffers<CR>
+nmap <Leader>f :Files<CR>
 
 " Go programming language
 if !empty($GOPATH)
@@ -185,15 +173,6 @@ let g:vdebug_options = {
 			\ 'path_maps': {"var/cakephp3/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
 			\ 'server': '0.0.0.0'
 			\}
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" YouCompleteMe
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Airline
 let g:airline_theme='gruvbox'
@@ -227,9 +206,12 @@ let g:hardtime_default_on = 0
 let g:hardtime_maxcount = 1
 let g:hardtime_timeout = 2000
 
+" Syntax
+
 let php_sql_query = 1
 let php_html_in_strings = 1
 let php_var_selector_is_identifier = 1
+let g:polyglot_disabled = [ 'javascript' ]
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"

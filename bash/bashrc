@@ -102,4 +102,5 @@ export VISUAL=vim
 
 [ -f $DOTFILES/z.sh ] && source $DOTFILES/z.sh
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf/shell/completion.bash ] && source ~/.fzf/shell/completion.bash
+[ -f ~/.fzf/shell/key-bindings.bash ] && source ~/.fzf/shell/key-bindings.bash

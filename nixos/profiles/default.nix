@@ -8,7 +8,7 @@
     curl
     file
     git
-    gnupg
+    gnupg1
     p7zip
     patchelf
     silver-searcher
