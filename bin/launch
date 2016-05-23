@@ -1,9 +1,0 @@
-#!/bin/bash
-
-wcmd=$1
-wclass=${2-$1}
-if ! wmctrl -xa $wclass; then
-	$wcmd &
-	sleep 1
-	wmctrl -xa $wclass
-fi

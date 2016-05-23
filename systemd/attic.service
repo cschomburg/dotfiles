@@ -1,6 +1,0 @@
-[Unit]
-Description=Attic backup
-
-[Service]
-Type=oneshot
-ExecStart=/home/xconstruct/code/conf/dotfiles/util/attic-home.sh
