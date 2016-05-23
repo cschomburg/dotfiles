@@ -34,12 +34,9 @@ set fileformats=unix,dos,mac	" Support in this order
 set ruler
 set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
-set swapfile
-set updatecount=2000
-set directory=$HOME/.vim/tmp
+set noswapfile
 set ttyfast						" tell vim we're using a fast terminal for redraws
 set autoread					" Reload file if vim detects it changed elsewhere
-set history=23					" Lines of command history
 set title						" Set window title with the vim files
 set wildmode=longest:full,full	" Bash-like tab completion list
 set wildmenu
@@ -70,12 +67,6 @@ set completeopt+=menuone        " show popup menu even for single matches
 " Colorscheme
 set background=dark
 colorscheme molokai
-
-" Persistent undo
-set undofile
-set undolevels=1000
-set undoreload=10000
-set undodir=$HOME/.vim/tmp
 
 " NetRW
 let g:netrw_liststyle=3

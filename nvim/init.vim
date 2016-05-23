@@ -34,11 +34,9 @@ set ruler
 set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
 set backupcopy=yes				" Overwrite files for live reloading
-set swapfile
-set updatecount=2000
+set noswapfile
 set directory=$HOME/.config/nvim/tmp
 set autoread					" Reload file if vim detects it changed elsewhere
-set history=23					" Lines of command history
 set title						" Set window title with the vim files
 set wildmode=longest:full,full	" Bash-like tab completion list
 set wildmenu
@@ -66,12 +64,6 @@ let mapleader = " "
 set pumheight=5
 set completeopt+=longest		" only complete longest match
 set completeopt+=menuone        " show popup menu even for single matches
-
-" Persistent undo
-set undofile
-set undolevels=1000
-set undoreload=10000
-set undodir=$HOME/.config/nvim/tmp
 
 " NetRW
 let g:netrw_liststyle=3
@@ -201,11 +193,6 @@ let g:syntastic_mode_map = { 'mode': 'active',
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 
-" Hardtime
-let g:hardtime_default_on = 0
-let g:hardtime_maxcount = 1
-let g:hardtime_timeout = 2000
-
 " Syntax
 
 let php_sql_query = 1
@@ -225,26 +212,6 @@ map <expr> <Esc>[200~ XTermPasteBegin("i")
 imap <expr> <Esc>[200~ XTermPasteBegin("")
 cmap <Esc>[200~ <nop>
 cmap <Esc>[201~ <nop>
-
-" GPG config
-set backupskip+=*.gpg
-set viminfo=
-
-augroup encrypted
-  au!
-  autocmd BufReadPre,FileReadPre *.gpg
-    \ setlocal noswapfile bin
-  autocmd BufReadPost,FileReadPost *.gpg
-    \ execute "'[,']!gpg --decrypt --default-recipient-self" |
-    \ setlocal nobin |
-    \ execute "doautocmd BufReadPost " . expand("%:r")
-  autocmd BufWritePre,FileWritePre *.gpg
-    \ setlocal bin |
-    \ '[,']!gpg --encrypt --default-recipient-self
-  autocmd BufWritePost,FileWritePost *.gpg
-    \ silent u |
-    \ setlocal nobin
-augroup END
 
 " load ftplugins and indent files
 filetype plugin on
