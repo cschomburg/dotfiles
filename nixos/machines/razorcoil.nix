@@ -5,6 +5,7 @@
     [
       ../profiles/desktop.nix
       ../profiles/development.nix
+      ../profiles/scientific.nix
       ../profiles/sync.nix
     ];
 
@@ -23,6 +24,12 @@
     shares = {
       code =
         { path = "/home/xconstruct/code";
+          "read only" = "no";
+          browseable = "yes";
+          "valid users" = "xconstruct";
+        };
+      default =
+        { path = "/home/xconstruct/sync/default";
           "read only" = "no";
           browseable = "yes";
           "valid users" = "xconstruct";
