@@ -9,6 +9,11 @@
       ../profiles/sync.nix
     ];
 
+  environment.systemPackages = with pkgs; [
+    electrum
+    gnucash
+  ];
+
   #networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "ve-+" ];
   networking.firewall.enable = false;

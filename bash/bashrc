@@ -41,9 +41,9 @@ PROMPT_DIRTRIM=2
 
 # gigantic history
 HISTTIMEFORMAT="%y-%m-%d %T "
-HISTSIZE=5000
-HISTFILESIZE=100000
-HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=-1
+HISTFILESIZE=-1
+HISTCONTROL=ignorespace
 shopt -s histappend
 
 # find dotfiles dir
