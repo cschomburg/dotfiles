@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, stdenv, ... }:
 
 {
   imports =
@@ -15,12 +15,13 @@
   services.fail2ban.enable = true;
   services.fail2ban.jails.ssh-iptables = "enabled = true";
 
+  networking.enableIPv6 = false;
+
   # OpenVPN traffic forwarding
-  networking.firewall.extraCommands = '';
+  networking.firewall.extraCommands = ''
     iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o vethlxc2 -j MASQUERADE
     iptables -t nat -A POSTROUTING -s 10.8.1.0/24 -o vethlxc2 -j MASQUERADE
     iptables -A INPUT -i tun+ -j ACCEPT
     iptables -A FORWARD -i tun+ -j ACCEPT
   '';
 }
-
