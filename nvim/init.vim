@@ -157,6 +157,8 @@ if !empty($GOPATH)
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
 
+	let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
+
 	au FileType go nmap <Leader>i <Plug>(go-info)
 	au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
 	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
