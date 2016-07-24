@@ -2,13 +2,12 @@
 
 {
   environment.systemPackages = with pkgs; [
-    attic
     borgbackup
     cryptsetup
     encfs
     gitAndTools.git-crypt
     gitAndTools.gitRemoteGcrypt
-    haskellPackages.git-annex-with-assistant
+    #haskellPackages.git-annex-with-assistant
     syncthing
   ];
 

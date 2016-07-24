@@ -22,7 +22,13 @@
   services.xserver.synaptics.enable = true;
 
   services.syncthing.enable = true;
-  services.syncthing.user = "xconstruct";
+  systemd.services.syncthing.serviceConfig = pkgs.lib.mkForce {
+    User = "xconstruct";
+    Group = "nogroup";
+    PermissionsStartOnly = true;
+    ExecStart = "${config.services.syncthing.package}/bin/syncthing -no-browser -home=${config.services.syncthing.dataDir}";
+    Restart = "always";
+  };
 
   services.samba = {
     enable = true;

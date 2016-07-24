@@ -48,7 +48,7 @@ set cursorline                  " Highlight current line
 set colorcolumn=80				" Mark 80px column
 set conceallevel=2				" Conceal
 set list                        " show special chars
-set listchars=trail:·,precedes:«,extends:»,tab:·\ ,eol:↲
+set listchars=trail:·,precedes:«,extends:»,tab:·\ 
 set hidden                      " allow unsaved changes in hidden buffers
 set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
@@ -92,14 +92,6 @@ cmap w!! w !sudo tee % >/dev/null
 noremap j gj
 noremap k gk
 
-autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
-autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
-autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
-autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
-autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4 commentstring=//\ %s
-autocmd FileType vue setlocal expandtab tabstop=4 shiftwidth=2
-
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
@@ -128,6 +120,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
 Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-two-firewatch'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 
@@ -142,6 +135,16 @@ Plug 'posva/vim-vue'
 Plug 'pangloss/vim-javascript'
 
 call plug#end()
+
+" Custom filetype settings
+autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
+autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
+autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4 commentstring=//\ %s
+autocmd FileType vue setlocal expandtab tabstop=4 shiftwidth=2
+autocmd FileType javascript setlocal expandtab tabstop=4 shiftwidth=4
 
 " FZF
 nmap <Leader>e :Buffers<CR>

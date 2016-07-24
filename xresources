@@ -41,3 +41,6 @@ URxvt.geometry: 160x48
 URxvt.scrollBar: false
 URxvt.font: xft:DejaVu Sans Mono:size=10
 URxvt.letterSpace: -1
+URxvt.scrollTtyOutput:   false
+URxvt.scrollWithBuffer:  true
+URxvt.scrollTtyKeypress: true

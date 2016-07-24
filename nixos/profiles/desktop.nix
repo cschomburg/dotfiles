@@ -9,17 +9,17 @@
       enableAdobeFlash = false;
     };
 
-    chromium = {
-      enablePepperFlash = true;
-      enablePepperPDF = true;
-    };
+    # chromium = {
+    #   enablePepperFlash = true;
+    #   enablePepperPDF = true;
+    # };
   };
 
   environment.systemPackages = with pkgs; [
     chromium
     clawsMail
     deluge
-    firefoxWrapper
+    #firefox-developer-bin
     firejail
     gimp
     irssi
@@ -31,6 +31,7 @@
     rxvt_unicode
     vlc
     xsel
+    youtube-dl
   ];
 
   boot.cleanTmpDir = true;
