@@ -7,7 +7,7 @@
     encfs
     gitAndTools.git-crypt
     gitAndTools.gitRemoteGcrypt
-    #haskellPackages.git-annex-with-assistant
+    gitAndTools.gitAnnex
     syncthing
   ];
 

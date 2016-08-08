@@ -1,8 +1,9 @@
 set showmatch					"  Show matching brackets
 
 set encoding=utf-8				" Unicode support
-"set t_Co=256					" Enable 256-color support
 set novisualbell				" Don't blink
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Indent
 set autoindent					" Auto indenting
@@ -54,7 +55,7 @@ set pastetoggle=<F12>			" sane indentation on pastes
 set lazyredraw
 set breakindent
 set showbreak=\ ↪\ 
-set fillchars+=vert:\ 
+"set fillchars+=vert:\ 
 set previewheight=20
 set mouse=
 
@@ -67,11 +68,6 @@ set completeopt+=menuone        " show popup menu even for single matches
 
 " NetRW
 let g:netrw_liststyle=3
-
-" GUI options
-set guioptions-=m				" Remove menu bar
-set guioptions-=T				" Remove toolbar
-set guioptions-=r				" Remove right-hand scroll bar
 
 " Keep selection after indent
 vmap > >gv
@@ -172,7 +168,7 @@ let g:vdebug_options = {
 			\}
 
 " Airline
-let g:airline_theme='gruvbox'
+let g:airline_theme='twofirewatch'
 let g:airline_mode_map = {
 			\ '__' : '-',
 			\ 'n'  : 'N',
@@ -227,4 +223,4 @@ syntax on
 
 " Colorscheme
 set background=dark
-colorscheme gruvbox
+colorscheme two-firewatch

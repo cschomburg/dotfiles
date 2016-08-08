@@ -1,4 +1,5 @@
 set -g default-terminal "screen-256color"
+
 set -g status-bg black
 set -g status-fg white
 set -g status-left '#[fg=green]#H '
@@ -28,6 +29,7 @@ bind -r Up resize-pane -U 5
 set -g set-titles on
 set -g set-titles-string "#W.#T"
 set -g terminal-overrides "xterm*:XT:smcup@:rmcup@"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 #set-option -g pane-border-fg colour8
 unbind C-b
