@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+port=${1:-8000}
+
+commands="\
+python2 -m SimpleHTTPServer $port
+python3 -m http.server $port
+php -S 127.0.0.1:$port
+ruby -run -ehttpd . -p$port
+busybox httpd -f -p $port
+"
+
+while read -r cmd; do
+	bin=${cmd%% *}
+	if type $bin  &> /dev/null; then
+		echo $cmd
+		exec $cmd
+	fi
+done <<< "$commands"
+echo No HTTP server found
+exit 1
