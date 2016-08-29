@@ -19,7 +19,6 @@
   networking.firewall.enable = false;
 
   services.timesyncd.enable = true;
-  services.xserver.synaptics.enable = true;
 
   services.syncthing.enable = true;
   systemd.services.syncthing.serviceConfig = pkgs.lib.mkForce {
@@ -33,14 +32,8 @@
   services.samba = {
     enable = true;
     shares = {
-      code =
-        { path = "/home/xconstruct/code";
-          "read only" = "no";
-          browseable = "yes";
-          "valid users" = "xconstruct";
-        };
-      default =
-        { path = "/home/xconstruct/sync/default";
+      home =
+        { path = "/home/xconstruct";
           "read only" = "no";
           browseable = "yes";
           "valid users" = "xconstruct";

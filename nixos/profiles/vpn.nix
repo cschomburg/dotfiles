@@ -25,6 +25,7 @@ let ovpnConfig = ''
 in
 {
   environment.systemPackages = with pkgs; [
+    srelay
   ];
 
   services.openssh.enable = true;
@@ -49,7 +50,7 @@ in
   };
 
   services.sslh.enable = true;
-  services.sslh.host = "0.0.0.0";
+  services.sslh.listenAddress = "0.0.0.0";
   services.sslh.appendConfig = ''
     protocols:
     (

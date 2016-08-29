@@ -62,12 +62,6 @@
 
     displayManager.gdm.enable = true;
     desktopManager.gnome3.enable = true;
-
-    synaptics = {
-      twoFingerScroll = true;
-      maxSpeed = "1.75";
-      accelFactor = "0.0615";
-    };
   };
 
   services.dbus.packages = [ config.environment.gnome3.packageSet.gconf ];

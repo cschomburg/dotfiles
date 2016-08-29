@@ -11,6 +11,7 @@
     gnupg1
     p7zip
     patchelf
+    rsync
     silver-searcher
     tmux
     vim
