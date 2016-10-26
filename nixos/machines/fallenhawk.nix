@@ -15,6 +15,9 @@
   services.fail2ban.enable = true;
   services.fail2ban.jails.ssh-iptables = "enabled = true";
 
+  services.zerotierone.enable = true;
+  networking.firewall.allowedUDPPorts = [ 9993 ];
+
   networking.enableIPv6 = false;
 
   # OpenVPN traffic forwarding
