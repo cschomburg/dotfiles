@@ -2,15 +2,22 @@
 
 {
   environment.systemPackages = with pkgs; [
+    python33Packages.acd_cli
     borgbackup
     cryptsetup
     encfs
     gitAndTools.git-crypt
-    gitAndTools.gitRemoteGcrypt
     gitAndTools.gitAnnex
+    gitAndTools.gitRemoteGcrypt
+    rclone
     syncthing
+    unionfs-fuse
   ];
 
   networking.firewall.allowedTCPPorts = [ 22000 ]; # syncthing
   networking.firewall.allowedUDPPorts = [ 21027 ]; # syncthing
+
+  environment.etc."fuse.conf".text = ''
+    user_allow_other
+  '';
 }
