@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -32,10 +32,13 @@
   services.syncthing.enable = true;
   services.syncthing.user = "xconstruct";
 
+  services.zerotierone.enable = true;
+  networking.firewall.allowedUDPPorts = [ 9993 ];
+
   services.postgresql.enable = true;
 
   services.udev.extraRules = ''
-    ACTION=="add", KERNEL=="hci0", RUN+="${pkgs.bluez5}/bin/hciconfig hci0 up"
+    ACTION=="add", KERNEL=="hci0", RUN+="${lib.getBin pkgs.bluez5}/bin/hciconfig hci0 up"
   '';
 
   services.mpd = {
