@@ -45,8 +45,8 @@ in
     };
     ports = mkOption {
       default = {
-        from =  58956;
-        to = 58966;
+        from =  58856;
+        to = 58866;
       };
     };
 
