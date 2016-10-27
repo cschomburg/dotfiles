@@ -3,7 +3,7 @@ set showmatch					"  Show matching brackets
 set encoding=utf-8				" Unicode support
 set novisualbell				" Don't blink
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 " Indent
 set autoindent					" Auto indenting

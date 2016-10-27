@@ -1,16 +1,10 @@
 { config, lib, pkgs, stdenv, ... }:
 
-with lib; let
-  initialDelugeConfig = pkgs.writeText "core.conf" ''
-    { "file": "1", "format": "3" }{
-      "allow_remote": true,
-      "autoadd_location": "/home/seed/watch",
-      "listen_ports": [ 58850, 58859 ]
-    }
-  '';
+with lib;
 
-in
 {
+  imports = [ ../modules/deluge.nix ];
+
   environment.systemPackages = with pkgs; [
     irssi
     mktorrent
@@ -34,28 +28,12 @@ in
   };
   users.extraGroups.seed = { };
 
-  services.deluge.enable = true;
   networking.firewall.allowedTCPPortRanges = [ { from = 58846; to = 58859; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 58846; to = 58859; } ];
-  systemd.services.deluged.serviceConfig.User = mkForce "seed";
-  systemd.services.deluged.serviceConfig.Group = mkForce "seed";
 
-  systemd.services."deluged-initial-config" = {
-    description = "Create initial Deluge config";
-    wantedBy = [ "multi-user.target" ];
-    before = [ "deluged.service" ];
-    script = ''
-      CONF=/home/seed/.config/deluge
-      if [ ! -e $CONF/core.conf ]; then
-        mkdir -p $CONF
-        cp ${initialDelugeConfig}  $CONF/core.conf
-      fi
-    '';
-    serviceConfig = {
-      User = "seed";
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
+  services.delugeMulti = {
+    user = "seed";
+    group = "seed";
   };
 
   #systemd.services."autodl-irssi" = {
@@ -83,6 +61,17 @@ in
         description = "Perl extension for SHA-1/224/256/384/512";
         license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
       };
+    };
+
+    deluge = pkgs.deluge.override {
+      propagatedBuildInputs = with pkgs.pythonPackages; [
+        pyGtkGlade libtorrentRasterbar_1_0_9 twisted Mako chardet pyxdg pyopenssl service-identity
+      ];
+    };
+
+    libtorrentRasterbar_1_0_9 = pkgs.callPackage <nixpkgs/pkgs/development/libraries/libtorrent-rasterbar/generic.nix> {
+      version = "1.0.9";
+      sha256 = "1kfydlvmx4pgi5lpbhqr4p3jr78p3f61ic32046mkp4yfyydrspl";
     };
   };
 }

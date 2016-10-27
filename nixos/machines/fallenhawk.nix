@@ -17,6 +17,10 @@
 
   networking.enableIPv6 = false;
 
+  services.delugeMulti.instances = ["1" "2" "3"];
+  networking.firewall.allowedTCPPortRanges = [ { from = 58846; to = 58866; } ];
+  networking.firewall.allowedUDPPortRanges = [ { from = 58846; to = 58866; } ];
+
   # OpenVPN traffic forwarding
   networking.firewall.extraCommands = ''
     iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o vethlxc2 -j MASQUERADE
