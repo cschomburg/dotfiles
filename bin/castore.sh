@@ -22,6 +22,12 @@ dir_key() {
 mv_file () {
 	prefix=$1
 	src="$2"
+	if [ -d "$src" ]; then
+		for file in "$src/*"; do
+			mv_file "$prefix" "$src/$file"
+		done
+		return 0
+	fi
 	if [ ! -f "$src" ]; then
 		return 1
 	fi
@@ -36,7 +42,7 @@ mv_file () {
 	mkdir -p $(dirname $dst)
 	mv "$src" "$dst"
 	ln -sr "$dst" "$src"
-	echo -e "$key\t$src" >> $1/cas.txt
+	echo -e "$key\t$src" >> $1/cas-$HOSTNAME.txt
 }
 
-mv_file "$1" "$2"
+mv_file "$1" "${2:-$PWD}"

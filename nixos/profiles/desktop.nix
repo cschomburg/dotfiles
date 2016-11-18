@@ -35,6 +35,7 @@
   ];
 
   boot.cleanTmpDir = true;
+  boot.supportedFilesystems = [ "ntfs-3g" ];
 
   networking.firewall.allowedUDPPortRanges = [
     { from = 1714; to = 1764; } # kdeconnect

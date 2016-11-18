@@ -40,4 +40,6 @@
         };
     };
   };
+
+  virtualisation.docker.enable = true;
 }

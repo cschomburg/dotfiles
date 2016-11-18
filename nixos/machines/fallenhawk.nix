@@ -9,6 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     irssi
+    (callPackage ../packages/warcprox { })
   ];
 
   services.openssh.startWhenNeeded = false;

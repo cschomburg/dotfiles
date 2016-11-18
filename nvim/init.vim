@@ -59,6 +59,10 @@ set showbreak=\ ↪\
 set previewheight=20
 set mouse=
 
+if exists('&inccommand')
+	set inccommand=split
+endif
+
 let mapleader = " "
 
 " Completion
@@ -134,6 +138,7 @@ call plug#end()
 
 " Custom filetype settings
 autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
+autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
