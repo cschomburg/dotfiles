@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# Helper script to mount an encrypted public storage with unionfs write cache
+# Original author: fbartels
+# https://github.com/fbartels/mount-encfs-cloud
+
 set -eu
 
 ## Defaults
