@@ -12,7 +12,7 @@
     p7zip
     patchelf
     rsync
-    silver-searcher
+    ripgrep
     tmux
     vim
     wget

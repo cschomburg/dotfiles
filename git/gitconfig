@@ -26,3 +26,9 @@
 
 [pager]
 	status = true
+[merge]
+	tool = vimdiff
+[mergetool]
+	path = nvim
+[mergetool "vimdiff"]
+	path = nvim

@@ -10,6 +10,7 @@
     mercurial
     neovim
     python
+    httpie
     #subversionClient
   ];
 }

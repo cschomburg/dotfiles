@@ -99,6 +99,14 @@ nnoremap <leader>j :%!python -m json.tool<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <leader>H :%!xxd -r<CR>
 
+function! PrettySql()
+	execute 's/\v<(FROM|WHERE|LEFT|INNER|GROUP|ORDER|LIMIT)>/MEOWTWO\1'
+	execute 's/\v,/,MEOWTWO    '
+	execute 's/\v<(AND|OR|ON)>/MEOWTWO    \1'
+	execute 's/MEOWTWO/\r'
+endfunction
+nnoremap <leader>s :call PrettySql()<cr>
+
 " allow using repeat operator with a visual selection
 vnoremap . :normal .<CR>
 

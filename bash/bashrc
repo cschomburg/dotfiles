@@ -88,10 +88,17 @@ c () {
 	fi
 }
 
-type ag &> /dev/null || alias ag='grep -R'
+if [ type rg &> /dev/null ]; then
+	alias ag='rg -S'
+elif [ ! type ag &> /dev/null ]; then
+	alias ag='grep -R'
+fi
 
 export EDITOR=vim
 export VISUAL=vim
+type nvim &> /dev/null \
+	&& export EDITOR=nvim \
+	&& export VISUAL=nvim
 
 # other extensions
 

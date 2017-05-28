@@ -25,7 +25,6 @@
     irssi
     libreoffice
     keepassx2
-    kde4.kdeconnect
     openjdk
     pidgin
     rxvt_unicode
@@ -36,10 +35,6 @@
 
   boot.cleanTmpDir = true;
   boot.supportedFilesystems = [ "ntfs-3g" ];
-
-  networking.firewall.allowedUDPPortRanges = [
-    { from = 1714; to = 1764; } # kdeconnect
-  ];
 
   fonts = {
     enableCoreFonts = true;
@@ -52,7 +47,7 @@
   };
 
   security.pam.enableEcryptfs = true;
-  security.setuidPrograms = [ "firejail" ];
+  security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
   services.printing.enable = true;
 
   services.xserver = {
@@ -72,22 +67,5 @@
     enable = true;
     latitude = "52.5";
     longitude = "9.5";
-  };
-
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    rxvt_unicode = lib.overrideDerivation pkgs.rxvt_unicode (attrs: rec {
-      desktopItem = pkgs.makeDesktopItem {
-        name = "urxvt";
-        exec = "urxvt";
-        icon = "utilities-terminal";
-        desktopName = "URxvt";
-        genericName = "Terminal emulator";
-      };
-
-      postInstall = attrs.postInstall + ''
-        mkdir -p $out/share/applications
-        cp $desktopItem/share/applications/* $out/share/applications
-      '';
-    });
   };
 }

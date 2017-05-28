@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    python33Packages.acd_cli
     borgbackup
     cryptsetup
     encfs
