@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+
+import argparse
+import datetime
+import json
+import sys
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+parser = argparse.ArgumentParser()
+parser.add_argument('symbol')
+parser.add_argument('--ledger', help='print in ledger format', action='store_true')
+args = parser.parse_args()
+
+def json_request(url, data=None):
+    if data is not None:
+        data = urlencode(data).encode()
+    request = Request(url, data)
+    body = urlopen(request).read().decode()
+    return json.loads(body)
+
+def justetf(isin):
+    data = {
+        'url': 'https://www.justetf.com/en/etf-profile.html?isin=' + isin,
+        'json_data': '{ "value": ".infobox .val span + span" }'
+    }
+    resp = json_request('https://www.jamapi.xyz', data)
+    return resp['value'] + ' EUR'
+
+def kraken(pair):
+    data = {
+        'pair': pair,
+    }
+    resp = json_request('https://api.kraken.com/0/public/Ticker', data)
+    val = float(resp['result'][pair]['c'][0])
+    return ('%.2f EUR' % val)
+
+def cryptowatch(pair, market='kraken'):
+    resp = json_request('https://api.cryptowat.ch/markets/' + market + '/' + pair + '/summary')
+    val = float(resp['result']['price']['last'])
+    return val
+
+def do_print(val):
+    if args.ledger:
+        day = datetime.date.today().strftime('%Y/%m/%d')
+        print('P %s "%s" %s' % (day, args.symbol, val))
+    else:
+        print(val)
+
+def eur(val):
+    return ('%.2f EUR' % val)
+
+if args.symbol == 'ETF.EM':
+    do_print(justetf('FR0010429068'))
+elif args.symbol == 'ETF.STOXX':
+    do_print(justetf('LU0378434582'))
+elif args.symbol == 'ETF.WORLD':
+    do_print(justetf('LU0274208692'))
+elif args.symbol == 'BTC':
+    do_print(eur(cryptowatch('BTCEUR')))
+elif args.symbol == 'ETH':
+    do_print(eur(cryptowatch('ETHEUR')))
+elif args.symbol == 'BCH':
+    do_print(eur(cryptowatch('BCHEUR')))
+elif args.symbol == 'OMG':
+    eurusd = cryptowatch('EURUSD', 'bitstamp')
+    do_print(eur(cryptowatch('OMGUSD', 'bitfinex') / eurusd))

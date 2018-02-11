@@ -13,4 +13,6 @@
     httpie
     #subversionClient
   ];
+
+  nixpkgs.config.php.xsl = true;
 }

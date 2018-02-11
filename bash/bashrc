@@ -88,9 +88,9 @@ c () {
 	fi
 }
 
-if [ type rg &> /dev/null ]; then
+if type rg &> /dev/null; then
 	alias ag='rg -S'
-elif [ ! type ag &> /dev/null ]; then
+elif ! type ag &> /dev/null; then
 	alias ag='grep -R'
 fi
 

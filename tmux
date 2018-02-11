@@ -9,11 +9,11 @@ set-window-option -g mode-keys vi
 set -sg escape-time 0
 set -g history-limit 10000
 
-bind-key -t vi-copy v begin-selection
+# bind-key -t vi-copy v begin-selection
 
 # X clipboard
-bind-key -t vi-copy y copy-pipe "xsel -i -p -b"
-bind-key C-y run "xsel -o -b | tmux load-buffer - ; tmux paste-buffer"
+# bind-key -t vi-copy y copy-pipe "xsel -i -p -b"
+# bind-key C-y run "xsel -o -b | tmux load-buffer - ; tmux paste-buffer"
 
 # simple resizing
 unbind Left

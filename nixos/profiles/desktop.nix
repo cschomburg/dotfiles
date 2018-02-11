@@ -43,6 +43,7 @@
     fonts = with pkgs; [
       dejavu_fonts
       inconsolata
+      roboto
     ];
   };
 

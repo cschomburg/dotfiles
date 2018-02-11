@@ -7,6 +7,7 @@
       (pkgs.texlive.combine {
         inherit (pkgs.texlive)
           scheme-basic
+          xetex lm fontspec
           collection-fontsrecommended
           collection-langgerman
           collection-latexrecommended

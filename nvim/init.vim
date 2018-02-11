@@ -69,6 +69,7 @@ let mapleader = " "
 set pumheight=5
 set completeopt+=longest		" only complete longest match
 set completeopt+=menuone        " show popup menu even for single matches
+set completeopt-=preview        " Disable preview window
 
 " NetRW
 let g:netrw_liststyle=3
@@ -116,31 +117,35 @@ filetype off
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
-Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-two-firewatch'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'joonty/vdebug',     { 'for': 'php' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/echodoc.vim'
+
+Plug 'joonty/vdebug',     { 'for': 'php', 'branch': 'v2-integration' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
-"Plug 'shawncplus/phpcomplete.vim'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'motus/pig.vim'
 Plug 'posva/vim-vue'
 Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
@@ -150,14 +155,19 @@ autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType yaml setlocal expandtab tabstop=4 shiftwidth=2
+autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4 commentstring=//\ %s
-autocmd FileType vue setlocal expandtab tabstop=4 shiftwidth=2
+autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2
+autocmd FileType vue.html.javascript.css setlocal expandtab tabstop=2 shiftwidth=2
+autocmd FileType graphql setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal expandtab tabstop=4 shiftwidth=4
 
 " FZF
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#complete_method = "omnifunc"
 
 " Go programming language
 if !empty($GOPATH)
@@ -176,9 +186,11 @@ endif
 
 " PHP
 let g:vdebug_options = {
-			\ 'path_maps': {"var/cakephp3/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
+			\ 'path_maps': {"srv/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
 			\ 'server': '0.0.0.0'
 			\}
+autocmd FileType php let b:surround_45 = "__('\r')"
+nmap <leader>g cs'-
 
 " Airline
 let g:airline_theme='twofirewatch'
@@ -202,17 +214,33 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
 			\ 'active_filetypes': [],
 			\ 'passive_filetypes': ['cpp', 'html'] }
+let g:ale_open_list = 'on_save'
+let g:ale_linters = {
+			\ 'go': ['gofmt', 'go vet', 'go build' ] }
 
 " Easy Align
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
+let g:easy_align_delimiters = {
+  \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
 
 " Syntax
-
 let php_sql_query = 1
 let php_html_in_strings = 1
 let php_var_selector_is_identifier = 1
 let g:polyglot_disabled = [ 'javascript' ]
+
+" Language Server
+let g:echodoc_enable_at_startup = 1
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
+	\ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR><Paste>
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"

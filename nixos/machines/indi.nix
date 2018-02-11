@@ -19,6 +19,7 @@
 
   networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "ve-+" ];
+  services.zerotierone.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
 }
