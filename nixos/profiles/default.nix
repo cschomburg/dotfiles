@@ -9,15 +9,17 @@
     file
     git
     gnupg1
+    neovim
+    nixUnstable
     p7zip
     patchelf
-    rsync
     ripgrep
+    rsync
     tmux
-    vim
     wget
   ];
 
+  system.stateVersion = "unstable";
   nixpkgs.config.allowUnfree = true;
   programs.bash.enableCompletion = true;
 
@@ -41,26 +43,6 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDe2ekPNmD3OQFLX/knkGJqguRwCleqIVeY3AH3ATiTgjTxKuQhhVzOGU3vS+5+dywPj4WSmAzmjpekN+umqPUIS0ciQudsU6hnNq4eTutb1sy+EQCY/z99lmJel19TQi2WOa8drbPdrjfZy8AOiPd206gp9HoPHjVN5AaTJvU1NT4Vtt1Bc+7acJdXh6gW8WeYCNonNfxxoV6oKZkXUZHJ5vTd7NKn79CmC9N/Tqc52/r6TmnzBZowTs9xGo//HIB80zH2Qp9/Ebgon1vrpZyOLZ9C1yCYURmNDGKRuiffHi1M6wqlmNuO85atg8OmlZsJmme3LT/2IJxyr2kHKhmt6fbKk0w/cf8hQbs53KOfOEO3wtt38FLvR2hYJOLeep6q/Y3UT4TQVuLtEEgAA1wDbctJRFobOAR3Vp+FfBtN7L5GfjVu5I1CMKlPmryo7pU80HYUEr8GsIWp4NqLpjOpEjojT+tc6+hzBBVg50sAbHnjzvzo0m9WfYg21hyqcTPKIm2zbYy16MZs2d4tyJgXOhaYgXNT0LvnTdK2wNJmF7aYzNoSocoixJnRqesjVKCclJLar/cSr3N3Tf34B/zuDRgfzAMR+9D1sFZ6GGKYRgDACGuA1Kt/X0ld/7Mizf2GS0bXzsJAb/hULtE3FqlyrwiVsaYyhFvE8SN8bCJrrQ== me@cschomburg.com"
       ];
     uid = 1000;
-  };
-
-  systemd.services."dotfiles-setup" = {
-    description = "Setup dotfiles for xconstruct";
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "network-online.target" ];
-    script = ''
-      . ${config.system.build.setEnvironment}
-      dotfiles=/home/xconstruct/code/conf/dotfiles
-      if [ ! -e "$dotfiles" ]; then
-        ${pkgs.git}/bin/git clone https://github.com/xconstruct/dotfiles "$dotfiles"
-        cd "$dotfiles"
-        ./deploy
-      fi
-    '';
-    serviceConfig = {
-      User = "xconstruct";
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
   };
 
   services.journald.extraConfig = ''

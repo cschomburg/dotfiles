@@ -1,5 +1,5 @@
 [user]
-    name = Constantin Schomburg
+	name = Constantin Schomburg
     email = me@cschomburg.com
 
 [push]
@@ -7,7 +7,7 @@
 
 [core]
 	autocrlf = input
-	editor = vim
+	editor = nvim
 
 [github]
 	user = xconstruct

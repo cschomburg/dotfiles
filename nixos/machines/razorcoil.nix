@@ -8,17 +8,17 @@
       ../profiles/sync.nix
     ];
 
+  boot.cleanTmpDir = true;
+
   environment.systemPackages = with pkgs; [
-    ledger
+    #haskellPackages.buchhaltung
     hledger
+    ledger
   ];
 
   #networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "ve-+" ];
   networking.firewall.enable = false;
-  networking.extraHosts = ''
-    127.0.0.1 pm.test
-  '';
 
   services.timesyncd.enable = true;
   services.zerotierone.enable = true;
@@ -39,5 +39,6 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "overlay2";
   virtualisation.docker.liveRestore = false;
 }

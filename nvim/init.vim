@@ -12,7 +12,7 @@ set backspace=indent,eol,start	" Make  backspace work as usual
 set tabstop=4					" an indentation every 4 columns
 set shiftwidth=4				" Use indents of 4 spaces
 set softtabstop=-1				" spaces for editing
-set noexpandtab                 " do not insert spaces when tab pressed
+set expandtab					" insert spaces when tab pressed
 
 " Status line
 set showcmd					" Show (partial) command in status line
@@ -29,13 +29,15 @@ set wrapscan					" searches wrap back to the top of file
 
 " Other stuff
 set mat=5						" How many tenth of a second to blink matching brackets for
-set foldmethod=marker			" Auto-folding in files with markers
+set foldmethod=indent
+set foldlevelstart=20
 set fileformats=unix,dos,mac	" Support in this order
 set ruler
 set wrap						" Don't wrap long lines to fit terminal width
 set nobackup					" Disable backup
 set backupcopy=yes				" Overwrite files for live reloading
 set noswapfile
+set updatetime=100
 set directory=$HOME/.config/nvim/tmp
 set autoread					" Reload file if vim detects it changed elsewhere
 set title						" Set window title with the vim files
@@ -121,6 +123,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
@@ -130,41 +133,48 @@ Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
-Plug 'rakr/vim-two-firewatch'
+Plug 'u-ra/vim-two-firewatch'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/indentLine'
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/echodoc.vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
 
 Plug 'joonty/vdebug',     { 'for': 'php', 'branch': 'v2-integration' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'posva/vim-vue'
-Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
 
 call plug#end()
 
 " Custom filetype settings
+let g:vue_disable_pre_processors=1
 autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
-autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
-autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4
-autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType php setlocal expandtab tabstop=4 shiftwidth=4 commentstring=//\ %s
-autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType vue.html.javascript.css setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType graphql setlocal expandtab tabstop=2 shiftwidth=2
-autocmd FileType javascript setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+autocmd FileType php setlocal commentstring=//\ %s
+autocmd FileType vue setlocal tabstop=2 shiftwidth=2
+autocmd FileType vue.html.javascript.css setlocal tabstop=2 shiftwidth=2
+autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
+
+let g:gitgutter_terminal_reports_focus = 0
+let g:gitgutter_grep=''
+
+"IndentLine
+let g:indentLine_color_term = 235
+let g:indentLine_color_gui = '#393f47'
 
 " FZF
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
+nmap <Leader>t :BLines<CR>
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#complete_method = "omnifunc"
@@ -208,15 +218,18 @@ let g:airline_mode_map = {
 			\ '' : 'S',
 			\ }
 
-" Syntastic
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-			\ 'active_filetypes': [],
-			\ 'passive_filetypes': ['cpp', 'html'] }
+" ALE
 let g:ale_open_list = 'on_save'
 let g:ale_linters = {
-			\ 'go': ['gofmt', 'go vet', 'go build' ] }
+            \ 'go': ['gofmt', 'go vet', 'go build' ],
+            \ 'php': ['php'] }
+let g:ale_sign_column_always = 1
+let g:ale_fixers = {
+    \ 'json': ['fixjson', 'jq'],
+    \ 'php': ['php_cs_fixer'] }
+let g:ale_fix_on_save = 1
+let g:ale_pattern_options = {
+    \ '.*\.ctp': {'ale_fixers': []} }
 
 " Easy Align
 vmap <Enter> <Plug>(EasyAlign)
@@ -228,11 +241,12 @@ let g:easy_align_delimiters = {
 let php_sql_query = 1
 let php_html_in_strings = 1
 let php_var_selector_is_identifier = 1
-let g:polyglot_disabled = [ 'javascript' ]
+"let g:polyglot_disabled = [ 'javascript' ]
 
 " Language Server
 let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
 	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
 	\ }

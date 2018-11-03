@@ -1,13 +1,16 @@
 set -g default-terminal "screen-256color"
 
-set -g status-bg black
+set -g status-bg default
 set -g status-fg white
 set -g status-left '#[fg=green]#H '
-set -g status-right '#[fg=green]#T '
+set -g status-right "#(/home/xconstruct/code/go/bin/soji -tmux activity location_fence location_address)"
+set -g status-right-length 70
+set -g status-interval 30
 set-window-option -g window-status-current-fg red
 set-window-option -g mode-keys vi
 set -sg escape-time 0
 set -g history-limit 10000
+set -g mouse on
 
 # bind-key -t vi-copy v begin-selection
 

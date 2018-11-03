@@ -127,7 +127,7 @@ foreach (@dir) {
 @dir=();
 close OUT || die "$0: cannot write ".$tmp->filename.": $!\n";
 
-my @editor="vi";
+my @editor="vim";
 if (-x "/usr/bin/editor") {
 	@editor="/usr/bin/editor";
 }

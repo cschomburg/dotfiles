@@ -24,7 +24,7 @@ def justetf(isin):
         'url': 'https://www.justetf.com/en/etf-profile.html?isin=' + isin,
         'json_data': '{ "value": ".infobox .val span + span" }'
     }
-    resp = json_request('https://www.jamapi.xyz', data)
+    resp = json_request('http://www.jamapi.xyz', data)
     return resp['value'] + ' EUR'
 
 def kraken(pair):
