@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ../profiles/music.nix
+      ../profiles/development.nix
       ../profiles/sync.nix
     ];
 
@@ -31,37 +31,17 @@
 
   services.syncthing.enable = true;
   services.syncthing.user = "xconstruct";
+  services.syncthing.guiAddress = "0.0.0.0:8384";
+  services.syncthing.configDir = "/var/lib/syncthing";
+
+  services.plex.enable = true;
+  services.plex.user = "xconstruct";
+  networking.firewall.allowedTCPPorts = [ 32400 ];
 
   services.zerotierone.enable = true;
   networking.firewall.allowedUDPPorts = [ 9993 ];
 
   services.postgresql.enable = true;
-
-  services.udev.extraRules = ''
-    ACTION=="add", KERNEL=="hci0", RUN+="${lib.getBin pkgs.bluez5}/bin/hciconfig hci0 up"
-  '';
-
-  services.mpd = {
-    enable = true;
-    group = "files";
-    extraConfig = ''
-      audio_output {
-        type "pulse"
-        name "My Pulse Output"
-        server "127.0.0.1"
-      }
-    '';
-  };
-  systemd.services.mpdscribble = {
-    description = "MPDScribble daemon";
-    requires = [ "mpd.service" ];
-    after = [ "mpd.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.mpdscribble}/bin/mpdscribble --no-daemon --conf=/etc/mpdscribble.conf";
-      User = "mpd";
-    };
-  };
 
   users.extraGroups = { files.gid = 1001; };
   users.extraUsers.xconstruct.extraGroups = [ "lp" "files" "ssl-cert" ];

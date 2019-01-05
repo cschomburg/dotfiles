@@ -5,11 +5,12 @@
     [
       ../profiles/vpn.nix
       ../profiles/seed.nix
+      ../profiles/sync.nix
     ];
 
   environment.systemPackages = with pkgs; [
     irssi
-    (callPackage ../packages/warcprox { })
+    php
   ];
 
   services.openssh.startWhenNeeded = false;
@@ -21,7 +22,15 @@
 
   networking.enableIPv6 = false;
 
-  services.delugeMulti.instances = ["1" "2" "3"];
+  services.cron.enable = true;
+  services.plex.enable = true;
+  services.plex.user = "seed";
+  networking.firewall.allowedTCPPorts = [ 32400 ];
+
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
+
+  services.delugeMulti.instances = ["1" "2"];
   networking.firewall.allowedTCPPortRanges = [ { from = 58846; to = 58866; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 58846; to = 58866; } ];
 

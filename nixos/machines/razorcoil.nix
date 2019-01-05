@@ -14,6 +14,7 @@
     #haskellPackages.buchhaltung
     hledger
     ledger
+    php
   ];
 
   #networking.nat.enable = true;
@@ -25,6 +26,7 @@
 
   services.syncthing.enable = true;
   services.syncthing.user = "xconstruct";
+  services.syncthing.guiAddress = "0.0.0.0:8384";
 
   services.samba = {
     enable = true;

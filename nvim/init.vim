@@ -141,10 +141,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/echodoc.vim'
 
-Plug 'joonty/vdebug',     { 'for': 'php', 'branch': 'v2-integration' }
+Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
@@ -226,6 +226,8 @@ let g:ale_linters = {
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {
     \ 'json': ['fixjson', 'jq'],
+    \ 'javascript': ['eslint'],
+    \ 'vue': ['eslint'],
     \ 'php': ['php_cs_fixer'] }
 let g:ale_fix_on_save = 1
 let g:ale_pattern_options = {

@@ -21,6 +21,7 @@ let ovpnConfig = ''
     persist-key
     persist-tun
     client-to-client
+    duplicate-cn
   '';
 in
 {
