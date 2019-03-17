@@ -7,6 +7,7 @@
     fzf
     gdb
     gnumake
+    jq
     mercurial
     neovim
     python

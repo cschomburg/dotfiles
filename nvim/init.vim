@@ -160,8 +160,8 @@ autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType php setlocal commentstring=//\ %s
-autocmd FileType vue setlocal tabstop=2 shiftwidth=2
-autocmd FileType vue.html.javascript.css setlocal tabstop=2 shiftwidth=2
+autocmd FileType vue setlocal tabstop=4 shiftwidth=4
+autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
 
 let g:gitgutter_terminal_reports_focus = 0
@@ -240,8 +240,12 @@ let g:easy_align_delimiters = {
   \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
 
 " Syntax
-let php_sql_query = 1
-let php_html_in_strings = 1
+let php_sql_query = 0
+let php_sql_heredoc = 0
+let php_sql_nowdoc = 0
+let php_html_in_strings = 0
+let php_html_in_heredoc = 0
+let php_html_in_nowdoc = 0
 let php_var_selector_is_identifier = 1
 "let g:polyglot_disabled = [ 'javascript' ]
 

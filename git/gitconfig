@@ -32,3 +32,5 @@
 	path = nvim
 [mergetool "vimdiff"]
 	path = nvim
+[rebase]
+	instructionFormat = (%an <%ae>) %s

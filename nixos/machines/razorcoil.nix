@@ -21,6 +21,8 @@
   networking.nat.internalInterfaces = [ "ve-+" ];
   networking.firewall.enable = false;
 
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
   services.timesyncd.enable = true;
   services.zerotierone.enable = true;
 
