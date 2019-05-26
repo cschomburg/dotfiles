@@ -5,7 +5,7 @@
     allowUnfree = true;
 
     firefox = {
-      enableGnomeExtensions = true;
+      # enableGnomeExtensions = true;
       enableAdobeFlash = false;
     };
 
@@ -15,26 +15,27 @@
     # };
   };
 
+  networking.networkmanager.enable = true;
+
   environment.systemPackages = with pkgs; [
-    chromium
-    clawsMail
     deluge
-    #firefox-developer-bin
-    firejail
+    firefox-devedition-bin
     gimp
-    irssi
     libreoffice
-    keepassx2
-    openjdk
-    pidgin
-    rxvt_unicode
+    keepass
     vlc
-    xsel
-    youtube-dl
+    veracrypt
   ];
 
-  boot.cleanTmpDir = true;
-  boot.supportedFilesystems = [ "ntfs-3g" ];
+  nixpkgs.overlays = [
+    (self: super: {
+      keepass = super.keepass.override {
+        plugins = [ self.keepass-keepassrpc ];
+      };
+    })
+  ];
+
+  # boot.supportedFilesystems = [ "ntfs-3g" ];
 
   fonts = {
     enableCoreFonts = true;
@@ -47,26 +48,31 @@
     ];
   };
 
-  security.pam.enableEcryptfs = true;
-  security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
+  # security.pam.enableEcryptfs = true;
+  # security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
   services.printing.enable = true;
 
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbVariant = "altgrl-intl";
+    xkbVariant = "altgr-intl";
     xkbOptions = "eurosign:e";
 
     displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
     desktopManager.gnome3.enable = true;
+
+    #displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
   };
 
-  services.dbus.packages = [ config.environment.gnome3.packageSet.gconf ];
-  environment.pathsToLink = [ "/etc/gconf" ];
-
-  services.redshift = {
+  services.xserver.libinput = {
     enable = true;
-    latitude = "52.5";
-    longitude = "9.5";
   };
+
+  # services.redshift = {
+  #   enable = true;
+  #   latitude = "52.5";
+  #   longitude = "9.5";
+  # };
 }

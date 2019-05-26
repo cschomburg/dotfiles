@@ -1,12 +1,12 @@
 set -g default-terminal "screen-256color"
 
-set -g status-bg default
-set -g status-fg white
+set -g status-style bg=default
+set -g status-style fg=white
 set -g status-left '#[fg=green]#H '
 set -g status-right "#(/home/xconstruct/code/go/bin/soji -tmux activity location_fence location_address)"
 set -g status-right-length 70
 set -g status-interval 30
-set-window-option -g window-status-current-fg red
+set-window-option -g window-status-current-style fg=red
 set-window-option -g mode-keys vi
 set -sg escape-time 0
 set -g history-limit 10000
@@ -34,14 +34,14 @@ set -g set-titles-string "#W.#T"
 set -g terminal-overrides "xterm*:XT:smcup@:rmcup@"
 set-option -ga terminal-overrides ",xterm-256color:Tc"
 
-#set-option -g pane-border-fg colour8
+#set-option -g pane-border-style fg=colour8
 unbind C-b
 set-option -g prefix C-a
 bind C-a send-prefix
 bind a send-prefix
 
-set-option -g pane-border-fg red
-set-option -g pane-active-border-fg red
+set-option -g pane-border-style fg=red
+set-option -g pane-active-border-style fg=red
 setw -g aggressive-resize
 
 set -g @fingers-skip-health-check '1'
