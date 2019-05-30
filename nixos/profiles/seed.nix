@@ -41,18 +41,4 @@ with lib;
     user = "seed";
     group = "seed";
   };
-
-  #systemd.services."autodl-irssi" = {
-  #  description = "Autostart autodl-irssi";
-  #  wantedBy = [ "multi-user.target" ];
-  #  wants = [ "network-online.target" ];
-  #  path = [ pkgs.irssi ];
-  #  serviceConfig = {
-  #    ExecStart = "${pkgs.tmux}/bin/tmux -v new-session -s autodl -d ${pkgs.irssi}/bin/irssi";
-  #    ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t autodl";
-  #    User = "seed";
-  #    Type = "oneshot";
-  #    RemainAfterExit = true;
-  #  };
-  #};
 }

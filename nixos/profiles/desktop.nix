@@ -5,26 +5,22 @@
     allowUnfree = true;
 
     firefox = {
-      # enableGnomeExtensions = true;
-      enableAdobeFlash = false;
+      enableGnomeExtensions = true;
     };
-
-    # chromium = {
-    #   enablePepperFlash = true;
-    #   enablePepperPDF = true;
-    # };
   };
 
+  boot.cleanTmpDir = true;
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
     deluge
     firefox-devedition-bin
     gimp
-    libreoffice
     keepass
-    vlc
+    libreoffice
+    rambox
     veracrypt
+    vlc
   ];
 
   nixpkgs.overlays = [
@@ -51,6 +47,7 @@
   # security.pam.enableEcryptfs = true;
   # security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
   services.printing.enable = true;
+  services.flatpak.enable = true;
 
   services.xserver = {
     enable = true;

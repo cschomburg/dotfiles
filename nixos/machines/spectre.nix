@@ -17,8 +17,8 @@
   hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.bluetooth.enable = true;
 
-  services.timesyncd.enable = true;
-  services.zerotierone.enable = true;
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

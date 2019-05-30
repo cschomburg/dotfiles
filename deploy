@@ -10,6 +10,7 @@ files_default=(
 	'profile:.profile'
 	'vim:.vim'
 	'vim/vimrc:.vimrc'
+	'nvim:.config/nvim'
 	'git/gitconfig:.gitconfig'
 	'git/gitignore:.gitignore'
 	'bash/bashrc:.bashrc'
@@ -17,7 +18,6 @@ files_default=(
 )
 
 files_desktop=(
-	'nvim:.config/nvim'
 	'latexmkrc:.latexmkrc'
 	'firejail:.config/firejail'
 	'xresources:.Xresources'

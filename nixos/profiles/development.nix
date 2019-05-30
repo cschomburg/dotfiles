@@ -26,4 +26,9 @@
       viAlias = true;
     };
   };
+
+  networking.nat.internalInterfaces = [ "ve-+" ];
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "overlay2";
+  virtualisation.docker.liveRestore = false;
 }
