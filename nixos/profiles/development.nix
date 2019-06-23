@@ -13,7 +13,6 @@
     python
   ];
 
-  nixpkgs.config.php.imagick = true;
   nixpkgs.config.php.xsl = true;
   boot.kernel.sysctl = {
     "vm.max_map_count" = 262144;
@@ -31,4 +30,9 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "overlay2";
   virtualisation.docker.liveRestore = false;
+
+  environment.etc."php.d/php.ini".text = ''
+    extension=${pkgs.phpPackages.redis}/lib/php/extensions/redis.so
+    extension=${pkgs.phpPackages.imagick}/lib/php/extensions/imagick.so
+  '';
 }

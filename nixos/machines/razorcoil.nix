@@ -20,6 +20,7 @@
 
   services.keybase.enable = true;
   services.kbfs.enable = true;
+  services.syncthing.guiAddress = "0.0.0.0:8384";
 
   services.samba = {
     enable = true;
