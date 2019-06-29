@@ -9,6 +9,7 @@
     gnumake
     jq
     mercurial
+    mtr
     neovim
     python
   ];

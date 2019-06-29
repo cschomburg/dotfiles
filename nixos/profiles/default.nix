@@ -24,6 +24,12 @@
   programs.bash.enableCompletion = true;
 
   networking.firewall.allowPing = true;
+  networking.nameservers = [
+    "8.8.4.4"
+    "1.1.1.1"
+    "2001:4860:4860::8888"
+    "2606:4700:4700::1111"
+  ];
 
   time.timeZone = "Europe/Berlin";
 

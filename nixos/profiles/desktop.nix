@@ -10,9 +10,13 @@
   };
 
   boot.cleanTmpDir = true;
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    dns = "none";
+  };
 
   environment.systemPackages = with pkgs; [
+    alacritty
     deluge
     firefox-devedition-bin
     gimp
@@ -21,6 +25,12 @@
     rambox
     veracrypt
     vlc
+
+    # Utilities
+    ntfs3g
+    pciutils
+    usbutils
+    lm_sensors
   ];
 
   nixpkgs.overlays = [
@@ -37,6 +47,8 @@
     enableCoreFonts = true;
     enableFontDir = true;
     enableGhostscriptFonts = true;
+    fontconfig.ultimate.enable = true;
+
     fonts = with pkgs; [
       dejavu_fonts
       inconsolata
@@ -67,9 +79,5 @@
     enable = true;
   };
 
-  # services.redshift = {
-  #   enable = true;
-  #   latitude = "52.5";
-  #   longitude = "9.5";
-  # };
+  environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
 }
