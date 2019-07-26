@@ -18,13 +18,25 @@
   environment.systemPackages = with pkgs; [
     alacritty
     deluge
+
     firefox-devedition-bin
+    # (pkgs.wrapFirefox firefox-devedition-bin-unwrapped {
+    #   gdkWayland = true;
+    #   browserName = "firefox";
+    #   nameSuffix = "-custom";
+    #   name = "firefox-custom-bin-" +
+    #     (builtins.parseDrvName firefox-devedition-bin-unwrapped.name).version;
+    #   desktopName = "Firefox Custom";
+    # })
+
+    #firefox-wayland
     gimp
     keepass
-    libreoffice
+    libreoffice-fresh
     rambox
     veracrypt
     vlc
+    vscode
 
     # Utilities
     ntfs3g

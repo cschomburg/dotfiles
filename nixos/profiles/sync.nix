@@ -24,6 +24,7 @@
   services.syncthing = {
     enable = true;
     user = "xconstruct";
+    group = "users";
     openDefaultPorts = true;
 
     declarative = {
