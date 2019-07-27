@@ -87,6 +87,8 @@ nnoremap Y y$
 " map <C-V> "+gP
 " cmap <C-V> <C-R>+
 vnoremap <C-C> "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+gP
 
 " For when you forget to sudo.. Really write the file
 cmap w!! w !sudo tee % >/dev/null

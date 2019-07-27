@@ -36,7 +36,7 @@
     rambox
     veracrypt
     vlc
-    vscode
+    vscodium
 
     # Utilities
     ntfs3g
@@ -56,16 +56,72 @@
   # boot.supportedFilesystems = [ "ntfs-3g" ];
 
   fonts = {
-    enableCoreFonts = true;
     enableFontDir = true;
     enableGhostscriptFonts = true;
-    fontconfig.ultimate.enable = true;
 
     fonts = with pkgs; [
-      dejavu_fonts
+      caladea
+      carlito
+      corefonts
       inconsolata
+      liberation_ttf_v2
+      noto-fonts
+      noto-fonts-emoji
       roboto
+      ttf_bitstream_vera
     ];
+
+    fontconfig = {
+      penultimate.enable = false;
+
+      # https://github.com/stove-panini/fontconfig-emoji
+      localConf = ''
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+        <fontconfig>
+          <alias binding="weak">
+            <family>monospace</family>
+            <prefer>
+                <family>emoji</family>
+            </prefer>
+          </alias>
+
+          <alias binding="weak">
+            <family>sans-serif</family>
+            <prefer>
+                <family>emoji</family>
+            </prefer>
+          </alias>
+
+          <alias binding="weak">
+            <family>serif</family>
+            <prefer>
+                <family>emoji</family>
+            </prefer>
+          </alias>
+
+          <selectfont>
+            <rejectfont>
+                <pattern>
+                    <patelt name="family">
+                        <string>DejaVu Sans</string>
+                    </patelt>
+                </pattern>
+                <pattern>
+                    <patelt name="family">
+                        <string>DejaVu Serif</string>
+                    </patelt>
+                </pattern>
+                <pattern>
+                    <patelt name="family">
+                        <string>DejaVu Sans Mono</string>
+                    </patelt>
+                </pattern>
+            </rejectfont>
+          </selectfont>
+        </fontconfig>
+      '';
+    };
   };
 
   # security.pam.enableEcryptfs = true;
