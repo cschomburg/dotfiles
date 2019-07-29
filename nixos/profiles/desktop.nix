@@ -31,6 +31,7 @@
 
     #firefox-wayland
     gimp
+    kdeconnect
     keepass
     libreoffice-fresh
     rambox
@@ -135,12 +136,18 @@
     xkbVariant = "altgr-intl";
     xkbOptions = "eurosign:e";
 
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
-    desktopManager.gnome3.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      gdm.wayland = true;
+      #sddm.enable = true;
 
-    #displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+      extraSessionFilePackages = with pkgs; [ plasma5.plasma-workspace ];
+    };
+
+    desktopManager = {
+      gnome3.enable = true;
+      plasma5.enable = true;
+    };
   };
 
   services.xserver.libinput = {

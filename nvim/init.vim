@@ -251,6 +251,7 @@ let php_html_in_strings = 0
 let php_html_in_heredoc = 0
 let php_html_in_nowdoc = 0
 let php_var_selector_is_identifier = 1
+let g:PHP_noArrowMatching = 1
 "let g:polyglot_disabled = [ 'javascript' ]
 
 " Language Server
