@@ -226,7 +226,7 @@ let g:airline_mode_map = {
 let g:ale_open_list = 'on_save'
 let g:ale_linters = {
             \ 'go': ['gofmt', 'go vet', 'go build' ],
-            \ 'php': ['php'] }
+            \ 'php': ['php', 'phpstan'] }
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {
     \ 'json': ['fixjson', 'jq'],

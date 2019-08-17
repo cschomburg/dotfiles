@@ -8,9 +8,15 @@
       ../profiles/sync.nix
     ];
 
+  nixpkgs.overlays = [
+    (import ../overlays/ledger-udev-rules.nix)
+  ];
+
   environment.systemPackages = with pkgs; [
     dbeaver
     hledger
+    kube3d
+    kubectl
     ledger
     php
   ];
@@ -29,6 +35,14 @@
   services.keybase.enable = true;
   services.kbfs.enable = true;
   services.tlp.enable = true;
+  services.tlp.extraConfig = ''
+    CPU_SCALING_GOVERNOR_ON_AC=powersave
+    CPU_SCALING_GOVERNOR_ON_BAT=powersave
+  '';
+
+  services.udev.packages = with pkgs; [
+    ledger-udev-rules
+  ];
 
   nix.maxJobs = lib.mkDefault 8;
   #powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

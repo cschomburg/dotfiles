@@ -19,7 +19,8 @@
     alacritty
     deluge
 
-    firefox-devedition-bin
+    firefox-wayland
+    #firefox-devedition-bin
     # (pkgs.wrapFirefox firefox-devedition-bin-unwrapped {
     #   gdkWayland = true;
     #   browserName = "firefox";
