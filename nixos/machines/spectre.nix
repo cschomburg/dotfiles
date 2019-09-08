@@ -19,6 +19,7 @@
     kubectl
     ledger
     php
+    mysql-client
   ];
 
   boot.loader.systemd-boot.enable = true;

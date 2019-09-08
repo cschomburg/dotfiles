@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 {
   nixpkgs.config = {
     allowUnfree = true;
@@ -15,36 +17,41 @@
     dns = "none";
   };
 
-  environment.systemPackages = with pkgs; [
-    alacritty
-    deluge
+  environment.systemPackages = mkMerge [
+    (with pkgs; [
+      alacritty
+      deluge
 
-    firefox-wayland
-    #firefox-devedition-bin
-    # (pkgs.wrapFirefox firefox-devedition-bin-unwrapped {
-    #   gdkWayland = true;
-    #   browserName = "firefox";
-    #   nameSuffix = "-custom";
-    #   name = "firefox-custom-bin-" +
-    #     (builtins.parseDrvName firefox-devedition-bin-unwrapped.name).version;
-    #   desktopName = "Firefox Custom";
-    # })
+      firefox-wayland
+      #firefox-devedition-bin
+      # (pkgs.wrapFirefox firefox-devedition-bin-unwrapped {
+      #   gdkWayland = true;
+      #   browserName = "firefox";
+      #   nameSuffix = "-custom";
+      #   name = "firefox-custom-bin-" +
+      #     (builtins.parseDrvName firefox-devedition-bin-unwrapped.name).version;
+      #   desktopName = "Firefox Custom";
+      # })
 
-    #firefox-wayland
-    gimp
-    kdeconnect
-    keepass
-    libreoffice-fresh
-    rambox
-    veracrypt
-    vlc
-    vscodium
+      gimp
+      keepass
+      libreoffice-fresh
+      rambox
+      veracrypt
+      vlc
+      vscodium
 
-    # Utilities
-    ntfs3g
-    pciutils
-    usbutils
-    lm_sensors
+      # Utilities
+      ntfs3g
+      pciutils
+      usbutils
+      lm_sensors
+    ])
+
+    (mkIf config.services.xserver.desktopManager.gnome3.enable (with pkgs.gnome3; [
+      evolution
+      gnome-tweaks
+    ]))
   ];
 
   nixpkgs.overlays = [
@@ -153,6 +160,11 @@
 
   services.xserver.libinput = {
     enable = true;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";

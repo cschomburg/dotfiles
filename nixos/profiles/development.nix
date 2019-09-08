@@ -12,6 +12,7 @@
     mtr
     neovim
     python
+    starship
   ];
 
   nixpkgs.config.php.xsl = true;
