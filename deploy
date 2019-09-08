@@ -15,6 +15,7 @@ files_default=(
 	'git/gitignore:.gitignore'
 	'bash/bashrc:.bashrc'
 	'tmux:.tmux.conf'
+    'starship.toml:.config/starship.toml'
 )
 
 files_desktop=(

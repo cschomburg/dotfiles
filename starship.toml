@@ -1,0 +1,8 @@
+[directory]
+style = "bold red"
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true

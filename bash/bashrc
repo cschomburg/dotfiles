@@ -29,9 +29,6 @@ fi
 if [ -n "$SSH_CONNECTION" ] && [ "$HOSTNAME" != "razorcoil" ]; then
     PS1="$PS1@\h"
 fi
-if [ -n "$SPECIAL_SHELL" ]; then
-    PS1="$PS1\[\e[1;33m\]#$SPECIAL_SHELL"
-fi
 PS1="\n$PS1 \D{%T} ${RED}\w\$(__git_ps1) ${RESET}"
 PROMPT_DIRTRIM=2
 
@@ -95,6 +92,7 @@ export VISUAL=vim
 
 export LEDGER_FILE=~/sync/default/ledger/main.ledger
 
+# vim ripgrep
 vg() {
   local file
   local line
@@ -107,8 +105,14 @@ vg() {
   fi
 }
 
+# z with fzf support
 unalias z 2> /dev/null
 z() {
   [ $# -gt 0 ] && _z "$*" && return
   cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
+
+# starship prompt
+if type starship &> /dev/null; then
+    eval "$(starship init bash)"
+fi
