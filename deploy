@@ -10,6 +10,7 @@ files_default=(
 	'profile:.profile'
 	'vim:.vim'
 	'vim/vimrc:.vimrc'
+    'nixpkgs-config.nix:.config/nixpkgs/config.nix'
 	'nvim:.config/nvim'
 	'git/gitconfig:.gitconfig'
 	'git/gitignore:.gitignore'

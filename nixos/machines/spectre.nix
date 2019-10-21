@@ -45,6 +45,11 @@
     ledger-udev-rules
   ];
 
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
+  };
+
   nix.maxJobs = lib.mkDefault 8;
   #powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   powerManagement.cpuFreqGovernor =

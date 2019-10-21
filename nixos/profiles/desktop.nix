@@ -19,20 +19,8 @@ with lib;
 
   environment.systemPackages = mkMerge [
     (with pkgs; [
-      alacritty
       deluge
-
       firefox-wayland
-      #firefox-devedition-bin
-      # (pkgs.wrapFirefox firefox-devedition-bin-unwrapped {
-      #   gdkWayland = true;
-      #   browserName = "firefox";
-      #   nameSuffix = "-custom";
-      #   name = "firefox-custom-bin-" +
-      #     (builtins.parseDrvName firefox-devedition-bin-unwrapped.name).version;
-      #   desktopName = "Firefox Custom";
-      # })
-
       gimp
       keepass
       libreoffice-fresh
@@ -46,6 +34,7 @@ with lib;
       pciutils
       usbutils
       lm_sensors
+      xclip
     ])
 
     (mkIf config.services.xserver.desktopManager.gnome3.enable (with pkgs.gnome3; [
@@ -74,6 +63,7 @@ with lib;
       corefonts
       inconsolata
       liberation_ttf_v2
+      nerdfonts
       noto-fonts
       noto-fonts-emoji
       roboto
@@ -138,6 +128,11 @@ with lib;
   services.printing.enable = true;
   services.flatpak.enable = true;
 
+  services.acpid = {
+    enable = true;
+    powerEventCommands = "${pkgs.systemd}/bin/poweroff";
+  };
+
   services.xserver = {
     enable = true;
     layout = "us";
@@ -149,12 +144,12 @@ with lib;
       gdm.wayland = true;
       #sddm.enable = true;
 
-      extraSessionFilePackages = with pkgs; [ plasma5.plasma-workspace ];
+      # extraSessionFilePackages = with pkgs; [ plasma5.plasma-workspace ];
     };
 
     desktopManager = {
       gnome3.enable = true;
-      plasma5.enable = true;
+      #plasma5.enable = true;
     };
   };
 
@@ -168,4 +163,25 @@ with lib;
   };
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
+  environment.gnome3.excludePackages = with pkgs.gnome3; [
+    geary
+    gnome-calendar
+    gnome-clocks
+    gnome-contacts
+    gnome-logs
+    gnome-maps
+    gnome-music
+    gnome-photos
+    gnome-software
+    gnome-system-monitor
+    gnome-weather
+    totem
+    yelp
+  ];
+
+  services.dleyna-renderer.enable = false;
+  services.dleyna-server.enable = false;
+  services.gnome3.gnome-online-accounts.enable = false;
+  services.gnome3.tracker-miners.enable = false;
+  services.gnome3.tracker.enable = false;
 }

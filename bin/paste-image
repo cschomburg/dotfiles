@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eu
+
+FILE=$1
+NAME=$(basename $FILE)
+
+xclip -selection clipboard -t image/png -o > /tmp/screenshot.png
+
+mkdir -p $(dirname $FILE)
+cp /tmp/screenshot.png ${FILE}.png
+echo "![${NAME}](${FILE})"

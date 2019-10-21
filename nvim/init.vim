@@ -127,6 +127,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 
+Plug 'plasticboy/vim-markdown'
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
 "Plug 'scrooloose/syntastic'
@@ -225,10 +226,12 @@ let g:airline_mode_map = {
 " ALE
 let g:ale_open_list = 'on_save'
 let g:ale_linters = {
-            \ 'go': ['gofmt', 'go vet', 'go build' ],
+            \ 'elixir': ['mix'],
+            \ 'go': ['gofmt', 'go vet', 'go build'],
             \ 'php': ['php', 'phpstan'] }
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {
+    \ 'elixir': ['mix_format'],
     \ 'json': ['fixjson', 'jq'],
     \ 'javascript': ['eslint'],
     \ 'vue': ['eslint'],
@@ -252,7 +255,11 @@ let php_html_in_heredoc = 0
 let php_html_in_nowdoc = 0
 let php_var_selector_is_identifier = 1
 let g:PHP_noArrowMatching = 1
-"let g:polyglot_disabled = [ 'javascript' ]
+let g:polyglot_disabled = [ 'md', 'markdown' ]
+
+" Markdown
+let g:vim_markdown_conceal=0
+let g:vim_markdown_conceal_code_blocks=0
 
 " Language Server
 let g:echodoc_enable_at_startup = 1

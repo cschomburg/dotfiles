@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eu
+
+pandoc --self-contained -o /tmp/pandoc.html $1
+xdg-open /tmp/pandoc.html

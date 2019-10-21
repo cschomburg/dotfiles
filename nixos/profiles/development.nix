@@ -11,6 +11,7 @@
     mercurial
     mtr
     neovim
+    pandoc
     python
     starship
   ];
