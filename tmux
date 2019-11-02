@@ -13,6 +13,7 @@ set -g history-limit 10000
 set -g mouse on
 
 # bind-key -t vi-copy v begin-selection
+bind-key v setw synchronize-panes
 
 # X clipboard
 # bind-key -t vi-copy y copy-pipe "xsel -i -p -b"

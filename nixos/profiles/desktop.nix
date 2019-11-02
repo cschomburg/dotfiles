@@ -23,6 +23,7 @@ with lib;
       firefox-wayland
       gimp
       keepass
+      keepassxc
       libreoffice-fresh
       rambox
       veracrypt
@@ -163,6 +164,7 @@ with lib;
   };
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
+  environment.sessionVariables."QT_QPA_PLATFORM" = "wayland";
   environment.gnome3.excludePackages = with pkgs.gnome3; [
     geary
     gnome-calendar

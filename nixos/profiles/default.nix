@@ -9,6 +9,7 @@
     file
     git
     gnupg1
+    htop
     neovim
     nixUnstable
     p7zip

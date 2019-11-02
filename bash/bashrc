@@ -75,6 +75,10 @@ elif ! type ag &> /dev/null; then
     alias ag='grep -R'
 fi
 
+if type htop &> /dev/null; then
+    alias top="htop"
+fi
+
 export EDITOR=vim
 export VISUAL=vim
 
