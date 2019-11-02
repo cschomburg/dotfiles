@@ -13,7 +13,6 @@ ranger/tagged
 bin/hub
 z.sh
 
-private
-!nixos/private
+/private
 
 systemd/default.target.wants

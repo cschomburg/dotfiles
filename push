@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+cd ~/code/conf/dotfiles
+MACHINE=$1
+
+rsync -avP \
+    --exclude='.git*' \
+    --filter=':- .gitignore' \
+    ./ ${MACHINE}:code/conf/dotfiles/
