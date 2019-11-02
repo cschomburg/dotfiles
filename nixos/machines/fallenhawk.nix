@@ -27,18 +27,18 @@
   services.plex.user = "seed";
   networking.firewall.allowedTCPPorts = [ 32400 ];
 
-  services.mysql.enable = true;
-  services.mysql.package = pkgs.mariadb;
-
   services.delugeMulti.instances = ["1" "2"];
   networking.firewall.allowedTCPPortRanges = [ { from = 58846; to = 58866; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 58846; to = 58866; } ];
 
-  # OpenVPN traffic forwarding
-  networking.firewall.extraCommands = ''
-    iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o vethlxc2 -j MASQUERADE
-    iptables -t nat -A POSTROUTING -s 10.8.1.0/24 -o vethlxc2 -j MASQUERADE
-    iptables -A INPUT -i tun+ -j ACCEPT
-    iptables -A FORWARD -i tun+ -j ACCEPT
-  '';
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
+
+  services.nginx = {
+    enable = true;
+    recommendedGzipSettings = true;
+    #recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
 }
