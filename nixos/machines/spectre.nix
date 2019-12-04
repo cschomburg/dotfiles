@@ -8,10 +8,6 @@
       ../profiles/sync.nix
     ];
 
-  nixpkgs.overlays = [
-    (import ../overlays/ledger-udev-rules.nix)
-  ];
-
   environment.systemPackages = with pkgs; [
     dbeaver
     hledger
@@ -32,6 +28,8 @@
   hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.bluetooth.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.ledger.enable = true;
+  hardware.u2f.enable = true;
 
   services.keybase.enable = true;
   services.kbfs.enable = true;
@@ -40,10 +38,6 @@
     CPU_SCALING_GOVERNOR_ON_AC=powersave
     CPU_SCALING_GOVERNOR_ON_BAT=powersave
   '';
-
-  services.udev.packages = with pkgs; [
-    ledger-udev-rules
-  ];
 
   virtualisation.virtualbox.host = {
     enable = false;

@@ -81,6 +81,9 @@ fi
 
 export EDITOR=vim
 export VISUAL=vim
+if type nvim &> /dev/null; then
+    export MANPAGER="nvim -c 'set ft=man' -"
+fi
 
 # other extensions
 

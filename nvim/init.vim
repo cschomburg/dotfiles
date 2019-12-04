@@ -118,6 +118,8 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
+let g:polyglot_disabled = [ 'cue' ]
+
 call plug#begin('~/.config/nvim/bundle')
 
 Plug 'tpope/vim-surround'
@@ -144,9 +146,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'baverman/vial'
 Plug 'baverman/vial-http'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'jjo/vim-cue'
 
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
@@ -168,6 +171,8 @@ autocmd FileType php setlocal commentstring=//\ %s
 autocmd FileType vue setlocal tabstop=4 shiftwidth=4
 autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
+
+lua require'colorizer'.setup()
 
 let g:gitgutter_terminal_reports_focus = 0
 let g:gitgutter_grep=''
@@ -255,7 +260,6 @@ let php_html_in_heredoc = 0
 let php_html_in_nowdoc = 0
 let php_var_selector_is_identifier = 1
 let g:PHP_noArrowMatching = 1
-let g:polyglot_disabled = [ 'md', 'markdown' ]
 
 " Markdown
 let g:vim_markdown_conceal=0
@@ -263,15 +267,13 @@ let g:vim_markdown_conceal_code_blocks=0
 
 " Language Server
 let g:echodoc_enable_at_startup = 1
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
 	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
 	\ }
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> K :ALEHover<CR>
+nnoremap <silent> gd :ALEGoToDefinition<CR>
+nnoremap <silent> gs :ALESymbolSearch<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR><Paste>
 
 " bracketed paste mode

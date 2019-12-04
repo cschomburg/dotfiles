@@ -19,12 +19,13 @@ with lib;
 
   environment.systemPackages = mkMerge [
     (with pkgs; [
+      chromium
       deluge
       firefox-wayland
       gimp
-      keepass
       keepassxc
       libreoffice-fresh
+      (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
       veracrypt
       vlc

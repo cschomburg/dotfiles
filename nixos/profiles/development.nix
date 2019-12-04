@@ -13,6 +13,8 @@
     neovim
     pandoc
     python
+    python3
+    reflex
     starship
   ];
 
