@@ -29,7 +29,7 @@ with lib;
       rambox
       veracrypt
       vlc
-      vscodium
+      vscode
 
       # Utilities
       ntfs3g
@@ -129,11 +129,6 @@ with lib;
   # security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
   services.printing.enable = true;
   services.flatpak.enable = true;
-
-  services.acpid = {
-    enable = true;
-    powerEventCommands = "${pkgs.systemd}/bin/poweroff";
-  };
 
   services.xserver = {
     enable = true;

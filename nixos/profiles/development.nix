@@ -13,9 +13,12 @@
     neovim
     pandoc
     python
-    python3
     reflex
     starship
+
+    (python3.withPackages (ps: with ps; [
+      ps.requests
+    ]))
   ];
 
   nixpkgs.config.php.xsl = true;
