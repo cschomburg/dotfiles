@@ -38,9 +38,12 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "overlay2";
   virtualisation.docker.liveRestore = false;
+  networking.interfaces."lo".ipv4.addresses = [
+    { address = "10.254.254.254"; prefixLength = 24; }
+  ];
 
   environment.etc."php.d/php.ini".text = ''
-    extension=${pkgs.phpPackages.redis}/lib/php/extensions/redis.so
-    extension=${pkgs.phpPackages.imagick}/lib/php/extensions/imagick.so
+    extension=${pkgs.php74Packages.redis}/lib/php/extensions/redis.so
+    extension=${pkgs.php74Packages.imagick}/lib/php/extensions/imagick.so
   '';
 }

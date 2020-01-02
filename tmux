@@ -1,4 +1,5 @@
 set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",*256col*:Tc"
 
 set -g status-style bg=default
 set -g status-style fg=white

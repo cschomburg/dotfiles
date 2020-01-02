@@ -19,6 +19,8 @@ with lib;
 
   environment.systemPackages = mkMerge [
     (with pkgs; [
+      alacritty
+      calibre
       chromium
       deluge
       firefox-wayland
