@@ -149,8 +149,9 @@ Plug 'baverman/vial-http'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jjo/vim-cue'
 Plug 'jpalardy/vim-slime'
+Plug 'neovim/nvim-lsp'
 
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
@@ -168,12 +169,10 @@ autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-autocmd FileType php setlocal commentstring=//\ %s
+autocmd FileType php setlocal omnifunc=v:lua.vim.lsp.omnifunc commentstring=//\ %s
 autocmd FileType vue setlocal tabstop=4 shiftwidth=4
 autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
-
-lua require'colorizer'.setup()
 
 let g:gitgutter_terminal_reports_focus = 0
 let g:gitgutter_grep=''
@@ -207,7 +206,7 @@ endif
 
 " PHP
 let g:vdebug_options = {
-			\ 'path_maps': {"srv/ProjectManagement": "/home/xconstruct/code/energieheld/projectmanagement"},
+			\ 'path_maps': {"srv/ProjectManagement": "/home/xconstruct/code/lyke/hero"},
 			\ 'server': '0.0.0.0'
 			\}
 autocmd FileType php let b:surround_45 = "__('\r')"
@@ -276,10 +275,12 @@ let g:LanguageClient_serverCommands = {
 	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
 	\ }
 
-nnoremap <silent> K :ALEHover<CR>
-nnoremap <silent> gd :ALEGoToDefinition<CR>
-nnoremap <silent> gs :ALESymbolSearch<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR><Paste>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K  <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k>  <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"
@@ -300,6 +301,11 @@ filetype indent on
 
 " turn on syntax highlighting
 syntax on
+
+" Lua init
+lua << EOF
+    require('init')
+EOF
 
 " Colorscheme
 set background=dark

@@ -8,9 +8,14 @@
       ../profiles/sync.nix
     ];
 
+  nixpkgs.overlays = [
+    (import ../overlays/neovim-nightly.nix)
+  ];
+
   environment.systemPackages = with pkgs; [
     dbeaver
     hledger
+    isync
     kube3d
     kubectl
     ledger
