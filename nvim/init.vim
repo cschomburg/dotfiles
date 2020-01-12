@@ -132,7 +132,6 @@ Plug 'tpope/vim-abolish'
 Plug 'plasticboy/vim-markdown'
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
-"Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align'
@@ -150,8 +149,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jjo/vim-cue'
 Plug 'jpalardy/vim-slime'
 Plug 'neovim/nvim-lsp'
+Plug 'rhysd/git-messenger.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
 Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
@@ -173,6 +174,7 @@ autocmd FileType php setlocal omnifunc=v:lua.vim.lsp.omnifunc commentstring=//\ 
 autocmd FileType vue setlocal tabstop=4 shiftwidth=4
 autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
+autocmd FileType javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 let g:gitgutter_terminal_reports_focus = 0
 let g:gitgutter_grep=''
@@ -186,8 +188,9 @@ nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
 
+" Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#complete_method = "omnifunc"
+call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
 
 " Go programming language
 if !empty($GOPATH)
@@ -206,7 +209,7 @@ endif
 
 " PHP
 let g:vdebug_options = {
-			\ 'path_maps': {"srv/ProjectManagement": "/home/xconstruct/code/lyke/hero"},
+			\ 'path_maps': {"www-root": "/home/xconstruct/code/lyke/hero"},
 			\ 'server': '0.0.0.0'
 			\}
 autocmd FileType php let b:surround_45 = "__('\r')"

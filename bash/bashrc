@@ -58,6 +58,10 @@ test -d "$DOTFILES/private/bin" &&
 test -d "$HOME/bin" &&
     PATH="$HOME/bin:$PATH"
 
+test -d "$HOME/.npm-packages" &&
+    NPM_PACKAGES="${HOME}/.npm-packages" &&
+    PATH="$NPM_PACKAGES/bin:$PATH"
+
 
 bind "set show-all-if-ambiguous on"
 
@@ -65,6 +69,7 @@ eval "$(dircolors $DOTFILES/dircolors)";
 alias ls='ls --color '
 alias cp='cp -vi'
 alias mv='mv -v'
+alias xclipb='xclip -selection clipboard'
 
 alias sshfs-sane='sshfs -o reconnect'
 alias latexmk="latexmk -pdf -pvc"
