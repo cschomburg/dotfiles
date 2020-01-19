@@ -21,7 +21,7 @@ with lib;
     (with pkgs; [
       alacritty
       calibre
-      chromium
+      google-chrome-beta
       deluge
       firefox-wayland
       gimp
