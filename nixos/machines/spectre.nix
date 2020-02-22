@@ -10,17 +10,21 @@
 
   nixpkgs.overlays = [
     (import ../overlays/neovim-nightly.nix)
+    (import ../overlays/usbarmory.nix)
   ];
 
   environment.systemPackages = with pkgs; [
+    age
     dbeaver
     hledger
+    imx_loader
     isync
     kube3d
     kubectl
     ledger
     mysql-client
     php74
+    python3Packages.solo-python
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -55,4 +59,18 @@
   #powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   powerManagement.cpuFreqGovernor =
     lib.mkIf config.services.tlp.enable (lib.mkForce null);
+
+  systemd.user = {
+    timers.cleanup-downloads = {
+      partOf = [ "cleanup-downloads.service" ];
+      timerConfig.OnCalendar = "hourly";
+    };
+    services.cleanup-downloads = {
+      serviceConfig.Type = "oneshot";
+      script = ''
+        find /home/xconstruct/downloads -mtime +7 -type f -delete
+        find /home/xconstruct/downloads -type d -empty -delete
+      '';
+    };
+  };
 }

@@ -14,6 +14,7 @@
     pandoc
     python
     reflex
+    shellcheck
     starship
 
     (python3.withPackages (ps: with ps; [

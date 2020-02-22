@@ -130,6 +130,9 @@ with lib;
   # security.pam.enableEcryptfs = true;
   # security.wrappers.firejail.source = "${pkgs.firejail.out}/bin/firejail";
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [ gutenprint ];
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
   services.flatpak.enable = true;
 
   services.xserver = {
@@ -178,6 +181,8 @@ with lib;
     totem
     yelp
   ];
+
+  programs.geary.enable = false;
 
   services.dleyna-renderer.enable = false;
   services.dleyna-server.enable = false;

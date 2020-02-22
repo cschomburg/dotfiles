@@ -2,7 +2,7 @@
 
 set -eu
 
-srcdir=`pwd`
+srcdir=$(pwd)
 dstdir=$HOME
 
 files_default=(
@@ -16,6 +16,7 @@ files_default=(
 	'git/gitignore:.gitignore'
 	'bash/bashrc:.bashrc'
 	'tmux:.tmux.conf'
+    'shellcheckrc:.shellcheckrc'
     'starship.toml:.config/starship.toml'
 )
 
@@ -43,7 +44,7 @@ install_filepair () {
 	ln -sf $src $dst
 }
 
-for filepair in ${files_default[@]} ; do
+for filepair in "${files_default[@]}" ; do
 	install_filepair "${filepair%%:*}" "${filepair##*:}"
 done
 
@@ -51,7 +52,7 @@ done
 for opt in "$@"; do
 	case $opt in
 		desktop)
-			for filepair in ${files_desktop[@]} ; do
+			for filepair in "${files_desktop[@]}" ; do
 				install_filepair "${filepair%%:*}" "${filepair##*:}"
 			done
 			;;

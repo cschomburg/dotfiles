@@ -147,6 +147,7 @@ Plug 'baverman/vial'
 Plug 'baverman/vial-http'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'jjo/vim-cue'
+Plug 'google/vim-jsonnet'
 Plug 'jpalardy/vim-slime'
 Plug 'neovim/nvim-lsp'
 Plug 'rhysd/git-messenger.vim'
@@ -187,6 +188,7 @@ let g:indentLine_color_gui = '#393f47'
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
