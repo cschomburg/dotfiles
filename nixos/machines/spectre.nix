@@ -5,6 +5,7 @@
     [
       ../profiles/desktop.nix
       ../profiles/development.nix
+      ../profiles/devops.nix
       ../profiles/sync.nix
     ];
 
@@ -19,8 +20,6 @@
     hledger
     imx_loader
     isync
-    kube3d
-    kubectl
     ledger
     mysql-client
     php74
