@@ -22,7 +22,6 @@
     ]))
   ];
 
-  nixpkgs.config.php.xsl = true;
   boot.kernel.sysctl = {
     "vm.max_map_count" = 262144;
     "vm.swappiness" = 1;
@@ -42,9 +41,4 @@
   networking.interfaces."lo".ipv4.addresses = [
     { address = "10.254.254.254"; prefixLength = 24; }
   ];
-
-  environment.etc."php.d/php.ini".text = ''
-    extension=${pkgs.php74Packages.redis}/lib/php/extensions/redis.so
-    extension=${pkgs.php74Packages.imagick}/lib/php/extensions/imagick.so
-  '';
 }

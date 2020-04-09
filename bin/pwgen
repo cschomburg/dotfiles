@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+PROFILE=${1:-default}
+LENGTH=${2:-24}
+
+default () {
+    < /dev/urandom tr -dc '_A-Z-a-z-0-9' | head -c$LENGTH
+}
+
+secure () {
+    < /dev/urandom tr -dc '_A-Z-a-z-0-9@%!#$*~^=+?' | head -c$LENGTH
+}
+
+alphanumeric () {
+    < /dev/urandom tr -dc 'A-Za-z0-9' | head -c$LENGTH
+}
+
+hex () {
+    < /dev/urandom tr -dc 'a-f0-9' | head -c$LENGTH
+}
+
+numeric () {
+    < /dev/urandom tr -dc '0-9' | head -c$LENGTH
+}
+
+case $PROFILE in
+    default) default ;;
+    alphanumeric|an) alphanumeric ;;
+    s|secure) secure ;;
+    hex) hex ;;
+    numeric|n) numeric ;;
+    *) echo "unknown profile";
+esac

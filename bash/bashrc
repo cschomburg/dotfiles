@@ -74,7 +74,6 @@ alias x="xdg-open"
 
 alias sshfs-sane='sshfs -o reconnect'
 alias latexmk="latexmk -pdf -pvc"
-alias pwgen="< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c24"
 
 if type rg &> /dev/null; then
     alias ag='rg -S'
