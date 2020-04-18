@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     bind
     cmake
+    ffmpeg
     fzf
     gdb
     gnumake

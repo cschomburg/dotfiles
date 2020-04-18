@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+NV_SEARCH_PATHS="$HOME/sync/essential/default/notes $HOME/sync/essential/dynalist"
+
+ripgrep () {
+    rg \
+        --follow \
+        --smart-case \
+        --line-number \
+        --color never \
+        --no-messages \
+        --no-heading \
+        --with-filename \
+        $1 \
+        $NV_SEARCH_PATHS
+}
+
+fzf_run () {
+    fzf \
+        --ansi \
+        --multi \
+        --exact \
+        --inline-info \
+        --delimiter=":" \
+        --tiebreak=length,begin \
+        --preview 'cat $(echo {} | cut -d: -f1)'
+}
+
+open () {
+    file=$(echo $1 | cut -d: -f1)
+    line=$(echo $1 | cut -d: -f2)
+    vim $file +$line
+}
+
+selection=$(ripgrep $1 | fzf_run)
+open $selection

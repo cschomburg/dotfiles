@@ -25,6 +25,7 @@ with lib;
       deluge
       firefox-wayland
       gimp
+      insomnia
       keepassxc
       libreoffice-fresh
       (pass.withExtensions (exts: [exts.pass-otp]))

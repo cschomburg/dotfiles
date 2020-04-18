@@ -18,6 +18,7 @@
   environment.systemPackages = with pkgs; [
     age
     dbeaver
+    go-jira
     hledger
     imx_loader
     isync

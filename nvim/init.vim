@@ -60,6 +60,7 @@ set showbreak=\ ↪\
 "set fillchars+=vert:\ 
 set previewheight=20
 set mouse=
+set splitright
 
 if exists('&inccommand')
 	set inccommand=split
@@ -142,6 +143,7 @@ Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
+Plug 'alok/notational-fzf-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'baverman/vial'
 Plug 'baverman/vial-http'
@@ -189,6 +191,7 @@ nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:nv_search_paths = ['~/sync/essential/default/notes', '~/sync/essential/dynalist', './notes', './doc', './docs']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
