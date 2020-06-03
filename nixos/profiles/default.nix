@@ -4,15 +4,17 @@
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    archiver
     binutils
     curl
     file
     git
     gnupg1
     htop
+    libarchive
+    lsof
     neovim
     nixUnstable
-    p7zip
     patchelf
     ripgrep
     rsync

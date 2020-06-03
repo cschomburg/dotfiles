@@ -22,7 +22,7 @@ with lib;
       alacritty
       calibre
       google-chrome-beta
-      deluge
+      deluge-1_x
       firefox-wayland
       gimp
       insomnia
@@ -30,6 +30,7 @@ with lib;
       libreoffice-fresh
       (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
+      spotify
       veracrypt
       vlc
       vscode

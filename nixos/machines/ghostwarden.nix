@@ -58,4 +58,10 @@ in {
 
   users.extraGroups = { files.gid = 1001; };
   users.extraUsers.xconstruct.extraGroups = [ "lp" "files" "ssl-cert" ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 14d";
+  };
 }

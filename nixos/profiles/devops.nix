@@ -8,10 +8,12 @@ in {
     ansible
     helm2
     jq
+    jsonnet
     k9s
     kube3d
     kubectl
     kubectx
-    rancher-cli
+    #rancher-cli
+    terraform
   ];
 }

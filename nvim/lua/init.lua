@@ -5,3 +5,4 @@ lsp.tsserver.setup{}
 lsp.intelephense.setup{
     init_options = {}
 }
+lsp.pyls.setup{}

@@ -242,13 +242,15 @@ let g:ale_linters = {
             \ 'elixir': ['mix'],
             \ 'go': ['gofmt', 'go vet', 'go build'],
             \ 'php': ['php', 'phpstan'] }
+let ale_python_pylint_options = '--errors only'
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {
     \ 'elixir': ['mix_format'],
     \ 'json': ['fixjson', 'jq'],
     \ 'javascript': ['eslint'],
     \ 'vue': ['eslint'],
-    \ 'php': ['php_cs_fixer'] }
+    \ 'php': ['php_cs_fixer'],
+    \ 'python': ['black'] }
 let g:ale_fix_on_save = 1
 let g:ale_pattern_options = {
     \ '.*\.ctp': {'ale_fixers': []} }

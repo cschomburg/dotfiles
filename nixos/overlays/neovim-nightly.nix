@@ -8,8 +8,8 @@ self: super:
     src = super.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "49cd750d6a72efc0571a89d7a874bbb01081227f";
-      sha256 = "07mivpjlpc9mcz2cljd85bhy2lkbgb4frxbjaja5s7ww6c3vszmx";
+      rev = "e9cc383614d449b7269632c991525db77c387154";
+      sha256 = "1p87h9h4ycyx07qil5cg5kdm4bv8virb0aic6m5fky8qqpa5900s";
     };
 
     buildInputs = old.buildInputs ++ [ self.utf8proc ];

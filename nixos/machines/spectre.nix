@@ -22,12 +22,13 @@
     hledger
     imx_loader
     isync
+    insomnia
     ledger
     mysql-client
     python3Packages.solo-python
 
-    (php74.withExtensions
-      (e: php74.enabledExtensions ++ [ e.imagick e.redis e.xsl ])
+    (php74.withExtensions ({ enabled, all }:
+      enabled ++ [ all.imagick all.redis all.xsl ])
     )
   ];
 
@@ -61,8 +62,8 @@
     services.cleanup-downloads = {
       serviceConfig.Type = "oneshot";
       script = ''
-        find /home/xconstruct/downloads -mtime +7 -type f -delete
-        find /home/xconstruct/downloads -type d -empty -delete
+        find /home/xconstruct/Downloads -mtime +3 -type f -delete
+        find /home/xconstruct/Downloads -type d -empty -delete
       '';
     };
   };

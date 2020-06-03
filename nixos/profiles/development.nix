@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     bind
     cmake
+    direnv
     ffmpeg
     fzf
     gdb
@@ -13,14 +14,26 @@
     mtr
     neovim
     pandoc
-    python
     reflex
     shellcheck
     starship
 
+    # Python
     (python3.withPackages (ps: with ps; [
+      ps.black
       ps.requests
+      ps.pip
+      ps.pylint
+      ps.python-language-server
     ]))
+
+    # JavaScript
+    deno
+    nodejs
+    yarn
+
+    # Other programming languages
+    go
   ];
 
   boot.kernel.sysctl = {
@@ -34,6 +47,8 @@
       viAlias = true;
     };
   };
+
+  services.lorri.enable = true;
 
   networking.nat.internalInterfaces = [ "ve-+" ];
   virtualisation.docker.enable = true;

@@ -36,8 +36,9 @@ PROMPT_DIRTRIM=2
 HISTTIMEFORMAT="%y-%m-%d %T "
 HISTSIZE=-1
 HISTFILESIZE=-1
-HISTCONTROL=ignorespace
+HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 
 # find dotfiles dir
 BASHRC_PATH=$(readlink -f ${BASH_SOURCE[0]})
@@ -102,14 +103,18 @@ fi
 if type starship &> /dev/null; then
     eval "$(starship init bash)"
 fi
-PROMPT_COMMAND="${PROMPT_COMMAND};"
 
 [ -f $DOTFILES/z.sh ] && source $DOTFILES/z.sh
 
 [ -f ~/.fzf/shell/completion.bash ] && source ~/.fzf/shell/completion.bash
 [ -f ~/.fzf/shell/key-bindings.bash ] && source ~/.fzf/shell/key-bindings.bash
 
-export LEDGER_FILE=~/sync/default/ledger/main.ledger
+# direnv
+if type direnv &> /dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+export LEDGER_FILE=~/sync/essential/ledger/main.ledger
 
 # vim ripgrep
 vg() {
