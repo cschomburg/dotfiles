@@ -1,0 +1,13 @@
+diff --git a/src/engines.cpp b/src/engines.cpp
+index 4ed8d42..0a1d254 100644
+--- a/src/engines.cpp
++++ b/src/engines.cpp
+@@ -68,6 +68,8 @@ static QStringList _search_path( const QStringList& m )
+ 			"/opt/local/sbin/",
+ 			"/opt/bin/",
+ 			"/opt/sbin/",
++			"/nix/var/nix/profiles/default/bin/",
++			"/run/current-system/sw/bin/",
+ 			 b.constData(),
+ 			 c.constData() } ;
+ 	}

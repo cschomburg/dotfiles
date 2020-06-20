@@ -34,3 +34,5 @@
 	path = nvim
 [rebase]
 	instructionFormat = (%an <%ae>) %s
+[pull]
+	rebase = true

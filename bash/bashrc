@@ -38,7 +38,6 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
-PROMPT_COMMAND="history -n; history -w; history -c; history -r${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 
 # find dotfiles dir
 BASHRC_PATH=$(readlink -f ${BASH_SOURCE[0]})

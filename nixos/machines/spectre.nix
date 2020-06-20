@@ -20,6 +20,7 @@
     dbeaver
     go-jira
     hledger
+    haskellPackages.hledger-flow
     imx_loader
     isync
     insomnia
@@ -37,10 +38,9 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
+  # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;
-  hardware.u2f.enable = true;
 
   services.keybase.enable = true;
   services.kbfs.enable = true;

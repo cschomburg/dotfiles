@@ -153,6 +153,7 @@ Plug 'google/vim-jsonnet'
 Plug 'jpalardy/vim-slime'
 Plug 'neovim/nvim-lsp'
 Plug 'rhysd/git-messenger.vim'
+Plug 'lervag/wiki.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete-lsp'
@@ -196,6 +197,10 @@ let g:nv_search_paths = ['~/sync/essential/default/notes', '~/sync/essential/dyn
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
+
+" Wiki
+let g:wiki_root = '~/sync/essential/default/notes'
+let g:wiki_filetypes = ['md']
 
 " Go programming language
 if !empty($GOPATH)
