@@ -12,8 +12,9 @@ in {
     k9s
     kube3d
     kubectl
-    kubectx
+    kubie
     #rancher-cli
+    sops
     terraform
   ];
 }

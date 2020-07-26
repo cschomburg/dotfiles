@@ -104,6 +104,7 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 nnoremap <leader>j :%!python -m json.tool<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <leader>H :%!xxd -r<CR>
+nnoremap <leader>n :NV<CR>
 
 function! PrettySql()
 	execute 's/\v<(FROM|WHERE|LEFT|INNER|GROUP|ORDER|LIMIT)>/MEOWTWO\1'

@@ -51,7 +51,6 @@ in
   };
 
   services.sslh.enable = true;
-  services.sslh.listenAddress = "0.0.0.0";
   services.sslh.appendConfig = ''
     protocols:
     (

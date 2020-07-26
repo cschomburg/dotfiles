@@ -20,14 +20,15 @@ with lib;
   environment.systemPackages = mkMerge [
     (with pkgs; [
       alacritty
-      calibre
+      # calibre
       google-chrome-beta
-      deluge-1_x
+      deluge-2_x
       firefox-wayland
       gimp
       insomnia
       keepassxc
       libreoffice-fresh
+      noisetorch
       (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
       spotify

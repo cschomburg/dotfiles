@@ -9,3 +9,6 @@ disabled = true
 
 [nix_shell]
 use_name = true
+
+[kubernetes]
+disabled = false

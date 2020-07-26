@@ -8,6 +8,7 @@
     gitAndTools.git-crypt
     gitAndTools.gitAnnex
     gitAndTools.gitRemoteGcrypt
+    gocryptfs
     rclone
     unionfs-fuse
   ];

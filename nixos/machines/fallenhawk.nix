@@ -27,7 +27,6 @@
   services.plex.user = "seed";
   networking.firewall.allowedTCPPorts = [ 32400 ];
 
-  services.delugeMulti.instances = ["1" "2"];
   networking.firewall.allowedTCPPortRanges = [ { from = 58846; to = 58866; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 58846; to = 58866; } ];
 

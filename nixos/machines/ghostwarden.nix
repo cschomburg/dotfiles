@@ -53,7 +53,13 @@ in {
     enable = true;
     configItems = {
       "listeners.tcp.1" = "${privateIp}:5672";
+      "mqtt.exchange" = "sarif";
     };
+    plugins = [
+      "rabbitmq_management"
+      "rabbitmq_web_stomp"
+      "rabbitmq_web_mqtt"
+    ];
   };
 
   users.extraGroups = { files.gid = 1001; };
