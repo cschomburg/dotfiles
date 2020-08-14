@@ -20,7 +20,7 @@ with lib;
   environment.systemPackages = mkMerge [
     (with pkgs; [
       alacritty
-      # calibre
+      calibre
       google-chrome-beta
       deluge-2_x
       firefox-wayland

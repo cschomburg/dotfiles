@@ -5,7 +5,8 @@ let
   helm2 = pkgs.callPackage ../packages/helm2.nix {};
 in {
   environment.systemPackages = with pkgs; [
-    ansible
+    ansible-with-plugins
+    kubernetes-helm
     helm2
     jq
     jsonnet
@@ -16,5 +17,6 @@ in {
     #rancher-cli
     sops
     terraform
+    vault
   ];
 }

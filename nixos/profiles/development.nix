@@ -24,7 +24,7 @@
       ps.requests
       ps.pip
       ps.pylint
-      ps.python-language-server
+      # ps.python-language-server
     ]))
 
     # JavaScript
