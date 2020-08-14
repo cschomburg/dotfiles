@@ -25,6 +25,7 @@ files_desktop=(
 	'firejail:.config/firejail'
 	'xresources:.Xresources'
 	'systemd:.config/systemd/user'
+	'alacritty.yml:.config/alacritty/alacritty.yml'
 )
 
 install_filepair () {
