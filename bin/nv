@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-NV_SEARCH_PATHS="$HOME/sync/essential/default/notes $HOME/sync/essential/dynalist"
+NV_SEARCH_PATHS="$HOME/sync/0-essential/notes"
 
 ripgrep () {
     rg \
@@ -34,5 +34,10 @@ open () {
     vim $file +$line
 }
 
-selection=$(ripgrep $1 | fzf_run)
-open $selection
+nv_fuzzy () {
+    selection=$(ripgrep "$*" | fzf_run)
+    open $selection
+}
+
+input="$*"
+vim "${NV_SEARCH_PATHS}/${input}.md"

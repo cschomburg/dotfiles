@@ -193,14 +193,14 @@ nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-let g:nv_search_paths = ['~/sync/essential/default/notes', '~/sync/essential/dynalist', './notes', './doc', './docs']
+let g:nv_search_paths = ['~/sync/0-essential/notes', './notes', './doc', './docs']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
 
 " Wiki
-let g:wiki_root = '~/sync/essential/default/notes'
+let g:wiki_root = '~/sync/0-essential/notes'
 let g:wiki_filetypes = ['md']
 
 " Go programming language
