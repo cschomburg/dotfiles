@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  boot = {
+    kernelModules = [ "acpi_call" ];
+    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+  };
+
   hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.config.General = {
@@ -19,4 +24,6 @@
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   services.tlp.enable = true;
+  services.fwupd.enable = true;
+  powerManagement.cpuFreqGovernor = "powersave";
 }
