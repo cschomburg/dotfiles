@@ -78,8 +78,6 @@ with lib;
     ];
 
     fontconfig = {
-      penultimate.enable = false;
-
       # https://github.com/stove-panini/fontconfig-emoji
       localConf = ''
         <?xml version="1.0"?>

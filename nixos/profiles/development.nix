@@ -14,6 +14,7 @@
     mtr
     neovim
     pandoc
+    perl
     reflex
     shellcheck
     starship
