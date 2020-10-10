@@ -9,7 +9,6 @@
     ];
 
   environment.systemPackages = with pkgs; [
-    irssi
     php
   ];
 
@@ -18,8 +17,6 @@
   services.fail2ban.jails.ssh-iptables = "enabled = true";
 
   services.zerotierone.enable = true;
-  networking.firewall.allowedUDPPorts = [ 9993 ];
-
   networking.enableIPv6 = false;
 
   services.cron.enable = true;

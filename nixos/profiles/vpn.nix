@@ -57,7 +57,7 @@ in
       { name: "ssh"; service: "ssh"; host: "localhost"; port: "22"; probe: "builtin"; },
       { name: "openvpn"; host: "localhost"; port: "636"; probe: "builtin"; },
       { name: "http"; host: "localhost"; port: "80"; probe: "builtin"; },
-      { name: "ssl"; host: "localhost"; port: "444"; probe: "builtin"; },
+      { name: "tls"; host: "localhost"; port: "444"; probe: "builtin"; },
       { name: "anyprot"; host: "localhost"; port: "444"; probe: "builtin"; }
     );
   '';

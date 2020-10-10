@@ -10,14 +10,22 @@ import binascii
 from random import randrange, randint, choice, shuffle, random as rand, uniform
 from datetime import datetime, date, time, timedelta
 
+
 def md5(x):
     return hashlib.md5(x.encode("utf-8")).hexdigest()
+
+
 def sha1(x):
     return hashlib.sha1(x.encode("utf-8")).hexdigest()
+
+
 def sha256(x):
     return hashlib.sha256(x.encode("utf-8")).hexdigest()
+
+
 def sha512(x):
     return hashlib.sha512(x.encode("utf-8")).hexdigest()
+
 
 def hex(x):
     if isinstance(x, bytes):
@@ -27,8 +35,10 @@ def hex(x):
     else:
         return builtins.hex(x)
 
+
 def bin(x):
     return bin(int(hex(x), 16))
+
 
 def unhex(x):
     if isinstance(x, str):
@@ -37,6 +47,7 @@ def unhex(x):
             x = x[2:]
             return binascii.unhexlify(x)
 
+
 # average
 def avg(*args):
     try:
@@ -44,11 +55,15 @@ def avg(*args):
     except TypeError:
         return sum(args) / len(args)
 
+
 # strings
 def wcount(s):
     return len(s.split())
+
+
 def ccount(s):
     return len(s)
+
 
 # date & time
 def epoch(x):
@@ -57,11 +72,37 @@ def epoch(x):
         ts = ts / 1000
     return datetime.utcfromtimestamp(ts)
 
+
+def bytes(size_bytes):
+    size_bytes = int(size_bytes)
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB")
+    i = int(floor(log(size_bytes, 1024)))
+    p = pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
+
+
+def usage():
+    print(
+        """
+Usage:
+    bytes 2048
+    ccount example
+        """.strip()
+    )
+
+
 def main():
+    if len(sys.argv) == 1:
+        return usage()
+
     fn = sys.argv[1]
     args = sys.argv[2:]
     f = globals()[fn]
     print(f(*args))
 
-if __name__== "__main__":
-  main()
+
+if __name__ == "__main__":
+    main()

@@ -22,7 +22,6 @@
     wget
   ];
 
-  system.stateVersion = "19.09";
   nixpkgs.config.allowUnfree = true;
   programs.bash.enableCompletion = true;
 

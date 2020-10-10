@@ -7,6 +7,7 @@
     direnv
     ffmpeg
     fzf
+    gcc
     gdb
     gnumake
     jq
@@ -30,7 +31,7 @@
 
     # JavaScript
     deno
-    nodejs
+    nodejs-14_x
     yarn
 
     # Other programming languages

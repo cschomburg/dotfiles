@@ -113,7 +113,7 @@ if type direnv &> /dev/null; then
     eval "$(direnv hook bash)"
 fi
 
-export LEDGER_FILE=~/sync/essential/0-invaluable/ledger/main.ledger
+export LEDGER_FILE=~/sync/0-essential/ledger/main.ledger
 
 # vim ripgrep
 vg() {

@@ -26,6 +26,7 @@ with lib;
       firefox-wayland
       gimp
       insomnia
+      kdeconnect
       keepassxc
       libreoffice-fresh
       noisetorch
@@ -61,7 +62,7 @@ with lib;
   # boot.supportedFilesystems = [ "ntfs-3g" ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
 
     fonts = with pkgs; [
@@ -156,6 +157,7 @@ with lib;
     };
   };
 
+  services.pipewire.enable = true;
   services.xserver.libinput = {
     enable = true;
   };
