@@ -40,4 +40,7 @@ nv_fuzzy () {
 }
 
 input="$*"
+if [[ -z "$input" ]]; then
+    input="$(date +%F_%H%M)"
+fi
 vim "${NV_SEARCH_PATHS}/${input}.md"

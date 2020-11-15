@@ -33,6 +33,6 @@
 [mergetool "vimdiff"]
 	path = nvim
 [rebase]
-	instructionFormat = (%an <%ae>) %s
+	instructionFormat = (%an <%ae>) %s [%ai]
 [pull]
 	rebase = true

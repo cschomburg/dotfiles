@@ -131,43 +131,47 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 
+" Colorschemes
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/sonokai'
+Plug 'u-ra/vim-two-firewatch'
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
+
+" Syntax
 Plug 'plasticboy/vim-markdown'
 Plug 'sheerun/vim-polyglot'
 Plug 'bling/vim-airline'
+Plug 'jjo/vim-cue'
+Plug 'google/vim-jsonnet'
+Plug 'jpalardy/vim-slime'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'jparise/vim-graphql'
+
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
-Plug 'u-ra/vim-two-firewatch'
-Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'alok/notational-fzf-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'baverman/vial'
-Plug 'baverman/vial-http'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'norcalli/snippets.nvim'
-Plug 'jjo/vim-cue'
-Plug 'google/vim-jsonnet'
-Plug 'jpalardy/vim-slime'
 Plug 'neovim/nvim-lsp'
 Plug 'rhysd/git-messenger.vim'
 Plug 'lervag/wiki.vim'
+Plug 'fiatjaf/neuron.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'romgrk/nvim-treesitter-context'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete-lsp'
-Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
 Plug 'fatih/vim-go',      { 'for': 'go' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'jparise/vim-graphql'
 
 call plug#end()
 
@@ -198,8 +202,8 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:nv_search_paths = ['~/sync/0-essential/notes', './notes', './doc', './docs']
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
 
 " Wiki
 let g:wiki_root = '~/sync/0-essential/notes'
@@ -288,7 +292,6 @@ let g:vim_markdown_conceal=0
 let g:vim_markdown_conceal_code_blocks=0
 
 " Language Server
-let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
 	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
 	\ }

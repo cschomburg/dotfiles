@@ -1,25 +1,34 @@
-require('colorizer').setup()
+local function optrequire(module, callback)
+    local ok, mod = pcall(require, module)
+    if ok and callback then
+        callback(mod)
+    end
 
-do
-    local lsp = require('nvim_lsp')
+    return mod
+end
+
+optrequire('colorizer', function (colorizer)
+    colorizer.setup()
+end)
+
+optrequire('nvim_lsp', function (lsp)
     lsp.tsserver.setup{}
     lsp.intelephense.setup{
         init_options = {}
     }
     lsp.pyls.setup{}
-end
+end)
 
 do
-    -- require'nvim-treesitter.configs'.setup {
-    --     -- ensure_installed = { "php "},
-    --     highlight = {
-    --         enable = true,
-    --     },
-    -- }
+    require'nvim-treesitter.configs'.setup {
+        -- ensure_installed = { "php "},
+        highlight = {
+            enable = true,
+        },
+    }
 end
 
-do
-    local snippets = require'snippets'
+optrequire('snippets', function(snippets)
     snippets.use_suggested_mappings()
 
     snippets.snippets = {
@@ -34,4 +43,4 @@ do
             log = [[\Cake\Log\Log::info($1);]],
         };
     }
-end
+end)
