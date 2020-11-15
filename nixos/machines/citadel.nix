@@ -9,5 +9,7 @@
     cryptsetup
   ];
 
+  services.fail2ban.enable = true;
+
   virtualisation.libvirtd.enable = true;
 }

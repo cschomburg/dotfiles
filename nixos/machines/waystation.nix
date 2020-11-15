@@ -11,14 +11,24 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
+  boot.kernelModules = ["br_netfilter"];
+
+  environment.systemPackages = with pkgs; [
+    k3s
+    kubectl
+  ];
 
   networking.useDHCP = false;
   networking.interfaces.enp1s0.useDHCP = true;
+  networking.enableIPv6 = false;
+  networking.firewall.allowedTCPPorts = [ 443 6443 ];
+
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "20.03"; # Did you read the comment?
   services.zerotierone.enable = true;
   services.openssh.enable = true;
+  services.k3s.enable = true;
 
   nix.maxJobs = lib.mkDefault 4;
 }

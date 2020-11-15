@@ -25,6 +25,13 @@
   nixpkgs.config.allowUnfree = true;
   programs.bash.enableCompletion = true;
 
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    neovim = pkgs.neovim.override {
+      vimAlias = true;
+      viAlias = true;
+    };
+  };
+
   networking.firewall.allowPing = true;
   networking.nameservers = [
     "8.8.4.4"

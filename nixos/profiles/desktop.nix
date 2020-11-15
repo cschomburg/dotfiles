@@ -29,11 +29,13 @@ with lib;
       kdeconnect
       keepassxc
       libreoffice-fresh
+      #neuron-notes
       noisetorch
       (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
       spotify
       veracrypt
+      virt-manager
       vlc
       vscode
 

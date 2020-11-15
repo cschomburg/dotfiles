@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     bind
+    cachix
     cmake
     direnv
     ffmpeg
@@ -41,13 +42,6 @@
   boot.kernel.sysctl = {
     "vm.max_map_count" = 262144;
     "vm.swappiness" = 1;
-  };
-
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    neovim = pkgs.neovim.override {
-      vimAlias = true;
-      viAlias = true;
-    };
   };
 
   services.lorri.enable = true;
