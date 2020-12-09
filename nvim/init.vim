@@ -61,6 +61,7 @@ set showbreak=\ ↪\
 set previewheight=20
 set mouse=
 set splitright
+set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 
 if exists('&inccommand')
 	set inccommand=split
@@ -73,9 +74,6 @@ set pumheight=5
 set completeopt+=longest		" only complete longest match
 set completeopt+=menuone        " show popup menu even for single matches
 set completeopt-=preview        " Disable preview window
-
-" NetRW
-let g:netrw_liststyle=3
 
 " Keep selection after indent
 vmap > >gv
@@ -122,58 +120,8 @@ filetype off
 
 let g:polyglot_disabled = [ 'cue' ]
 
-call plug#begin('~/.config/nvim/bundle')
-
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-abolish'
-
-" Colorschemes
-Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/sonokai'
-Plug 'u-ra/vim-two-firewatch'
-Plug 'morhetz/gruvbox'
-Plug 'lifepillar/vim-solarized8'
-
-" Syntax
-Plug 'plasticboy/vim-markdown'
-Plug 'sheerun/vim-polyglot'
-Plug 'bling/vim-airline'
-Plug 'jjo/vim-cue'
-Plug 'google/vim-jsonnet'
-Plug 'jpalardy/vim-slime'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
-Plug 'jparise/vim-graphql'
-
-Plug 'w0rp/ale'
-Plug 'justinmk/vim-sneak'
-Plug 'junegunn/vim-easy-align'
-Plug 'airblade/vim-gitgutter'
-Plug 'kshenoy/vim-signature'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-Plug 'junegunn/fzf.vim'
-Plug 'alok/notational-fzf-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'norcalli/snippets.nvim'
-Plug 'neovim/nvim-lsp'
-Plug 'rhysd/git-messenger.vim'
-Plug 'lervag/wiki.vim'
-Plug 'fiatjaf/neuron.vim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'romgrk/nvim-treesitter-context'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete-lsp'
-
-Plug 'vim-vdebug/vdebug',     { 'for': 'php', 'branch': 'master' }
-Plug 'fatih/vim-go',      { 'for': 'go' }
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-
-call plug#end()
+" Lua init
+lua require('init')
 
 " Custom filetype settings
 let g:vue_disable_pre_processors=1
@@ -187,37 +135,17 @@ autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
-let g:gitgutter_terminal_reports_focus = 0
-let g:gitgutter_grep=''
-
-"IndentLine
-let g:indentLine_color_term = 235
-let g:indentLine_color_gui = '#393f47'
-
 " FZF
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-let g:nv_search_paths = ['~/sync/0-essential/notes', './notes', './doc', './docs']
 
 " Deoplete
 " let g:deoplete#enable_at_startup = 1
 " call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
 
-" Wiki
-let g:wiki_root = '~/sync/0-essential/notes'
-let g:wiki_filetypes = ['md']
-
 " Go programming language
 if !empty($GOPATH)
-	let g:go_fmt_command = "goimports"
-	let g:go_highlight_functions = 1
-	let g:go_highlight_methods = 1
-	let g:go_highlight_structs = 1
-
-	let g:syntastic_go_checkers = ['go', 'govet', 'errcheck']
-
 	au FileType go nmap <Leader>i <Plug>(go-info)
 	au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
 	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
@@ -232,50 +160,11 @@ let g:vdebug_options = {
 autocmd FileType php let b:surround_45 = "__('\r')"
 nmap <leader>g cs'-
 
-" Airline
-let g:airline_theme='twofirewatch'
-let g:airline_mode_map = {
-			\ '__' : '-',
-			\ 'n'  : 'N',
-			\ 'i'  : 'I',
-			\ 'R'  : 'R',
-			\ 'c'  : 'C',
-			\ 'v'  : 'V',
-			\ 'V'  : 'V',
-			\ '' : 'V',
-			\ 's'  : 'S',
-			\ 'S'  : 'S',
-			\ '' : 'S',
-			\ }
-
-" ALE
-let g:ale_open_list = 'on_save'
-let g:ale_linters = {
-            \ 'elixir': ['mix'],
-            \ 'go': ['gofmt', 'go vet', 'go build'],
-            \ 'php': ['php', 'phpstan'] }
-let ale_python_pylint_options = '--errors only'
-let g:ale_sign_column_always = 1
-let g:ale_fixers = {
-    \ 'elixir': ['mix_format'],
-    \ 'json': ['fixjson', 'jq'],
-    \ 'javascript': ['eslint'],
-    \ 'vue': ['eslint'],
-    \ 'php': ['php_cs_fixer'],
-    \ 'python': ['black'] }
-let g:ale_fix_on_save = 1
-let g:ale_pattern_options = {
-    \ '.*\.ctp': {'ale_fixers': []} }
-
 " Easy Align
 vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 let g:easy_align_delimiters = {
   \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
-
-" slime
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 
 " Syntax
 let php_sql_query = 0
@@ -290,11 +179,6 @@ let g:PHP_noArrowMatching = 1
 " Markdown
 let g:vim_markdown_conceal=0
 let g:vim_markdown_conceal_code_blocks=0
-
-" Language Server
-let g:LanguageClient_serverCommands = {
-	\ 'php': ['php', '/home/xconstruct/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
-	\ }
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K  <cmd>lua vim.lsp.buf.hover()<CR>
@@ -323,11 +207,6 @@ filetype indent on
 " turn on syntax highlighting
 syntax on
 
-" Lua init
-lua << EOF
-    require('init')
-EOF
-
 " Colorscheme
 set background=dark
-colorscheme two-firewatch
+colorscheme nord
