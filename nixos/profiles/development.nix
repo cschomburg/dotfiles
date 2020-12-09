@@ -12,7 +12,6 @@
     gdb
     gnumake
     jq
-    mercurial
     mtr
     neovim
     pandoc

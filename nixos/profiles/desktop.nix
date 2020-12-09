@@ -25,12 +25,14 @@ with lib;
       deluge-2_x
       firefox-wayland
       gimp
+      gthumb
       insomnia
       kdeconnect
       keepassxc
       libreoffice-fresh
-      #neuron-notes
+      neuron-notes
       noisetorch
+      obsidian
       (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
       spotify
@@ -170,7 +172,7 @@ with lib;
   };
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
-  environment.sessionVariables."QT_QPA_PLATFORM" = "wayland";
+  #environment.sessionVariables."QT_QPA_PLATFORM" = "wayland";
   environment.gnome3.excludePackages = with pkgs.gnome3; [
     geary
     gnome-calendar

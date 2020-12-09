@@ -1,6 +1,8 @@
 self: super:
 
-{
+let
+  fixedurl = builtins.fetchurl https://raw.githubusercontent.com/NixOS/nixpkgs/f0250226b279983c07cc33c06d0309903dfc1df9/pkgs/applications/terminal-emulators/alacritty/default.nix;
+in {
   # dbeaver = super.dbeaver.overrideAttrs (old: rec {
   #   src = super.fetchurl {
   #     url = "https://dbeaver.io/files/${old.version}/dbeaver-ce-${old.version}-linux.gtk.x86_64.tar.gz";
@@ -19,4 +21,10 @@ self: super:
         };
       });
   });
+
+  # https://github.com/NixOS/nixpkgs/pull/103817
+  # alacritty = self.callPackage (import fixedurl) {
+  #   inherit (self.xorg) libXcursor libXxf86vm libXi;
+  #   inherit (self.darwin.apple_sdk.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
+  # };
 }

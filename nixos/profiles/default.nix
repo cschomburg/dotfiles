@@ -20,6 +20,7 @@
     rsync
     tmux
     wget
+    zip
   ];
 
   nixpkgs.config.allowUnfree = true;
