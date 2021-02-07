@@ -182,7 +182,7 @@ command! -nargs=* -range -bang -complete=file Goyo call s:load(['goyo.vim'], { "
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType go ++once call s:load(['vim-go'], { "ft": "go" })
   au FileType php ++once call s:load(['vdebug'], { "ft": "php" })
+  au FileType go ++once call s:load(['vim-go'], { "ft": "go" })
   " Event lazy-loads
 augroup END

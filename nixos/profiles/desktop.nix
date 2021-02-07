@@ -47,23 +47,15 @@ with lib;
       usbutils
       lm_sensors
       xclip
+
+      (callPackage ../packages/pop-os-shell {})
+      (callPackage ../packages/timeular {})
     ])
 
     (mkIf config.services.xserver.desktopManager.gnome3.enable (with pkgs.gnome3; [
-      evolution
       gnome-tweaks
     ]))
   ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      keepass = super.keepass.override {
-        plugins = [ self.keepass-keepassrpc ];
-      };
-    })
-  ];
-
-  # boot.supportedFilesystems = [ "ntfs-3g" ];
 
   fonts = {
     fontDir.enable = true;
@@ -83,7 +75,7 @@ with lib;
     ];
 
     fontconfig = {
-      # https://github.com/stove-panini/fontconfig-emoji
+      # https://github.com/NixOS/nixpkgs/issues/86601
       localConf = ''
         <?xml version="1.0"?>
         <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -189,6 +181,7 @@ with lib;
     yelp
   ];
 
+  programs.evolution.enable = true;
   programs.geary.enable = false;
 
   services.dleyna-renderer.enable = false;

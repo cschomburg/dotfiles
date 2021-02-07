@@ -85,6 +85,10 @@ if type htop &> /dev/null; then
     alias top="htop"
 fi
 
+if type curlie &> /dev/null; then
+    alias curl="curlie"
+fi
+
 export EDITOR=vim
 export VISUAL=vim
 if type nvim &> /dev/null; then

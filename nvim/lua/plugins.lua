@@ -97,7 +97,7 @@ do
 
     vim.g.ale_linters = {
         elixir = { 'mix' },
-        go = { 'gofmt', 'go vet', 'go build' },
+        go = { 'go build' },
         php = { 'php', 'phpstan' },
     }
     vim.g.ale_fixers = {
@@ -108,6 +108,9 @@ do
         php = {'php_cs_fixer'},
         python = {'black'}
     }
+
+    vim.g.go_fmt_autosave = 1
+    vim.g.go_imports_autosave = 1
 
     vim.g.gitgutter_terminal_reports_focus = 0
     vim.g.gitgutter_grep = ''

@@ -5,6 +5,7 @@
     bind
     cachix
     cmake
+    curlie
     direnv
     ffmpeg
     fzf

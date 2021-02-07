@@ -13,12 +13,13 @@
   nixpkgs.overlays = [
     (import ../overlays/ansible-plugins.nix)
     (import ../overlays/fixes.nix)
-    (import ../overlays/neovim-nightly.nix)
     (import ../overlays/usbarmory.nix)
+    (import ../overlays/neovim-nightly.nix)
   ];
 
   environment.systemPackages = with pkgs; [
     age
+    appimage-run
     dbeaver
     go-jira
     hledger
@@ -44,6 +45,7 @@
   # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   services.fprintd.enable = true;
   services.keybase.enable = true;
@@ -57,6 +59,9 @@
   networking.firewall.allowedTCPPorts = [ 9000 ];
 
   nix.maxJobs = lib.mkDefault 8;
+
+  # https://github.com/k3s-io/k3s/pull/2844
+  systemd.enableUnifiedCgroupHierarchy = false;
 
   systemd.user = {
     timers.cleanup-downloads = {
