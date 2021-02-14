@@ -5,16 +5,12 @@ with lib;
 {
   imports = [ ../modules/deluge.nix ];
 
-  environment.systemPackages = with pkgs; [
-    irssi
-    perlPackages.ArchiveZip
-    perlPackages.NetSSLeay
-    perlPackages.XMLLibXML
-    perlPackages.HTMLParser
-    perlPackages.JSON
-    perlPackages.JSONXS
-    perlPackages.DigestSHA1
+  nixpkgs.overlays = [
+    (import ../overlays/irssi-autodl.nix)
+  ];
 
+  environment.systemPackages = with pkgs; [
+    irssi-autodl
     mktorrent
   ];
 
