@@ -57,6 +57,7 @@ require('packer').startup(function ()
     use { 'norcalli/snippets.nvim', config = plugin_config('snippets') }
     use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
     use 'rhysd/git-messenger.vim'
+    use 'simnalamburt/vim-mundo'
 
     use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
     use 'Shougo/deoplete-lsp'
@@ -129,4 +130,7 @@ do
 
     vim.g.wiki_root = '~/sync/0-essential/notes'
     vim.g.wiki_filetypes = { 'md' }
+
+    vim.g.mundo_width = 100
+    vim.g.mundo_right = 1
 end

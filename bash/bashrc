@@ -49,9 +49,6 @@ test -d "$HOME/code/go" &&
     export GOPATH="$HOME/code/go" &&
     PATH="$HOME/code/go/bin:$PATH"
 
-test -d "$HOME/.npm-packages/bin" &&
-    PATH="$HOME/.npm-packages/bin:$PATH"
-
 PATH="$DOTFILES/bin:$PATH"
 test -d "$DOTFILES/private/bin" &&
     PATH="$DOTFILES/private/bin:$PATH"
@@ -61,6 +58,9 @@ test -d "$HOME/bin" &&
 test -d "$HOME/.npm-packages" &&
     NPM_PACKAGES="${HOME}/.npm-packages" &&
     PATH="$NPM_PACKAGES/bin:$PATH"
+
+test -d "$HOME/.cargo/bin" &&
+    PATH="$HOME/.cargo/bin:$PATH"
 
 
 bind "set show-all-if-ambiguous on"

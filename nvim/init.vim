@@ -187,6 +187,8 @@ nnoremap <silent> <c-k>  <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 
+nnoremap <leader>u :MundoToggle<CR>
+
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"
 let &t_te = "\e[?2004l" . &t_te

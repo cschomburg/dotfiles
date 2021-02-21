@@ -21,7 +21,7 @@
     libvdpau-va-gl
     intel-media-driver
   ];
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
   environment.sessionVariables.VDPAU_DRIVER = "va_gl";
 
   services.tlp.enable = true;

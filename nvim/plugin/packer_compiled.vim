@@ -157,12 +157,12 @@ end
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: nvim-lspconfig
-        local fn = require("plugins.lsp")
-        if fn then fn() end
-    
 -- Config for: snippets.nvim
         local fn = require("plugins.snippets")
+        if fn then fn() end
+    
+-- Config for: nvim-lspconfig
+        local fn = require("plugins.lsp")
         if fn then fn() end
     
 -- Conditional loads
@@ -182,7 +182,7 @@ command! -nargs=* -range -bang -complete=file Goyo call s:load(['goyo.vim'], { "
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType php ++once call s:load(['vdebug'], { "ft": "php" })
   au FileType go ++once call s:load(['vim-go'], { "ft": "go" })
+  au FileType php ++once call s:load(['vdebug'], { "ft": "php" })
   " Event lazy-loads
 augroup END
