@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
-PROFILE=${1:-default}
+PROFILE=${1:-help}
 LENGTH=${2:-24}
+
+usage () {
+cat <<EOF
+Usage: pwgen [profile [length:24]
+
+Examples:
+    pwgen default
+    pwgen secure
+    pwgen alphanumeric 10
+    pwgen hex 48
+EOF
+}
 
 default () {
     < /dev/urandom tr -dc '_A-Z-a-z-0-9' | head -c$LENGTH
@@ -29,5 +41,5 @@ case $PROFILE in
     s|secure) secure ;;
     hex) hex ;;
     numeric|n) numeric ;;
-    *) echo "unknown profile";
+    *) usage ;;
 esac

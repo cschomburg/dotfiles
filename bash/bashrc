@@ -62,6 +62,9 @@ test -d "$HOME/.npm-packages" &&
 test -d "$HOME/.cargo/bin" &&
     PATH="$HOME/.cargo/bin:$PATH"
 
+test -d "$HOME/.deno/bin" &&
+    PATH="$HOME/.deno/bin:$PATH"
+
 
 bind "set show-all-if-ambiguous on"
 
