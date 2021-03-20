@@ -1,6 +1,19 @@
-vim.cmd [[packadd packer.nvim]]
-
 local lsp = require('plugins.lsp')
+
+-- Bootstrap nvim-packer
+do
+    local execute = vim.api.nvim_command
+    local fn = vim.fn
+
+    local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+
+    if fn.empty(fn.glob(install_path)) > 0 then
+      execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+      execute 'packadd packer.nvim'
+    end
+end
+
+vim.cmd [[packadd packer.nvim]]
 
 local function plugin_config(plugin)
     return string.format([[
@@ -37,7 +50,11 @@ require('packer').startup(function ()
     use 'jparise/vim-graphql'
 
     -- treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = plugin_config('treesitter'),
+    }
     use {
         'romgrk/nvim-treesitter-context',
         requires = 'nvim-treesitter/nvim-treesitter'

@@ -6,5 +6,8 @@ return function()
         highlight = {
             enable = true,
         },
+        indent = {
+            enable = true,
+        },
     }
 end
