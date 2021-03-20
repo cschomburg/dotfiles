@@ -13,7 +13,6 @@
   nixpkgs.overlays = [
     (import ../overlays/ansible-plugins.nix)
     (import ../overlays/fixes.nix)
-    (import ../overlays/neovim-nightly.nix)
     (import ../overlays/usbarmory.nix)
   ];
 

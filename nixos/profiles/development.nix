@@ -14,7 +14,6 @@
     gnumake
     jq
     mtr
-    neovim
     pandoc
     perl
     reflex

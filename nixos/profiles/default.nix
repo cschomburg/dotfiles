@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # List packages installed in system profile. To search by name, run:
-  # nix-env -qaP | grep wget
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   environment.systemPackages = with pkgs; [
     archiver
     binutils
@@ -13,7 +17,6 @@
     htop
     libarchive
     lsof
-    neovim
     nixUnstable
     patchelf
     ripgrep
@@ -21,17 +24,15 @@
     tmux
     wget
     zip
+
+    (wrapNeovim neovim-nightly {
+      vimAlias = true;
+      viAlias = true;
+    })
   ];
 
   nixpkgs.config.allowUnfree = true;
   programs.bash.enableCompletion = true;
-
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    neovim = pkgs.neovim.override {
-      vimAlias = true;
-      viAlias = true;
-    };
-  };
 
   networking.firewall.allowPing = true;
   networking.nameservers = [

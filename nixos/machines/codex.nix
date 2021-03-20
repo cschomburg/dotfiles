@@ -14,7 +14,6 @@
     (import ../overlays/ansible-plugins.nix)
     (import ../overlays/fixes.nix)
     (import ../overlays/usbarmory.nix)
-    (import ../overlays/neovim-nightly.nix)
   ];
 
   environment.systemPackages = with pkgs; [
