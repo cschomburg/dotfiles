@@ -17,6 +17,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    ansible-with-plugins
     age
     appimage-run
     dbeaver

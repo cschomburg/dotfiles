@@ -98,11 +98,6 @@ if type nvim &> /dev/null; then
     export MANPAGER="nvim -c 'set ft=man' -"
 fi
 
-# other extensions
-
-[ -f ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh ] &&
-    . ~/.nvim/bundle/gruvbox/gruvbox_256palette.sh
-
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # starship prompt
