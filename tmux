@@ -1,10 +1,12 @@
 set -g default-terminal "screen-256color"
+set -ga terminal-overrides "xterm*:XT:smcup@:rmcup@"
 set -ga terminal-overrides ",*256col*:Tc"
 
 set -g status-style bg=default
 set -g status-style fg=white
 set -g status-left '#[fg=green]#H '
-set -g status-right "#(/home/xconstruct/code/go/bin/soji -tmux activity location_fence location_address)"
+set -g status-right ''
+set -g status-left-length 12
 set -g status-right-length 70
 set -g status-interval 30
 set-window-option -g window-status-current-style fg=red
@@ -33,8 +35,6 @@ bind -r Up resize-pane -U 5
 # titles
 set -g set-titles on
 set -g set-titles-string "#W.#T"
-set -g terminal-overrides "xterm*:XT:smcup@:rmcup@"
-set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 #set-option -g pane-border-style fg=colour8
 unbind C-b
