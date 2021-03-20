@@ -32,7 +32,6 @@ with lib;
       libreoffice-fresh
       neuron-notes
       noisetorch
-      obsidian
       (pass.withExtensions (exts: [exts.pass-otp]))
       rambox
       spotify

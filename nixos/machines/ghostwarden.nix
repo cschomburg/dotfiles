@@ -12,11 +12,9 @@ in {
   system.autoUpgrade.enable = true;
 
   environment.systemPackages = with pkgs; [
-    beets
     ffmpeg
     isync
     python
-    snapper
   ];
 
   networking.firewall.enable = false;

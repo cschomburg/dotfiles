@@ -5,7 +5,6 @@ let
   helm2 = pkgs.callPackage ../packages/helm2.nix {};
 in {
   environment.systemPackages = with pkgs; [
-    ansible-with-plugins
     kubernetes-helm
     helm2
     jq

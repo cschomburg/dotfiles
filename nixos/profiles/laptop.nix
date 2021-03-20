@@ -8,7 +8,7 @@
 
   hardware.firmware = [ pkgs.firmwareLinuxNonfree ];
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.config.General = {
+  hardware.bluetooth.settings.General = {
     FastConnectable = true;
   };
   hardware.cpu.intel.updateMicrocode = true;

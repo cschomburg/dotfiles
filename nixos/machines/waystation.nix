@@ -5,7 +5,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ];
+  imports = [
+      ../profiles/development.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

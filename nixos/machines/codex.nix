@@ -27,7 +27,7 @@
     isync
     insomnia
     ledger
-    mysql-client
+    mysql57.client
     python3Packages.solo-python
 
     (php74.withExtensions ({ enabled, all }:
