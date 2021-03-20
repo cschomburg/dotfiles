@@ -8,8 +8,6 @@ dstdir=$HOME
 files_default=(
 	'.:.dotfiles'
 	'profile:.profile'
-	'vim:.vim'
-	'vim/vimrc:.vimrc'
     'nixpkgs-config.nix:.config/nixpkgs/config.nix'
 	'nvim:.config/nvim'
 	'git/gitconfig:.gitconfig'
@@ -22,7 +20,6 @@ files_default=(
 
 files_desktop=(
 	'latexmkrc:.latexmkrc'
-	'firejail:.config/firejail'
 	'xresources:.Xresources'
 	'systemd:.config/systemd/user'
 	'alacritty.yml:.config/alacritty/alacritty.yml'
@@ -61,22 +58,15 @@ for opt in "$@"; do
 			rm -f $srcdir/z.sh &> /dev/null
 			curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
 			;;
-		vimbundle)
-			curl -fLo $srcdir/nvim/autoload/plug.vim --create-dirs \
-				https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-			;;
 		private)
 			. $srcdir/private/deploy
-			;;
-		ansible)
-			cd $srcdir/ansible && ./run && cd $srcdir
 			;;
 		fzf)
 			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 			~/.fzf/install
 			;;
 		nixos)
-			cd $srcdir/nixos && ./rebuild.sh && cd $srcdir
+			(cd $srcdir/nixos && ./rebuild.sh)
 			;;
 	esac
 done

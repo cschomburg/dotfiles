@@ -48,7 +48,6 @@ with lib;
       xclip
 
       (callPackage ../packages/pop-os-shell {})
-      (callPackage ../packages/timeular {})
     ])
 
     (mkIf config.services.xserver.desktopManager.gnome3.enable (with pkgs.gnome3; [

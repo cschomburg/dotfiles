@@ -1,10 +1,11 @@
 # dotfiles
+
 My user & system configuration.
 
 Quickstart:
 ```bash
 git clone https://github.com/xconstruct/dotfiles && cd dotfiles
-./deploy desktop fzf vimbundle
+./deploy desktop z fzf
 ```
 
 Or without Git:
@@ -13,10 +14,8 @@ mkdir dotfiles && curl -L https://github.com/xconstruct/dotfiles/tarball/master 
 ./deploy
 ```
 
-### Wow, shiny!
-
-The complete configuration of all my servers is also included here, thanks to [NixOS](http://nixos.org).
-To get started, create a machine profile with your hostname similar to [nixos/machines/razorcoil.nix](nixos/machines/razorcoil.nix).
+The complete configuration of all my devices and servers is also included here, thanks to [NixOS](https://nixos.org).
+To get started, create a machine profile with your hostname similar to [nixos/machines/codex.nix](nixos/machines/codex.nix).
 
 ```bash
 echo -n $(hostname) > /etc/nixos/hostname
