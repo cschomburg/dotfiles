@@ -1,14 +1,11 @@
-vim/.netrwhist
-vim/tmp/*
-vim/bundle/*
-nvim/.netrwhist
-nvim/tmp/*
-nvim/bundle/*
-nvim/autoload/plug.vim
-ranger/__pycache__
-ranger/bookmarks
-ranger/history
-ranger/tagged
+/vim/.netrwhist
+/vim/tmp/*
+/vim/bundle/*
+/nvim/.netrwhist
+/nvim/tmp/*
+/nvim/bundle/*
+/nvim/autoload/plug.vim
+/nvim/plugin/packer_compiled.vim
 
 bin/hub
 z.sh
