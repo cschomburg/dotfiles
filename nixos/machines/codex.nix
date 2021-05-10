@@ -29,7 +29,7 @@
     insomnia
     ledger
     mysql57.client
-    python3Packages.solo-python
+    # python3Packages.solo-python
 
     (php74.withExtensions ({ enabled, all }:
       enabled ++ [ all.imagick all.redis all.xsl ])
@@ -72,7 +72,7 @@
       serviceConfig.Type = "oneshot";
       script = ''
         find /home/xconstruct/Downloads -mtime +3 -type f -delete
-        find /home/xconstruct/Downloads -type d -empty -delete
+        find /home/xconstruct/Downloads -type d -mindepth 1 -empty -delete
       '';
     };
   };

@@ -19,6 +19,7 @@
     reflex
     shellcheck
     starship
+    tealdeer
 
     # Python
     (python3.withPackages (ps: with ps; [
