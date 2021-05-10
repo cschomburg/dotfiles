@@ -43,7 +43,7 @@ require('packer').startup(function ()
 
     -- syntax
     use 'plasticboy/vim-markdown'
-    use 'sheerun/vim-polyglot'
+    -- use 'sheerun/vim-polyglot'
     use 'jjo/vim-cue'
     use 'google/vim-jsonnet'
     use 'captbaritone/better-indent-support-for-php-with-html'
@@ -61,9 +61,9 @@ require('packer').startup(function ()
     }
 
     -- misc
-    use 'bling/vim-airline'
+    use { 'hoob3rt/lualine.nvim', config = plugin_config('lualine') }
     use 'jpalardy/vim-slime' -- REPL
-    use 'w0rp/ale'
+    use { 'dense-analysis/ale', config = plugin_config('ale') }
     use 'justinmk/vim-sneak'
     use 'junegunn/vim-easy-align'
     use 'airblade/vim-gitgutter'
@@ -92,41 +92,6 @@ end)
 
 -- general plugin configuration
 do
-    vim.g.airline_theme = 'nord'
-    vim.g.airline_powerline_fonts = true
-    vim.g.airline_mode_map = {
-        ['__'] = '',
-        ['n'] = 'N',
-        ['i'] = 'I',
-        ['R'] = 'R',
-        ['c'] = 'C',
-        ['v'] = 'V',
-        ['V'] = 'V',
-        [''] = 'V',
-        ['s'] = 's',
-        ['S'] = 's',
-        [''] = 'V',
-    }
-
-    vim.g.ale_fix_on_save = 1
-    vim.g.ale_open_list = 'on_save'
-    vim.g.ale_python_pylint_options = '--errors only'
-    vim.g.ale_sign_column_always = 1
-
-    vim.g.ale_linters = {
-        elixir = { 'mix' },
-        go = { 'go build' },
-        php = { 'php', 'phpstan' },
-    }
-    vim.g.ale_fixers = {
-        elixir = {'mix_format'},
-        json =  {'fixjson', 'jq'},
-        javascript = {'eslint'},
-        vue = {'eslint'},
-        php = {'php_cs_fixer'},
-        python = {'black'}
-    }
-
     vim.g.go_fmt_autosave = 1
     vim.g.go_imports_autosave = 1
 

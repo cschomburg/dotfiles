@@ -110,7 +110,6 @@ function! PrettySql()
 	execute 's/\v<(AND|OR|ON)>/MEOWTWO    \1'
 	execute 's/MEOWTWO/\r'
 endfunction
-nnoremap <leader>s :call PrettySql()<cr>
 
 " allow using repeat operator with a visual selection
 vnoremap . :normal .<CR>
@@ -180,14 +179,8 @@ let g:PHP_noArrowMatching = 1
 let g:vim_markdown_conceal=0
 let g:vim_markdown_conceal_code_blocks=0
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K  <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k>  <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-
 nnoremap <leader>u :MundoToggle<CR>
+nnoremap <leader>s :e ~/.scratchpad.md<CR>
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"
