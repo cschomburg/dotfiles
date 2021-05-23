@@ -50,7 +50,7 @@ with lib;
       (callPackage ../packages/pop-os-shell {})
     ])
 
-    (mkIf config.services.xserver.desktopManager.gnome3.enable (with pkgs.gnome3; [
+    (mkIf config.services.xserver.desktopManager.gnome.enable (with pkgs.gnome3; [
       gnome-tweaks
     ]))
   ];
@@ -146,7 +146,7 @@ with lib;
     };
 
     desktopManager = {
-      gnome3.enable = true;
+      gnome.enable = true;
       #plasma5.enable = true;
     };
   };
@@ -163,7 +163,7 @@ with lib;
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
   #environment.sessionVariables."QT_QPA_PLATFORM" = "wayland";
-  environment.gnome3.excludePackages = with pkgs.gnome3; [
+  environment.gnome.excludePackages = with pkgs.gnome3; [
     geary
     gnome-calendar
     gnome-clocks
@@ -184,7 +184,7 @@ with lib;
 
   services.dleyna-renderer.enable = false;
   services.dleyna-server.enable = false;
-  services.gnome3.gnome-online-accounts.enable = false;
-  services.gnome3.tracker-miners.enable = false;
-  services.gnome3.tracker.enable = false;
+  services.gnome.gnome-online-accounts.enable = false;
+  services.gnome.tracker-miners.enable = false;
+  services.gnome.tracker.enable = false;
 }

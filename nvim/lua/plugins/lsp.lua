@@ -13,6 +13,7 @@ return function()
     }
 
     lsp.pyls.setup {}
+    lsp.rust_analyzer.setup {}
     -- lsp.tsserver.setup {}
 
     -- Mappings

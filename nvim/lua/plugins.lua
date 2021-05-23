@@ -34,12 +34,13 @@ require('packer').startup(function ()
     use { 'tpope/vim-abolish' }
 
     -- colorschemes
+    use 'rktjmp/lush.nvim'
     use 'sainnhe/gruvbox-material'
     use 'sainnhe/sonokai'
     use 'u-ra/vim-two-firewatch'
     use 'morhetz/gruvbox'
     use 'lifepillar/vim-solarized8'
-    use 'arcticicestudio/nord-vim'
+    use 'kunzaatko/nord.nvim'
 
     -- syntax
     use 'plasticboy/vim-markdown'

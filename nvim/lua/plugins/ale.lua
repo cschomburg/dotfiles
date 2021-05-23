@@ -16,7 +16,8 @@ return function()
         javascript = {'eslint'},
         vue = {'eslint'},
         php = {'php_cs_fixer'},
-        python = {'black'}
+        python = {'black'},
+        rust = {'rustfmt'},
     }
 end
 
