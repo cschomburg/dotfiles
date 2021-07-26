@@ -2,11 +2,15 @@ return function()
     local lsp = require('lspconfig')
 
     -- Language servers
-    lsp.denols.setup {
-        init_options = {
-            unstable = true;
+    if vim.env.NVIM_IS_DENO then
+        lsp.denols.setup {
+            init_options = {
+                unstable = true;
+            }
         }
-    }
+    else
+        lsp.tsserver.setup {}
+    end
 
     lsp.intelephense.setup {
         init_options = {}
@@ -14,7 +18,6 @@ return function()
 
     lsp.pyls.setup {}
     lsp.rust_analyzer.setup {}
-    -- lsp.tsserver.setup {}
 
     -- Mappings
     local opts = { noremap=true, silent=true }

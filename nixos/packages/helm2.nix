@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
 with pkgs;
-with pkgs.stdenv.lib;
+with pkgs.lib;
 
 stdenv.mkDerivation rec {
   owner = "helm";

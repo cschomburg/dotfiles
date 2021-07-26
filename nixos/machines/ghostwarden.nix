@@ -25,11 +25,8 @@ in {
   services.fail2ban.jails.ssh-iptables = "enabled = true";
 
   services.syncthing = {
-    enable = true;
-    user = "xconstruct";
     guiAddress = "0.0.0.0:8384";
     configDir = "/var/lib/syncthing";
-    openDefaultPorts = true;
   };
 
   services.plex.enable = true;

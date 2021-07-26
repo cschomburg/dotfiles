@@ -30,8 +30,8 @@
     mysql-client
     python3Packages.solo-python
 
-    (php74.withExtensions ({ enabled, all }:
-      enabled ++ [ all.imagick all.redis all.xsl ])
+    (php80.withExtensions ({ enabled, all }:
+      enabled ++ [ all.redis all.xsl ])
     )
   ];
 

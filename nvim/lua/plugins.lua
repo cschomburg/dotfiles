@@ -76,9 +76,16 @@ require('packer').startup(function ()
     use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
     use 'rhysd/git-messenger.vim'
     use 'simnalamburt/vim-mundo'
-
-    use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
-    use 'Shougo/deoplete-lsp'
+    use {
+        'TimUntersberger/neogit',
+        requires = 'nvim-lua/plenary.nvim',
+        config = plugin_config('neogit')
+    }
+    use { 'hrsh7th/nvim-compe', config = plugin_config('compe') }
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
 
     -- notes and text editing
     use 'lervag/wiki.vim'

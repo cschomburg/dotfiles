@@ -21,7 +21,6 @@
     age
     appimage-run
     dbeaver
-    go-jira
     hledger
     haskellPackages.hledger-flow
     imx_loader
@@ -31,9 +30,13 @@
     mysql57.client
     # python3Packages.solo-python
 
-    (php74.withExtensions ({ enabled, all }:
-      enabled ++ [ all.imagick all.redis all.xsl ])
+    (php80.withExtensions ({ enabled, all }:
+      enabled ++ [ all.ffi all.redis all.xsl ])
     )
+  ];
+
+  environment.sessionVariables.LD_LIBRARY_PATH = [
+    "${pkgs.libsecret}/lib"
   ];
 
   boot.loader.systemd-boot.enable = true;

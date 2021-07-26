@@ -71,9 +71,10 @@ let mapleader = " "
 
 " Completion
 set pumheight=5
-set completeopt+=longest		" only complete longest match
-set completeopt+=menuone        " show popup menu even for single matches
-set completeopt-=preview        " Disable preview window
+" set completeopt+=longest		" only complete longest match
+" set completeopt+=menuone        " show popup menu even for single matches
+" set completeopt-=preview        " Disable preview window
+set completeopt=menuone,noselect
 
 " Keep selection after indent
 vmap > >gv
@@ -134,10 +135,13 @@ autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
-" FZF
+" fuzzy finder
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>t :BLines<CR>
+" nmap <Leader>e <cmd>Telescope buffers<cr>
+" nmap <Leader>f <cmd>Telescope find_files<cr>
+" nmap <Leader>t <cmd>Telescope live_grep<cr>
 
 " Deoplete
 " let g:deoplete#enable_at_startup = 1
@@ -181,6 +185,13 @@ let g:vim_markdown_conceal_code_blocks=0
 
 nnoremap <leader>u :MundoToggle<CR>
 nnoremap <leader>s :e ~/.scratchpad.md<CR>
+
+" compe
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"

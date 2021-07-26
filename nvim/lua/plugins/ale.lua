@@ -10,7 +10,9 @@ return function()
         go = { 'go build' },
         php = { 'php', 'phpstan' },
     }
-    vim.g.ale_fixers = {
+
+
+    local fixers = {
         elixir = {'mix_format'},
         json =  {'fixjson', 'jq'},
         javascript = {'eslint'},
@@ -19,5 +21,10 @@ return function()
         python = {'black'},
         rust = {'rustfmt'},
     }
+    if vim.env.NVIM_IS_DENO then
+        fixers.typescript = {'deno'};
+    end
+
+    vim.g.ale_fixers = fixers
 end
 

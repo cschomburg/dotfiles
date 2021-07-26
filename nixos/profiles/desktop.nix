@@ -23,6 +23,7 @@ with lib;
       calibre
       google-chrome-beta
       deluge-2_x
+      ferdi
       firefox-wayland
       gimp
       gthumb
@@ -33,7 +34,6 @@ with lib;
       neuron-notes
       noisetorch
       (pass.withExtensions (exts: [exts.pass-otp]))
-      rambox
       spotify
       veracrypt
       virt-manager
@@ -46,6 +46,7 @@ with lib;
       usbutils
       lm_sensors
       xclip
+      wl-clipboard
 
       (callPackage ../packages/pop-os-shell {})
     ])
@@ -151,7 +152,6 @@ with lib;
     };
   };
 
-  services.pipewire.enable = true;
   services.xserver.libinput = {
     enable = true;
   };
@@ -187,4 +187,13 @@ with lib;
   services.gnome.gnome-online-accounts.enable = false;
   services.gnome.tracker-miners.enable = false;
   services.gnome.tracker.enable = false;
+
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+  };
 }
