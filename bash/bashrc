@@ -26,10 +26,10 @@ PS1="\[\e[31m\]"
 if [ "$USER" != "xconstruct" ]; then
     PS1="$PS1\u"
 fi
-if [ -n "$SSH_CONNECTION" ] && [ "$HOSTNAME" != "razorcoil" ]; then
+if [ -n "$SSH_CONNECTION" ]; then
     PS1="$PS1@\h"
 fi
-PS1="\n$PS1 \D{%T} ${RED}\w\$(__git_ps1) ${RESET}"
+PS1="\n$PS1 \D{%T} ${RED}\w ${RESET}"
 PROMPT_DIRTRIM=2
 
 # gigantic history

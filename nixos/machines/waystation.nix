@@ -16,13 +16,13 @@
   boot.kernelModules = ["br_netfilter"];
 
   environment.systemPackages = with pkgs; [
+    deno
     k3s
     kubectl
   ];
 
   networking.useDHCP = false;
   networking.interfaces.enp1s0.useDHCP = true;
-  networking.enableIPv6 = false;
   networking.firewall.allowedTCPPorts = [ 443 6443 ];
 
   nixpkgs.config.allowUnfree = true;
