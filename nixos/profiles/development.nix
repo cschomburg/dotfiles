@@ -14,10 +14,12 @@
     gnumake
     jq
     mtr
+    openssl
     pandoc
     perl
     reflex
     shellcheck
+    sqlite
     starship
     tealdeer
 

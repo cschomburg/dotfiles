@@ -16,7 +16,7 @@ return function()
         init_options = {}
     }
 
-    lsp.pyls.setup {}
+    lsp.pyright.setup {}
     lsp.rust_analyzer.setup {}
 
     -- Mappings

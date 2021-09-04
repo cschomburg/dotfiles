@@ -86,11 +86,15 @@ require('packer').startup(function ()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
+    use {
+        'NTBBloodbath/rest.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = plugin_config('rest')
+    }
 
     -- notes and text editing
     use 'lervag/wiki.vim'
     use 'fiatjaf/neuron.vim'
-    use { 'junegunn/goyo.vim', cmd = 'Goyo' }
     use { 'alok/notational-fzf-vim', requires = 'junegunn/fzf.vim' }
 
     -- language specific
