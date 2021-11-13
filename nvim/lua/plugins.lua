@@ -24,6 +24,7 @@ end
 
 require('packer').startup(function ()
     use {'wbthomason/packer.nvim', opt = true}
+    use { 'nvim-lua/plenary.nvim' }
 
     -- tpope essentials
     use { 'tpope/vim-surround' }
@@ -34,21 +35,18 @@ require('packer').startup(function ()
     use { 'tpope/vim-abolish' }
 
     -- colorschemes
-    use 'rktjmp/lush.nvim'
     use 'sainnhe/gruvbox-material'
     use 'sainnhe/sonokai'
     use 'u-ra/vim-two-firewatch'
     use 'morhetz/gruvbox'
     use 'lifepillar/vim-solarized8'
-    use 'kunzaatko/nord.nvim'
+    use 'shaunsingh/nord.nvim'
 
     -- syntax
     use 'plasticboy/vim-markdown'
-    -- use 'sheerun/vim-polyglot'
-    use 'jjo/vim-cue'
     use 'google/vim-jsonnet'
-    use 'captbaritone/better-indent-support-for-php-with-html'
-    use 'jparise/vim-graphql'
+    -- use 'captbaritone/better-indent-support-for-php-with-html'
+    -- use 'jparise/vim-graphql'
 
     -- treesitter
     use {
@@ -62,44 +60,37 @@ require('packer').startup(function ()
     }
 
     -- misc
-    use { 'hoob3rt/lualine.nvim', config = plugin_config('lualine') }
-    use 'jpalardy/vim-slime' -- REPL
+    use { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') }
     use { 'dense-analysis/ale', config = plugin_config('ale') }
-    use 'justinmk/vim-sneak'
     use 'junegunn/vim-easy-align'
-    use 'airblade/vim-gitgutter'
-    use 'kshenoy/vim-signature'
+    use { 'lewis6991/gitsigns.nvim' }
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
-    use 'Yggdroot/indentLine'
-    use { 'norcalli/snippets.nvim', config = plugin_config('snippets') }
     use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
-    use 'rhysd/git-messenger.vim'
     use 'simnalamburt/vim-mundo'
-    use {
-        'TimUntersberger/neogit',
-        requires = 'nvim-lua/plenary.nvim',
-        config = plugin_config('neogit')
-    }
-    use { 'hrsh7th/nvim-compe', config = plugin_config('compe') }
+
+    -- diagnostics & code completion
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-cmdline' }
+    use { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') }
+    use { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') }
+
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {{'nvim-lua/popup.nvim'}}
     }
     use {
         'NTBBloodbath/rest.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
         config = plugin_config('rest')
     }
 
     -- notes and text editing
-    use 'lervag/wiki.vim'
-    use 'fiatjaf/neuron.vim'
-    use { 'alok/notational-fzf-vim', requires = 'junegunn/fzf.vim' }
+    -- use { 'oberblastmeister/neuron.nvim' }
 
     -- language specific
-    use { 'vim-vdebug/vdebug', ft = 'php' }
-    use { 'fatih/vim-go',      ft = 'go' }
+    -- use { 'fatih/vim-go',      ft = 'go' }
 end)
 
 -- general plugin configuration
@@ -127,4 +118,8 @@ do
 
     vim.g.mundo_width = 100
     vim.g.mundo_right = 1
+
+    vim.g.nord_borders = true;
+
+    require('gitsigns').setup()
 end

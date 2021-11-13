@@ -47,8 +47,6 @@ with lib;
       lm_sensors
       xclip
       wl-clipboard
-
-      (callPackage ../packages/pop-os-shell {})
     ])
 
     (mkIf config.services.xserver.desktopManager.gnome.enable (with pkgs.gnome3; [
@@ -72,56 +70,6 @@ with lib;
       roboto
       ttf_bitstream_vera
     ];
-
-    fontconfig = {
-      # https://github.com/NixOS/nixpkgs/issues/86601
-      localConf = ''
-        <?xml version="1.0"?>
-        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-        <fontconfig>
-          <alias binding="weak">
-            <family>monospace</family>
-            <prefer>
-                <family>emoji</family>
-            </prefer>
-          </alias>
-
-          <alias binding="weak">
-            <family>sans-serif</family>
-            <prefer>
-                <family>emoji</family>
-            </prefer>
-          </alias>
-
-          <alias binding="weak">
-            <family>serif</family>
-            <prefer>
-                <family>emoji</family>
-            </prefer>
-          </alias>
-
-          <selectfont>
-            <rejectfont>
-                <pattern>
-                    <patelt name="family">
-                        <string>DejaVu Sans</string>
-                    </patelt>
-                </pattern>
-                <pattern>
-                    <patelt name="family">
-                        <string>DejaVu Serif</string>
-                    </patelt>
-                </pattern>
-                <pattern>
-                    <patelt name="family">
-                        <string>DejaVu Sans Mono</string>
-                    </patelt>
-                </pattern>
-            </rejectfont>
-          </selectfont>
-        </fontconfig>
-      '';
-    };
   };
 
   # security.pam.enableEcryptfs = true;

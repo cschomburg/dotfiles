@@ -129,11 +129,10 @@ autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
-autocmd FileType php setlocal omnifunc=v:lua.vim.lsp.omnifunc commentstring=//\ %s
+autocmd FileType php setlocal commentstring=//\ %s
 autocmd FileType vue setlocal tabstop=4 shiftwidth=4
 autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4
 autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
-autocmd FileType javascript setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " fuzzy finder
 nmap <Leader>e :Buffers<CR>
@@ -142,10 +141,6 @@ nmap <Leader>t :BLines<CR>
 " nmap <Leader>e <cmd>Telescope buffers<cr>
 " nmap <Leader>f <cmd>Telescope find_files<cr>
 " nmap <Leader>t <cmd>Telescope live_grep<cr>
-
-" Deoplete
-" let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer', 'member']})
 
 " Go programming language
 if !empty($GOPATH)
@@ -169,29 +164,12 @@ nmap <Leader>a <Plug>(EasyAlign)
 let g:easy_align_delimiters = {
   \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
 
-" Syntax
-let php_sql_query = 0
-let php_sql_heredoc = 0
-let php_sql_nowdoc = 0
-let php_html_in_strings = 0
-let php_html_in_heredoc = 0
-let php_html_in_nowdoc = 0
-let php_var_selector_is_identifier = 1
-let g:PHP_noArrowMatching = 1
-
 " Markdown
 let g:vim_markdown_conceal=0
 let g:vim_markdown_conceal_code_blocks=0
 
 nnoremap <leader>u :MundoToggle<CR>
 nnoremap <leader>s :e ~/.scratchpad.md<CR>
-
-" compe
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " bracketed paste mode
 let &t_ti = &t_ti . "\e[?2004h"
@@ -205,6 +183,11 @@ map <expr> <Esc>[200~ XTermPasteBegin("i")
 imap <expr> <Esc>[200~ XTermPasteBegin("")
 cmap <Esc>[200~ <nop>
 cmap <Esc>[201~ <nop>
+
+" Ripgrep
+if executable('rg') 
+	set grepprg=rg\ --vimgrep\ --hidden
+endif
 
 " load ftplugins and indent files
 filetype plugin on

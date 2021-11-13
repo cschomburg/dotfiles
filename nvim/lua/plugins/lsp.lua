@@ -13,11 +13,17 @@ return function()
     end
 
     lsp.intelephense.setup {
-        init_options = {}
+        init_options = {},
+
+        on_attach = function(client)
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+        end,
     }
 
     lsp.pyright.setup {}
     lsp.rust_analyzer.setup {}
+    lsp.vuels.setup {}
 
     -- Mappings
     local opts = { noremap=true, silent=true }
