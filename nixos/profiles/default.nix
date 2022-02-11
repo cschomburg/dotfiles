@@ -23,6 +23,7 @@
     rsync
     tmux
     wget
+    unzip
     zip
 
     (wrapNeovim neovim-nightly {

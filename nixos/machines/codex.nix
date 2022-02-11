@@ -30,7 +30,7 @@
     mysql57.client
     # python3Packages.solo-python
 
-    (php80.withExtensions ({ enabled, all }:
+    (php81.withExtensions ({ enabled, all }:
       enabled ++ [ all.ffi all.redis all.xsl ])
     )
   ];
@@ -50,7 +50,7 @@
   hardware.ledger.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
-  services.fprintd.enable = true;
+  services.fprintd.enable = false;
   services.keybase.enable = true;
   services.kbfs.enable = true;
 

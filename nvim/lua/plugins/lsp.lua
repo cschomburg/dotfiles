@@ -6,6 +6,7 @@ return function()
         lsp.denols.setup {
             init_options = {
                 unstable = true;
+                importMap = './import_map.json';
             }
         }
     else

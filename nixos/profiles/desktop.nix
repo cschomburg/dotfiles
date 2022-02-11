@@ -30,6 +30,7 @@ with lib;
       insomnia
       kdeconnect
       keepassxc
+      kitty
       libreoffice-fresh
       neuron-notes
       noisetorch
@@ -119,10 +120,11 @@ with lib;
     gnome-logs
     gnome-maps
     gnome-music
-    gnome-photos
+    pkgs.gnome-photos
     gnome-software
     gnome-system-monitor
     gnome-weather
+    pkgs.gnome-connections
     totem
     yelp
   ];

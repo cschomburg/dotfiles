@@ -68,8 +68,17 @@ require('packer').startup(function ()
     use 'junegunn/fzf.vim'
     use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
     use 'simnalamburt/vim-mundo'
+    -- use {
+    --     'phaazon/hop.nvim',
+    --     branch = 'v1',
+    --     config = plugin_config('hop'),
+    -- }
+    use 'ggandor/lightspeed.nvim'
 
     -- diagnostics & code completion
+    use { 'hrsh7th/cmp-vsnip' }
+    use { 'hrsh7th/vim-vsnip' }
+    use { 'hrsh7th/vim-vsnip-integ' }
     use { 'hrsh7th/cmp-nvim-lsp' }
     use { 'hrsh7th/cmp-buffer' }
     use { 'hrsh7th/cmp-path' }

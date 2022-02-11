@@ -29,8 +29,9 @@
   services.plex = {
     enable = true;
     user = "seed";
-    openFirewall = true;
+    openFirewall = false;
   };
+  networking.firewall.allowedTCPPorts = [ 32400 ];
 
   services.nginx = {
     enable = true;
