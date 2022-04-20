@@ -18,7 +18,7 @@ set expandtab					" insert spaces when tab pressed
 set showcmd					" Show (partial) command in status line
 set noshowmode					" Show mode in status line
 set cmdheight=1					" Set height of command
-set laststatus=2				" Always show status line
+set laststatus=3				" Always show global status line
 
 " Search
 set hlsearch					" Highlight the string we searched
@@ -129,6 +129,7 @@ autocmd FileType text setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType markdown setlocal nobreakindent showbreak= nolist linebreak
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+autocmd FileType nix setlocal tabstop=2 shiftwidth=2
 autocmd FileType php setlocal commentstring=//\ %s
 autocmd FileType vue setlocal tabstop=4 shiftwidth=4
 autocmd FileType vue.html.javascript.css setlocal tabstop=4 shiftwidth=4

@@ -61,12 +61,10 @@ require('packer').startup(function ()
 
     -- misc
     use { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') }
-    use { 'dense-analysis/ale', config = plugin_config('ale') }
     use 'junegunn/vim-easy-align'
     use { 'lewis6991/gitsigns.nvim' }
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
-    use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
     use 'simnalamburt/vim-mundo'
     -- use {
     --     'phaazon/hop.nvim',
@@ -76,6 +74,10 @@ require('packer').startup(function ()
     use 'ggandor/lightspeed.nvim'
 
     -- diagnostics & code completion
+    use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
+    -- use { 'dense-analysis/ale', config = plugin_config('ale') }
+    use { 'jose-elias-alvarez/null-ls.nvim', config = plugin_config('null-ls') }
+    use { 'folke/trouble.nvim', config = plugin_config('trouble') }
     use { 'hrsh7th/cmp-vsnip' }
     use { 'hrsh7th/vim-vsnip' }
     use { 'hrsh7th/vim-vsnip-integ' }
