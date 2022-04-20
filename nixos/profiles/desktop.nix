@@ -28,13 +28,13 @@ with lib;
       gimp
       gthumb
       insomnia
-      kdeconnect
       keepassxc
       kitty
       libreoffice-fresh
       neuron-notes
       noisetorch
       (pass.withExtensions (exts: [exts.pass-otp]))
+      (callPackage ../packages/rambox {})
       spotify
       veracrypt
       virt-manager
@@ -48,6 +48,9 @@ with lib;
       lm_sensors
       xclip
       wl-clipboard
+
+      # Gnome extensions
+      gnomeExtensions.gsconnect
     ])
 
     (mkIf config.services.xserver.desktopManager.gnome.enable (with pkgs.gnome3; [

@@ -11,6 +11,7 @@
     fzf
     gcc
     gdb
+    glow
     gnumake
     jq
     mtr

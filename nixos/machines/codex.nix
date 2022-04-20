@@ -44,7 +44,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_5_16; # pkgs.linuxPackages_latest;
   # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;
@@ -61,7 +61,7 @@
 
   networking.firewall.allowedTCPPorts = [ 9000 ];
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
 
   # https://github.com/k3s-io/k3s/pull/2844
   systemd.enableUnifiedCgroupHierarchy = false;

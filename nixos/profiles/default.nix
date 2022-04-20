@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   nixpkgs.overlays = [
@@ -36,7 +36,7 @@
   programs.bash.enableCompletion = true;
 
   networking.firewall.allowPing = true;
-  networking.nameservers = [
+  networking.nameservers = lib.mkDefault [
     "8.8.4.4"
     "1.1.1.1"
     "2001:4860:4860::8888"
@@ -51,8 +51,8 @@
   services.zerotierone.enable = true;
   networking.firewall.allowedUDPPorts = [ 9993 ];
 
-  nix.trustedBinaryCaches = [ http://hydra.nixos.org/ ];
-  nix.binaryCachePublicKeys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+  nix.settings.trusted-substituters = [ http://hydra.nixos.org/ ];
+  nix.settings.trusted-public-keys = [ "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
 
   users.extraUsers.xconstruct = {
     createHome = true;
