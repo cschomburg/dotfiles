@@ -51,7 +51,6 @@
   hardware.opengl.driSupport32Bit = true;
 
   services.fprintd.enable = false;
-  services.keybase.enable = true;
   services.kbfs.enable = true;
 
   virtualisation.virtualbox.host = {

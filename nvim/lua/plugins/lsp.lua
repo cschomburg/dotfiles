@@ -6,19 +6,23 @@ return function()
         lsp.denols.setup {
             init_options = {
                 unstable = true;
-                importMap = './import_map.json';
             }
         }
     else
-        lsp.tsserver.setup {}
+        lsp.tsserver.setup {
+            on_attach = function(client)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+        }
     end
 
     lsp.intelephense.setup {
         init_options = {},
 
         on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
         end,
     }
 
@@ -33,4 +37,6 @@ return function()
     vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 end

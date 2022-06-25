@@ -25,6 +25,7 @@
   environment.sessionVariables.VDPAU_DRIVER = "va_gl";
 
   services.power-profiles-daemon.enable = false;
+  services.throttled.enable = true;
   services.tlp.enable = true;
   services.fwupd.enable = true;
   powerManagement.cpuFreqGovernor = "powersave";

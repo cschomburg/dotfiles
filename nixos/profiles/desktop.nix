@@ -23,7 +23,6 @@ with lib;
       calibre
       google-chrome-beta
       deluge-2_x
-      ferdi
       firefox-wayland
       gimp
       gthumb
@@ -32,7 +31,6 @@ with lib;
       kitty
       libreoffice-fresh
       neuron-notes
-      noisetorch
       (pass.withExtensions (exts: [exts.pass-otp]))
       (callPackage ../packages/rambox {})
       spotify

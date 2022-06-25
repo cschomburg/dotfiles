@@ -33,6 +33,7 @@ require('packer').startup(function ()
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-abolish' }
+    use { 'tpope/vim-sleuth' }
 
     -- colorschemes
     use 'sainnhe/gruvbox-material'
