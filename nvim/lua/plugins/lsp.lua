@@ -38,5 +38,5 @@ return function()
     vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
-    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({async = false })]]
 end

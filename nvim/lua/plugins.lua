@@ -34,6 +34,7 @@ require('packer').startup(function ()
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-abolish' }
     use { 'tpope/vim-sleuth' }
+    use { 'tpope/vim-dadbod' }
 
     -- colorschemes
     use 'sainnhe/gruvbox-material'
@@ -67,6 +68,7 @@ require('packer').startup(function ()
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use 'simnalamburt/vim-mundo'
+    use { 'NvChad/nvim-colorizer.lua', config = plugin_config('colorizer') }
     -- use {
     --     'phaazon/hop.nvim',
     --     branch = 'v1',
@@ -88,6 +90,7 @@ require('packer').startup(function ()
     use { 'hrsh7th/cmp-cmdline' }
     use { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') }
     use { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') }
+    use { 'github/copilot.vim' }
 
     use {
         'nvim-telescope/telescope.nvim',
@@ -96,6 +99,14 @@ require('packer').startup(function ()
     use {
         'NTBBloodbath/rest.nvim',
         config = plugin_config('rest')
+    }
+
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "antoinemadec/FixCursorHold.nvim"
+        },
+        config = plugin_config('neotest')
     }
 
     -- notes and text editing

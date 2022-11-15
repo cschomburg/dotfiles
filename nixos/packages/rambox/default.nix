@@ -5,13 +5,13 @@ with pkgs.stdenv;
 
 let
   pname = "rambox";
-  version = "2.0.5";
+  version = "2.0.6";
   name = "${pname}-${version}";
   appname = "Rambox";
 
   src = fetchurl {
     url = "https://github.com/ramboxapp/download/releases/download/v${version}/Rambox-${version}-linux-x64.AppImage";
-    sha256 = "sha256-BHesbq/pxmR2CkNf4M5S/1907VplWE2cXK7zQPM5ug8=";
+    sha256 = "sha256-UCdeWMUWRVmmu0I9cVt8A7HSVKzI5it70USaT4aUayg=";
   };
 
   desktopItem = (makeDesktopItem {

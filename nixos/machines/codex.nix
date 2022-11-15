@@ -17,7 +17,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    ansible-with-plugins
     age
     appimage-run
     dbeaver
@@ -27,7 +26,7 @@
     isync
     insomnia
     ledger
-    mysql57.client
+    mysql80.client
     # python3Packages.solo-python
 
     (php81.withExtensions ({ enabled, all }:
@@ -44,7 +43,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_5_16; # pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;

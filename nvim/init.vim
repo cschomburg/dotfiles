@@ -138,10 +138,8 @@ autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
 " fuzzy finder
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
-nmap <Leader>t :BLines<CR>
 " nmap <Leader>e <cmd>Telescope buffers<cr>
 " nmap <Leader>f <cmd>Telescope find_files<cr>
-" nmap <Leader>t <cmd>Telescope live_grep<cr>
 
 " Go programming language
 if !empty($GOPATH)

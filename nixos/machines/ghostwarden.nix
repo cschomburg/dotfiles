@@ -36,27 +36,6 @@ in {
   services.zerotierone.enable = true;
   networking.firewall.allowedUDPPorts = [ 9993 ];
 
-  services.postgresql.enable = true;
-
-  services.elasticsearch.enable = true;
-  services.elasticsearch.listenAddress = privateIp;
-  services.kibana.enable = true;
-  services.kibana.listenAddress = privateIp;
-  services.kibana.elasticsearch.hosts = [ "http://${privateIp}:9200" ];
-
-  services.rabbitmq = {
-    enable = true;
-    configItems = {
-      "listeners.tcp.1" = "${privateIp}:5672";
-      "mqtt.exchange" = "sarif";
-    };
-    plugins = [
-      "rabbitmq_management"
-      "rabbitmq_web_stomp"
-      "rabbitmq_web_mqtt"
-    ];
-  };
-
   users.extraGroups = { files.gid = 1001; };
   users.extraUsers.xconstruct.extraGroups = [ "lp" "files" "ssl-cert" ];
 
