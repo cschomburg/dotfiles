@@ -95,7 +95,7 @@ fi
 export EDITOR=vim
 export VISUAL=vim
 if type nvim &> /dev/null; then
-    export MANPAGER="nvim -c 'set ft=man' -"
+    export MANPAGER="nvim +Man!"
 fi
 
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
