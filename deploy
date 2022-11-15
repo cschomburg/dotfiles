@@ -23,6 +23,7 @@ files_desktop=(
 	'xresources:.Xresources'
 	'systemd:.config/systemd/user'
 	'alacritty.yml:.config/alacritty/alacritty.yml'
+	'kitty:.config/kitty'
 )
 
 install_filepair () {
