@@ -21,7 +21,7 @@ with lib;
     (with pkgs; [
       alacritty
       calibre
-      google-chrome-beta
+      google-chrome
       deluge-2_x
       firefox-wayland
       gimp
@@ -30,9 +30,8 @@ with lib;
       keepassxc
       kitty
       libreoffice-fresh
-      neuron-notes
       (pass.withExtensions (exts: [exts.pass-otp]))
-      (callPackage ../packages/rambox {})
+      rambox # (callPackage ../packages/rambox {})
       spotify
       veracrypt
       virt-manager
@@ -65,6 +64,7 @@ with lib;
       carlito
       corefonts
       inconsolata
+      iosevka
       liberation_ttf_v2
       nerdfonts
       noto-fonts

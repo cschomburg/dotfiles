@@ -196,5 +196,5 @@ filetype indent on
 syntax on
 
 " Colorscheme
-set background=dark
-colorscheme nord
+set background=light
+colorscheme zenbones

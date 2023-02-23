@@ -53,7 +53,6 @@
   hardware.opengl.driSupport32Bit = true;
 
   services.fprintd.enable = false;
-  services.kbfs.enable = true;
 
   virtualisation.virtualbox.host = {
     enable = false;
@@ -65,7 +64,7 @@
   nix.settings.max-jobs = lib.mkDefault 8;
 
   # https://github.com/k3s-io/k3s/pull/2844
-  systemd.enableUnifiedCgroupHierarchy = false;
+  # systemd.enableUnifiedCgroupHierarchy = false;
 
   systemd.user = {
     timers.cleanup-downloads = {

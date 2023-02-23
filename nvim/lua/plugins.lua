@@ -38,11 +38,16 @@ require('packer').startup(function ()
 
     -- colorschemes
     use 'sainnhe/gruvbox-material'
-    use 'sainnhe/sonokai'
     use 'u-ra/vim-two-firewatch'
     use 'morhetz/gruvbox'
-    use 'lifepillar/vim-solarized8'
     use 'shaunsingh/nord.nvim'
+    use 'atelierbram/Base2Tone-nvim'
+    use 'catppuccin/nvim'
+    use 'rose-pine/neovim'
+    use {
+        "mcchrish/zenbones.nvim",
+        requires = "rktjmp/lush.nvim"
+    }
 
     -- syntax
     use 'plasticboy/vim-markdown'

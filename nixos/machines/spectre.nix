@@ -43,7 +43,6 @@
   # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;
-  services.kbfs.enable = true;
 
   virtualisation.virtualbox.host = {
     enable = false;
