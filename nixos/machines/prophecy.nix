@@ -29,10 +29,9 @@
     isync
     insomnia
     ledger
-    mysql80.client
-    # python3Packages.solo-python
+    #mysql80.client
 
-    (php81.withExtensions ({ enabled, all }:
+    (php82.withExtensions ({ enabled, all }:
       enabled ++ [ all.ffi all.redis all.xsl ])
     )
   ];
@@ -46,8 +45,6 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "ahci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
-  #boot.kernelPackages = pkgs.linuxPackages_5_16; # pkgs.linuxPackages_latest;
-  # boot.extraModulePackages = [ pkgs.linuxPackages_latest.v4l2loopback ];
 
   hardware.ledger.enable = true;
   hardware.opengl.driSupport32Bit = true;
@@ -63,9 +60,6 @@
 
   nix.settings.max-jobs = lib.mkDefault 8;
 
-  # https://github.com/k3s-io/k3s/pull/2844
-  # systemd.enableUnifiedCgroupHierarchy = false;
-
   systemd.user = {
     timers.cleanup-downloads = {
       partOf = [ "cleanup-downloads.service" ];
@@ -79,8 +73,4 @@
       '';
     };
   };
-
-  # High-DPI console
-  #console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  hardware.video.hidpi.enable = lib.mkDefault true;
 }

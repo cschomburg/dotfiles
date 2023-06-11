@@ -2,6 +2,7 @@
 
 SRC=$HOME/.dotfiles/nixos
 sudo rsync --filter="protect /hardware-configuration.nix" \
+           --filter="protect /flake.lock" \
            --filter="protect /hostname" \
            --filter="protect /nixpkgs" \
            --filter="exclude,s *.gitignore" \

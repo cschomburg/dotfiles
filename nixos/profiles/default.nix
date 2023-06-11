@@ -20,7 +20,7 @@
     unzip
     zip
 
-    (wrapNeovim neovim-nightly {
+    (wrapNeovim neovim-unwrapped {
       vimAlias = true;
       viAlias = true;
     })
@@ -37,10 +37,10 @@
     "2606:4700:4700::1111"
   ];
 
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = lib.mkDefault "Europe/Berlin";
 
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = false;
   services.timesyncd.enable = true;
   services.zerotierone.enable = true;
   networking.firewall.allowedUDPPorts = [ 9993 ];

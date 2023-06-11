@@ -11,7 +11,7 @@ with lib;
     };
   };
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   networking.networkmanager = {
     enable = true;
     dns = "none";
@@ -19,6 +19,7 @@ with lib;
 
   environment.systemPackages = mkMerge [
     (with pkgs; [
+      aichat
       alacritty
       calibre
       google-chrome
