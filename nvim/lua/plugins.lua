@@ -74,11 +74,6 @@ require('packer').startup(function ()
     use 'junegunn/fzf.vim'
     use 'simnalamburt/vim-mundo'
     use { 'NvChad/nvim-colorizer.lua', config = plugin_config('colorizer') }
-    -- use {
-    --     'phaazon/hop.nvim',
-    --     branch = 'v1',
-    --     config = plugin_config('hop'),
-    -- }
     use 'ggandor/lightspeed.nvim'
 
     -- diagnostics & code completion
