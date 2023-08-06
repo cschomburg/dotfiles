@@ -38,3 +38,5 @@
 	instructionFormat = (%an <%ae>) %s [%ai]
 [pull]
 	rebase = true
+[diff]
+	colorMoved = zebra

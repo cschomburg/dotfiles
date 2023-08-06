@@ -28,7 +28,14 @@ return function()
 
     lsp.pyright.setup {}
     lsp.rust_analyzer.setup {}
-    lsp.vuels.setup {}
+    lsp.volar.setup {
+        init_options = {},
+
+        on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+    }
 
     -- Mappings
     local opts = { noremap=true, silent=true }

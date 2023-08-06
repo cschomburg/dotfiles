@@ -35,7 +35,7 @@
 
     # JavaScript
     deno
-    nodejs_20
+    nodejs_18
     yarn
 
     # Other programming languages
