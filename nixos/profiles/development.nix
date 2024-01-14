@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    atuin
+    blesh
     bind
     cachix
     cmake
@@ -23,6 +25,7 @@
     sqlite
     starship
     tealdeer
+    tilt
 
     # Python
     (python3.withPackages (ps: with ps; [
@@ -35,6 +38,7 @@
 
     # JavaScript
     deno
+    bun
     nodejs_18
     yarn
 

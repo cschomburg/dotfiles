@@ -49,12 +49,6 @@ require('packer').startup(function ()
         requires = "rktjmp/lush.nvim"
     }
 
-    -- syntax
-    use 'plasticboy/vim-markdown'
-    use 'google/vim-jsonnet'
-    -- use 'captbaritone/better-indent-support-for-php-with-html'
-    -- use 'jparise/vim-graphql'
-
     -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -78,8 +72,7 @@ require('packer').startup(function ()
 
     -- diagnostics & code completion
     use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
-    -- use { 'dense-analysis/ale', config = plugin_config('ale') }
-    use { 'jose-elias-alvarez/null-ls.nvim', config = plugin_config('null-ls') }
+    use { 'nvimtools/none-ls.nvim', config = plugin_config('null-ls') }
     use { 'folke/trouble.nvim', config = plugin_config('trouble') }
     use { 'hrsh7th/cmp-vsnip' }
     use { 'hrsh7th/vim-vsnip' }
@@ -109,11 +102,8 @@ require('packer').startup(function ()
         config = plugin_config('neotest')
     }
 
-    -- notes and text editing
-    -- use { 'oberblastmeister/neuron.nvim' }
-
     -- language specific
-    -- use { 'fatih/vim-go',      ft = 'go' }
+    use { 'fatih/vim-go', ft = 'go' }
 end)
 
 -- general plugin configuration
@@ -135,9 +125,6 @@ do
 
     vim.g.slime_target = "tmux"
     vim.g.slime_default_config = { socket_name ='default', target_pane = '{last}' }
-
-    vim.g.wiki_root = '~/sync/0-essential/notes'
-    vim.g.wiki_filetypes = { 'md' }
 
     vim.g.mundo_width = 100
     vim.g.mundo_right = 1

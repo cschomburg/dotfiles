@@ -118,8 +118,6 @@ vnoremap . :normal .<CR>
 " necessary on some Linux distros to properly load bundles
 filetype off
 
-let g:polyglot_disabled = [ 'cue' ]
-
 " Lua init
 lua require('init')
 
@@ -150,10 +148,6 @@ if !empty($GOPATH)
 endif
 
 " PHP
-let g:vdebug_options = {
-			\ 'path_maps': {"www-root": "/home/xconstruct/code/lyke/hero"},
-			\ 'server': '0.0.0.0'
-			\}
 autocmd FileType php let b:surround_45 = "__('\r')"
 nmap <leader>g cs'-
 
@@ -162,10 +156,6 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 let g:easy_align_delimiters = {
   \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
-
-" Markdown
-let g:vim_markdown_conceal=0
-let g:vim_markdown_conceal_code_blocks=0
 
 nnoremap <leader>u :MundoToggle<CR>
 nnoremap <leader>s :e ~/.scratchpad.md<CR>

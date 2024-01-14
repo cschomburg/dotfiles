@@ -13,7 +13,6 @@
   nixpkgs.overlays = [
     (import ../overlays/ansible-plugins.nix)
     (import ../overlays/fixes.nix)
-    (import ../overlays/usbarmory.nix)
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes "];
@@ -24,12 +23,11 @@
     appimage-run
     dbeaver
     hledger
-    haskellPackages.hledger-flow
-    imx_loader
+    #haskellPackages.hledger-flow
     isync
     insomnia
     ledger
-    #mysql80.client
+    mysql80.client
 
     (php82.withExtensions ({ enabled, all }:
       enabled ++ [ all.ffi all.redis all.xsl ])
@@ -51,10 +49,7 @@
 
   services.fprintd.enable = false;
 
-  virtualisation.virtualbox.host = {
-    enable = false;
-    enableExtensionPack = true;
-  };
+  virtualisation.virtualbox.host.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 9000 ];
 

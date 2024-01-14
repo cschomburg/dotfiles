@@ -13,7 +13,6 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = "1";
@@ -26,12 +25,11 @@
   services.zerotierone.enable = true;
   services.openssh.enable = true;
   services.cron.enable = true;
-  services.plex = {
+  services.jellyfin = {
     enable = true;
     user = "seed";
-    openFirewall = false;
+    openFirewall = true;
   };
-  networking.firewall.allowedTCPPorts = [ 32400 ];
 
   services.nginx = {
     enable = true;
@@ -43,5 +41,6 @@
 
   system.stateVersion = "20.03"; # Did you read the comment?
 
-  nix.maxJobs = lib.mkDefault 4;
+  nix.settings.max-jobs = lib.mkDefault 4;
+  nix.settings.experimental-features = "nix-command flakes";
 }

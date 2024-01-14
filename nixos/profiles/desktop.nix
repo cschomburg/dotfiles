@@ -26,6 +26,7 @@ with lib;
       deluge-2_x
       firefox-wayland
       gimp
+      gnome3.gnome-boxes
       gthumb
       insomnia
       keepassxc

@@ -14,7 +14,6 @@ in {
   environment.systemPackages = with pkgs; [
     ffmpeg
     isync
-    python
   ];
 
   networking.firewall.enable = false;
