@@ -2,7 +2,7 @@ return function()
     require('lualine').setup{
         extensions = { 'fzf' },
         options = {
-            theme = 'nord',
+            theme = 'auto',
             globalstatus = true,
         },
         sections = {

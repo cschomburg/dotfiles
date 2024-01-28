@@ -1,110 +1,105 @@
 local lsp = require('plugins.lsp')
 
--- Bootstrap nvim-packer
+-- Bootstrap lazy.nvim
 do
-    local execute = vim.api.nvim_command
-    local fn = vim.fn
-
-    local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-
-    if fn.empty(fn.glob(install_path)) > 0 then
-      execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-      execute 'packadd packer.nvim'
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.loop.fs_stat(lazypath) then
+      vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+      })
     end
+    vim.opt.rtp:prepend(lazypath)
 end
 
 vim.cmd [[packadd packer.nvim]]
 
 local function plugin_config(plugin)
-    return string.format([[
-        local fn = require(%q)
+    return function()
+        local fn = require('plugins.' .. plugin)
         if fn then fn() end
-    ]], 'plugins.' .. plugin)
+    end
 end
 
-require('packer').startup(function ()
-    use {'wbthomason/packer.nvim', opt = true}
-    use { 'nvim-lua/plenary.nvim' }
+require('lazy').setup({
+    'nvim-lua/plenary.nvim',
 
     -- tpope essentials
-    use { 'tpope/vim-surround' }
-    use { 'tpope/vim-repeat' }
-    use { 'tpope/vim-vinegar' }
-    use { 'tpope/vim-fugitive' }
-    use { 'tpope/vim-commentary' }
-    use { 'tpope/vim-abolish' }
-    use { 'tpope/vim-sleuth' }
-    use { 'tpope/vim-dadbod' }
+    'tpope/vim-surround',
+    'tpope/vim-repeat',
+    'tpope/vim-vinegar',
+    'tpope/vim-fugitive',
+    'tpope/vim-commentary',
+    'tpope/vim-abolish',
+    'tpope/vim-sleuth',
+    'tpope/vim-dadbod',
 
     -- colorschemes
-    use 'sainnhe/gruvbox-material'
-    use 'u-ra/vim-two-firewatch'
-    use 'morhetz/gruvbox'
-    use 'shaunsingh/nord.nvim'
-    use 'atelierbram/Base2Tone-nvim'
-    use 'catppuccin/nvim'
-    use 'rose-pine/neovim'
-    use {
-        "mcchrish/zenbones.nvim",
-        requires = "rktjmp/lush.nvim"
-    }
+    'sainnhe/gruvbox-material',
+    'u-ra/vim-two-firewatch',
+    'morhetz/gruvbox',
+    'shaunsingh/nord.nvim',
+    'atelierbram/Base2Tone-nvim',
+    'catppuccin/nvim',
+    'rose-pine/neovim',
+    { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
 
     -- treesitter
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = plugin_config('treesitter'),
-    }
-    use {
+    },
+    {
         'romgrk/nvim-treesitter-context',
-        requires = 'nvim-treesitter/nvim-treesitter'
-    }
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    },
 
     -- misc
-    use { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') }
-    use 'junegunn/vim-easy-align'
-    use { 'lewis6991/gitsigns.nvim' }
-    use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
-    use 'junegunn/fzf.vim'
-    use 'simnalamburt/vim-mundo'
-    use { 'NvChad/nvim-colorizer.lua', config = plugin_config('colorizer') }
-    use 'ggandor/lightspeed.nvim'
+    { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') },
+    'junegunn/vim-easy-align',
+    { 'lewis6991/gitsigns.nvim' },
+    { 'junegunn/fzf' },
+    'junegunn/fzf.vim',
+    'simnalamburt/vim-mundo',
+    { 'NvChad/nvim-colorizer.lua', config = plugin_config('colorizer') },
+    'ggandor/lightspeed.nvim',
 
     -- diagnostics & code completion
-    use { 'neovim/nvim-lspconfig', config = plugin_config('lsp') }
-    use { 'nvimtools/none-ls.nvim', config = plugin_config('null-ls') }
-    use { 'folke/trouble.nvim', config = plugin_config('trouble') }
-    use { 'hrsh7th/cmp-vsnip' }
-    use { 'hrsh7th/vim-vsnip' }
-    use { 'hrsh7th/vim-vsnip-integ' }
-    use { 'hrsh7th/cmp-nvim-lsp' }
-    use { 'hrsh7th/cmp-buffer' }
-    use { 'hrsh7th/cmp-path' }
-    use { 'hrsh7th/cmp-cmdline' }
-    use { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') }
-    use { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') }
-    use { 'github/copilot.vim' }
+    { 'neovim/nvim-lspconfig', config = plugin_config('lsp') },
+    { 'nvimtools/none-ls.nvim', config = plugin_config('null-ls') },
+    { 'folke/trouble.nvim', config = plugin_config('trouble') },
+    { 'hrsh7th/cmp-vsnip' },
+    { 'hrsh7th/vim-vsnip' },
+    { 'hrsh7th/vim-vsnip-integ' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-cmdline' },
+    { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') },
+    { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') },
+    { 'github/copilot.vim' },
 
-    use {
+    {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}}
-    }
-    use {
-        'NTBBloodbath/rest.nvim',
-        config = plugin_config('rest')
-    }
+        dependencies = {'nvim-lua/popup.nvim'}
+    },
 
-    use {
+    {
         "nvim-neotest/neotest",
-        requires = {
+        dependencies = {
             "antoinemadec/FixCursorHold.nvim"
         },
         config = plugin_config('neotest')
-    }
+    },
 
     -- language specific
-    use { 'fatih/vim-go', ft = 'go' }
-end)
+    { 'fatih/vim-go', ft = 'go' },
+})
 
 -- general plugin configuration
 do
