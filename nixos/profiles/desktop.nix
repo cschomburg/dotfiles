@@ -5,10 +5,6 @@ with lib;
 {
   nixpkgs.config = {
     allowUnfree = true;
-
-    firefox = {
-      enableGnomeExtensions = true;
-    };
   };
 
   boot.tmp.cleanOnBoot = true;
@@ -61,7 +57,7 @@ with lib;
     fontDir.enable = true;
     enableGhostscriptFonts = true;
 
-    fonts = with pkgs; [
+    packages = with pkgs; [
       caladea
       carlito
       corefonts
@@ -81,7 +77,7 @@ with lib;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ gutenprint ];
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.flatpak.enable = true;
 
   services.xserver = {

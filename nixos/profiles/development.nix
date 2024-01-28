@@ -10,6 +10,7 @@
     curlie
     direnv
     ffmpeg
+    fish
     fzf
     gcc
     gdb
@@ -26,6 +27,7 @@
     starship
     tealdeer
     tilt
+    zoxide
 
     # Python
     (python3.withPackages (ps: with ps; [

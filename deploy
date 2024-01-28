@@ -13,6 +13,7 @@ files_default=(
 	'git/gitconfig:.gitconfig'
 	'git/gitignore:.gitignore'
 	'bash/bashrc:.bashrc'
+	'fish/config.fish:.config/fish/config.fish'
 	'tmux:.tmux.conf'
     'shellcheckrc:.shellcheckrc'
     'starship.toml:.config/starship.toml'

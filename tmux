@@ -46,5 +46,7 @@ set-option -g pane-border-style fg=red
 set-option -g pane-active-border-style fg=red
 setw -g aggressive-resize
 
+set-option -g default-shell /run/current-system/sw/bin/fish
+
 set -g @fingers-skip-health-check '1'
 run-shell ~/.tmux/plugins/tmux-fingers/tmux-fingers.tmux
