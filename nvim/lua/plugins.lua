@@ -16,8 +16,6 @@ do
     vim.opt.rtp:prepend(lazypath)
 end
 
-vim.cmd [[packadd packer.nvim]]
-
 local function plugin_config(plugin)
     return function()
         local fn = require('plugins.' .. plugin)
@@ -88,14 +86,6 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {'nvim-lua/popup.nvim'}
-    },
-
-    {
-        "nvim-neotest/neotest",
-        dependencies = {
-            "antoinemadec/FixCursorHold.nvim"
-        },
-        config = plugin_config('neotest')
     },
 
     -- language specific

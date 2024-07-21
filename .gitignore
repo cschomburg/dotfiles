@@ -6,6 +6,7 @@
 /nvim/bundle/*
 /nvim/autoload/plug.vim
 /nvim/plugin/packer_compiled.vim
+/nvim/lazy-lock.json
 
 bin/hub
 z.sh
@@ -13,3 +14,4 @@ z.sh
 /private
 
 systemd/default.target.wants
+result

@@ -1,13 +1,21 @@
 {
-  inputs.nixpkgs.url = "nixpkgs/nixos-23.05";
-  inputs.nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-  #inputs.nixpkgs.url = "nixpkgs/872fceeed60";
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    #nixpkgs.url = "nixpkgs/872fceeed60";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs-darwin.url = "nixpkgs/nixos-unstable";
 
-  inputs.neovim-nightly-overlay = {
-    url = "github:nix-community/neovim-nightly-overlay";
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@attrs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, ... }@attrs: {
     nixosConfigurations = {
       prophecy = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
@@ -24,6 +32,16 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [ ./configuration.nix ];
+      };
+    };
+
+    darwinConfigurations = {
+      paragon = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = attrs;
+        modules = [
+          ./machines/paragon.nix
+        ];
       };
     };
   };

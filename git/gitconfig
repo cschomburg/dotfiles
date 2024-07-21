@@ -1,6 +1,9 @@
 [user]
-	name = Constantin Schomburg
+    name = Constantin Schomburg
     email = me@cschomburg.com
+
+[includeIf "gitdir:~/code/work/"]
+    path = ~/code/work/.gitconfig
 
 [push]
     default = simple
