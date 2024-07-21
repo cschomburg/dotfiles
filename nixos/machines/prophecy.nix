@@ -21,7 +21,7 @@
     ansible-with-plugins
     age
     appimage-run
-    dbeaver
+    dbeaver-bin
     hledger
     #haskellPackages.hledger-flow
     isync
@@ -29,7 +29,7 @@
     ledger
     mysql80.client
 
-    (php82.withExtensions ({ enabled, all }:
+    (php83.withExtensions ({ enabled, all }:
       enabled ++ [ all.ffi all.redis all.xsl ])
     )
   ];

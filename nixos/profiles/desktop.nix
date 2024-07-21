@@ -18,10 +18,12 @@ with lib;
       aichat
       alacritty
       calibre
+      cryptomator
       google-chrome
       deluge-2_x
       firefox-wayland
       gimp
+      gmailctl
       gnome3.gnome-boxes
       gthumb
       insomnia
@@ -29,7 +31,7 @@ with lib;
       kitty
       libreoffice-fresh
       (pass.withExtensions (exts: [exts.pass-otp]))
-      rambox # (callPackage ../packages/rambox {})
+      rambox
       spotify
       veracrypt
       virt-manager
@@ -48,7 +50,7 @@ with lib;
       gnomeExtensions.gsconnect
     ])
 
-    (mkIf config.services.xserver.desktopManager.gnome.enable (with pkgs.gnome3; [
+    (mkIf config.services.xserver.desktopManager.gnome.enable (with pkgs; [
       gnome-tweaks
     ]))
   ];
@@ -82,9 +84,10 @@ with lib;
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "altgr-intl";
-    xkbOptions = "eurosign:e";
+
+    xkb.layout = "us";
+    xkb.variant = "altgr-intl";
+    xkb.options = "eurosign:e";
 
     displayManager = {
       gdm.enable = true;
@@ -100,7 +103,7 @@ with lib;
     };
   };
 
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
   };
 
@@ -111,21 +114,22 @@ with lib;
 
   environment.sessionVariables."MOZ_USE_XINPUT2" = "1";
   #environment.sessionVariables."QT_QPA_PLATFORM" = "wayland";
-  environment.gnome.excludePackages = with pkgs.gnome3; [
+  environment.gnome.excludePackages = with pkgs; [
     geary
     gnome-calendar
-    gnome-clocks
-    gnome-contacts
-    gnome-logs
-    gnome-maps
-    gnome-music
-    pkgs.gnome-photos
-    gnome-software
+    gnome-connections
+    gnome-photos
     gnome-system-monitor
-    gnome-weather
-    pkgs.gnome-connections
     totem
     yelp
+
+    gnome.gnome-clocks
+    gnome.gnome-contacts
+    gnome.gnome-logs
+    gnome.gnome-maps
+    gnome.gnome-music
+    gnome.gnome-software
+    gnome.gnome-weather
   ];
 
   programs.evolution.enable = true;

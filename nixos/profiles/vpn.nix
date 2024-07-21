@@ -51,16 +51,15 @@ in
   };
 
   services.sslh.enable = true;
-  services.sslh.appendConfig = ''
-    protocols:
-    (
-      { name: "ssh"; service: "ssh"; host: "localhost"; port: "22"; probe: "builtin"; },
-      { name: "openvpn"; host: "localhost"; port: "636"; probe: "builtin"; },
-      { name: "http"; host: "localhost"; port: "80"; probe: "builtin"; },
-      { name: "tls"; host: "localhost"; port: "444"; probe: "builtin"; },
-      { name: "anyprot"; host: "localhost"; port: "444"; probe: "builtin"; }
-    );
-  '';
+  services.sslh.settings = {
+    protocols = [
+      { name = "ssh"; service = "ssh"; host = "localhost"; port = "22"; },
+      { name = "openvpn"; host = "localhost"; port = "636"; },
+      { name = "http"; host = "localhost"; port = "80"; },
+      { name = "tls"; host = "localhost"; port = "444"; },
+      { name = "anyprot"; host = "localhost"; port = "444"; },
+    ];
+  };
 
   networking.firewall.allowedTCPPorts = [ 636 443 ];
 

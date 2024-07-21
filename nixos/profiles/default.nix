@@ -11,7 +11,7 @@
     htop
     libarchive
     lsof
-    nixUnstable
+    nixFlakes
     patchelf
     ripgrep
     rsync
@@ -62,4 +62,10 @@
   services.journald.extraConfig = ''
     SystemMaxUse=100M
   '';
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 }

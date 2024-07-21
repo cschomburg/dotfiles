@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     borgbackup
     cryptsetup
-    encfs
     gitAndTools.git-crypt
     gitAndTools.gitAnnex
     gitAndTools.gitRemoteGcrypt

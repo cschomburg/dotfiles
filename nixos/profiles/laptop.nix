@@ -13,12 +13,22 @@
   };
   hardware.cpu.intel.updateMicrocode = true;
 
+  hardware.bluetooth.package = lib.mkDefault (
+    pkgs.bluez5-experimental.overrideAttrs rec {
+      version = "5.76";
+      src = pkgs.fetchurl {
+        url = "mirror://kernel/linux/bluetooth/bluez-${version}.tar.xz";
+        hash = "sha256-VeLGRZCa2C2DPELOhewgQ04O8AcJQbHqtz+s3SQLvWM=";
+      };
+    }
+  );
+
   hardware.pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
 
   hardware.opengl.extraPackages = with pkgs; [
-    vaapiIntel
-    vaapiVdpau
-    libvdpau-va-gl
+    intel-vaapi-driver
+    # vaapiVdpau
+    # libvdpau-va-gl
     intel-media-driver
   ];
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";

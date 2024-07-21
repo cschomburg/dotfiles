@@ -41,7 +41,7 @@
     # JavaScript
     deno
     bun
-    nodejs_18
+    nodejs_20
     yarn
 
     # Other programming languages

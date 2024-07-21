@@ -26,6 +26,7 @@ alias mv='mv -v'
 alias ag='rg -S'
 alias top="htop"
 alias curl="curlie"
+alias xclipb='xclip -selection clipboard'
 
 set -x EDITOR "nvim"
 set -x VISUAL "nvim"

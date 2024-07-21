@@ -83,6 +83,7 @@ require('lazy').setup({
     { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') },
     { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') },
     { 'github/copilot.vim' },
+    { 'robitx/gp.nvim', config = true },
 
     {
         'nvim-telescope/telescope.nvim',
