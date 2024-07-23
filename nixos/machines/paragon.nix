@@ -29,8 +29,40 @@
       smb.NetBIOSName = "paragon";
       menuExtraClock.Show24Hour = true;  # show 24 hour clock
 
-      # other macOS's defaults configuration.
-      # ......
+
+      dock = {
+        autohide = true;
+        show-recents = false; # disable recent apps
+
+        # customize hot corners
+        wvous-tl-corner = 2; # top-left - mission control
+      };
+
+      finder = {
+        _FXShowPosixPathInTitle = true;  # show full path in finder title
+        AppleShowAllExtensions = true;  # show all file extensions
+        FXEnableExtensionChangeWarning = false;  # disable warning when changing file extension
+        QuitMenuItem = true;  # enable quit menu item
+        ShowPathbar = true;  # show path bar
+        ShowStatusBar = true;  # show status bar
+      };
+
+      trackpad = {
+        Clicking = true;  # enable tap to click
+        TrackpadRightClick = true;  # enable two finger right click
+      };
+
+      # customize settings that not supported by nix-darwin directly
+      # Incomplete list of macOS `defaults` commands :
+      #   https://github.com/yannbertrand/macos-defaults
+      NSGlobalDomain = {
+        InitialKeyRepeat = 15;  # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
+        KeyRepeat = 3;  # normal minimum is 2 (30 ms), maximum is 120 (1800 ms)
+      };
+    };
+
+    keyboard = {
+      remapCapsLockToEscape = true; # remap caps lock to escape, useful for vim users
     };
   };
 
