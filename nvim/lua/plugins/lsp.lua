@@ -28,8 +28,13 @@ return function()
 
     lsp.pyright.setup {}
     lsp.rust_analyzer.setup {}
+    lsp.terraformls.setup {}
     lsp.volar.setup {
-        init_options = {},
+        init_options = {
+            vue = {
+                hybridMode = false,
+            },
+        },
 
         on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false

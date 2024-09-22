@@ -28,6 +28,23 @@
         ];
       };
 
+      aspect = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = attrs;
+        modules = [
+          ./configuration.nix
+          (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
+        ];
+      };
+
+      citadel = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = attrs;
+        modules = [
+          ./configuration.nix
+        ];
+      };
+
       ghostwarden = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = attrs;

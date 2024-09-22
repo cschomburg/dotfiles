@@ -42,7 +42,6 @@
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
   services.timesyncd.enable = true;
-  services.zerotierone.enable = true;
   networking.firewall.allowedUDPPorts = [ 9993 ];
 
   nix.settings.trusted-substituters = [ http://hydra.nixos.org/ ];

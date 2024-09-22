@@ -53,11 +53,11 @@ in
   services.sslh.enable = true;
   services.sslh.settings = {
     protocols = [
-      { name = "ssh"; service = "ssh"; host = "localhost"; port = "22"; },
-      { name = "openvpn"; host = "localhost"; port = "636"; },
-      { name = "http"; host = "localhost"; port = "80"; },
-      { name = "tls"; host = "localhost"; port = "444"; },
-      { name = "anyprot"; host = "localhost"; port = "444"; },
+      { name = "ssh"; service = "ssh"; host = "localhost"; port = "22"; }
+      { name = "openvpn"; host = "localhost"; port = "636"; }
+      { name = "http"; host = "localhost"; port = "80"; }
+      { name = "tls"; host = "localhost"; port = "444"; }
+      { name = "anyprot"; host = "localhost"; port = "444"; }
     ];
   };
 

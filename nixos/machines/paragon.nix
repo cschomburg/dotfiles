@@ -16,8 +16,11 @@
   };
 
   nix.settings.trusted-users = [ "cschomburg" ];
+  nixpkgs.config.allowUnfree = true;
 
   system = {
+    stateVersion = 5;
+
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
     activationScripts.postUserActivation.text = ''
       # activateSettings -u will reload the settings from the database and apply them to the current session,
@@ -72,14 +75,25 @@
   environment.systemPackages = with pkgs; [
     age
     atuin
+    bun
     curlie
+    deluge-gtk
     devenv
     direnv
+    #eslint
     git
+    git-crypt
+    intelephense
     jq
+    kubie
+    nodejs
     shellcheck
     starship
     tealdeer
+    terraform-ls
+    tmux
+    typescript-language-server
+    vue-language-server
     zoxide
   ];
 
@@ -96,10 +110,12 @@
     ];
 
     brews = [
-      "tmux"
+      "gnupg"
+      "pinentry-mac"
     ];
 
     casks = [
+      "chatgpt"
       "cryptomator"
       "dbeaver-community"
       "font-iosevka-term-nerd-font"
@@ -107,10 +123,12 @@
       "kitty"
       "obsidian"
       "rancher"
-      "rectangle"
+      "raycast"
+      "shottr"
       "slack"
       "spotify"
       "syncthing"
+      "tunnelblick"
       "visual-studio-code"
 
       "macos-fuse-t/homebrew-cask/fuse-t"

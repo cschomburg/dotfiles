@@ -32,9 +32,6 @@ in {
   services.plex.user = "xconstruct";
   networking.firewall.allowedTCPPorts = [ 32400 ];
 
-  services.zerotierone.enable = true;
-  networking.firewall.allowedUDPPorts = [ 9993 ];
-
   users.extraGroups = { files.gid = 1001; };
   users.extraUsers.xconstruct.extraGroups = [ "lp" "files" "ssl-cert" ];
 

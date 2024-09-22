@@ -23,12 +23,13 @@ with lib;
   users.extraGroups.seed = { };
 
   networking.firewall.allowedTCPPortRanges = [
-    { from = 6890;  to = 6999;  }
+    { from = 6890;  to = 6999; }
+    { from = 8112;  to = 8112; }
     { from = 58846; to = 58859; }
   ];
   networking.firewall.allowedUDPPortRanges = [
-    { from = 6890;  to = 6999;  }
-    { from = 58846; to = 58859; }
+    { from = 6890;  to = 6999; }
+    { from = 58846; to = 58859;}
   ];
 
   services.deluge = {
@@ -36,6 +37,8 @@ with lib;
     package = pkgs.deluge-2_x;
     user = "seed";
     group = "seed";
+
+    web.enable = true;
   };
 
   # nixpkgs.config.packageOverrides = pkgs: rec {
