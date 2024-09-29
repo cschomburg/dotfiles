@@ -15,4 +15,4 @@ z.sh
 
 systemd/default.target.wants
 result
-flake.lock
+.DS_Store
