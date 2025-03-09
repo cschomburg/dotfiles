@@ -9,37 +9,41 @@
     default = simple
 
 [core]
-	autocrlf = input
-	editor = nvim
+    autocrlf = input
+    editor = nvim
 
 [github]
-	user = xconstruct
+    user = cschomburg
 [alias]
-	s = status -u -s
-	c = commit
-	co = checkout
-	l = log --stat -C
-	ld = log --pretty=format:'%h %Cblue%ad%Creset %an %Cgreen%s%Creset' --date=relative
-	lg = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	spull = !git-svn fetch && git-svn rebase
-	spush = !git-svn dcommit
-	 wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
-	pushf = push --force-with-lease
+    s = status -u -s
+    c = commit
+    co = checkout
+    l = log --stat -C
+    ld = log --pretty=format:'%h %Cblue%ad%Creset %an %Cgreen%s%Creset' --date=relative
+    lg = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    spull = !git-svn fetch && git-svn rebase
+    spush = !git-svn dcommit
+    wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+    pushf = push --force-with-lease
+    psub = push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 
 [color]
-	ui = auto
+    ui = auto
 
 [pager]
-	status = true
+        status = true
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 [mergetool]
-	path = nvim
+    path = nvim
 [mergetool "vimdiff"]
-	path = nvim
+    path = nvim
 [rebase]
-	instructionFormat = (%an <%ae>) %s [%ai]
+    instructionFormat = (%an <%ae>) %s [%ai]
 [pull]
-	rebase = true
+    rebase = true
 [diff]
-	colorMoved = zebra
+    colorMoved = zebra
+    colorWords = true
+    wordRegex = \\w+|.
+	noprefix = true

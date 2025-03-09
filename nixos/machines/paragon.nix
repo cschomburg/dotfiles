@@ -5,8 +5,6 @@
     experimental-features = [ "nix-command" "flakes "];
   };
 
-  services.nix-daemon.enable = true;
-
   networking.hostName = "paragon";
   networking.computerName = "paragon";
 
@@ -15,8 +13,11 @@
     description = "cschomburg";
   };
 
+  nix.enable = false; # managed by Determinate
   nix.settings.trusted-users = [ "cschomburg" ];
   nixpkgs.config.allowUnfree = true;
+
+  ids.gids.nixbld = 30000; # https://github.com/LnL7/nix-darwin/issues/1339
 
   system = {
     stateVersion = 5;
@@ -70,19 +71,24 @@
   };
 
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   environment.systemPackages = with pkgs; [
+    aider-chat
     age
     atuin
     bun
+    claude-code
     curlie
     deluge-gtk
     devenv
     direnv
-    #eslint
+    eslint
     git
     git-crypt
+    git-annex
+    git-remote-gcrypt
+    gmailctl
     intelephense
     jq
     kubie
@@ -115,11 +121,14 @@
     ];
 
     casks = [
+      "calibre"
       "chatgpt"
       "cryptomator"
       "dbeaver-community"
       "font-iosevka-term-nerd-font"
+      "ghostty"
       "google-drive"
+      "iina"
       "kitty"
       "obsidian"
       "rancher"

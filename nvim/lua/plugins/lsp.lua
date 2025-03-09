@@ -18,7 +18,16 @@ return function()
     end
 
     lsp.intelephense.setup {
-        init_options = {},
+        init_options = {
+        },
+
+        settings = {
+            intelephense = {
+                format = {
+                    enable = false,
+                },
+            },
+        },
 
         on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false

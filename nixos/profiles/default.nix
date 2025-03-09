@@ -11,7 +11,7 @@
     htop
     libarchive
     lsof
-    nixFlakes
+    nixVersions.stable
     patchelf
     ripgrep
     rsync
@@ -27,7 +27,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
 
   networking.firewall.allowPing = true;
   networking.nameservers = lib.mkDefault [

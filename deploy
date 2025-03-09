@@ -6,69 +6,66 @@ srcdir=$(pwd)
 dstdir=$HOME
 
 files_default=(
-	'.:.dotfiles'
-	'profile:.profile'
+    '.:.dotfiles'
+    'profile:.profile'
     'nixpkgs-config.nix:.config/nixpkgs/config.nix'
-	'nvim:.config/nvim'
-	'git/gitconfig:.gitconfig'
-	'git/gitignore:.gitignore'
-	'bash/bashrc:.bashrc'
-	'fish/config.fish:.config/fish/config.fish'
-	'tmux:.tmux.conf'
+    'nvim:.config/nvim'
+    'git/gitconfig:.gitconfig'
+    'git/gitignore:.gitignore'
+    'bash/bashrc:.bashrc'
+    'fish/config.fish:.config/fish/config.fish'
+    'tmux:.tmux.conf'
     'shellcheckrc:.shellcheckrc'
     'starship.toml:.config/starship.toml'
 )
 
 files_desktop=(
-	'latexmkrc:.latexmkrc'
-	'xresources:.Xresources'
-	'systemd:.config/systemd/user'
-	'alacritty.yml:.config/alacritty/alacritty.yml'
-	'kitty:.config/kitty'
+    'latexmkrc:.latexmkrc'
+    'xresources:.Xresources'
+    'systemd:.config/systemd/user'
+    'alacritty.yml:.config/alacritty/alacritty.yml'
+    'kitty:.config/kitty'
+    'ghostty:.config/ghostty'
 )
 
 install_filepair () {
-	src="$srcdir/$1"
-	dst="$dstdir/$2"
+    src="$srcdir/$1"
+    dst="$dstdir/$2"
 
-	if [ -L $dst ] ; then
-		rm $dst
-	elif [ -f $dst ] || [ -d $dst ]; then
-		echo "Warning! File '$dst' already exists and won't be overwritten!"
-		return 1
-	else
-		echo "$1 -> $2"
-	fi
+    if [ -L $dst ] ; then
+        rm $dst
+    elif [ -f $dst ] || [ -d $dst ]; then
+        echo "Warning! File '$dst' already exists and won't be overwritten!"
+        return 1
+    else
+        echo "$1 -> $2"
+    fi
 
-	mkdir -p ${dst%/*}
-	ln -sf $src $dst
+    mkdir -p ${dst%/*}
+    ln -sf $src $dst
 }
 
 for filepair in "${files_default[@]}" ; do
-	install_filepair "${filepair%%:*}" "${filepair##*:}"
+    install_filepair "${filepair%%:*}" "${filepair##*:}"
 done
 
 # Optional tasks
 for opt in "$@"; do
-	case $opt in
-		desktop)
-			for filepair in "${files_desktop[@]}" ; do
-				install_filepair "${filepair%%:*}" "${filepair##*:}"
-			done
-			;;
-		z)
-			rm -f $srcdir/z.sh &> /dev/null
-			curl https://raw.github.com/rupa/z/HEAD/z.sh -sLo $srcdir/z.sh
-			;;
-		private)
-			. $srcdir/private/deploy
-			;;
-		fzf)
-			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-			~/.fzf/install
-			;;
-		nixos)
-			(cd $srcdir/nixos && ./rebuild.sh)
-			;;
-	esac
+    case $opt in
+        desktop)
+            for filepair in "${files_desktop[@]}" ; do
+                install_filepair "${filepair%%:*}" "${filepair##*:}"
+            done
+            ;;
+        private)
+            . $srcdir/private/deploy
+            ;;
+        fzf)
+            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+            ~/.fzf/install
+            ;;
+        nixos)
+            (cd $srcdir/nixos && ./rebuild.sh)
+            ;;
+    esac
 done
