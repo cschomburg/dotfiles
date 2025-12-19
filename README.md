@@ -27,6 +27,7 @@ Thanks to all of these amazing tools:
 
 - [NixOS](https://nixos.org/) & [nix-darwin](https://github.com/LnL7/nix-darwin)
 - [Neovim](https://neovim.io/)
+- [tmux](https://github.com/tmux/tmux)
 - [Fish](https://fishshell.com/)
 - [fzf](https://junegunn.github.io/fzf/)
 - [Starship](https://starship.rs/)

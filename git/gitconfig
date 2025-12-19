@@ -40,6 +40,7 @@
     path = nvim
 [rebase]
     instructionFormat = (%an <%ae>) %s [%ai]
+	autoStash = true
 [pull]
     rebase = true
 [diff]

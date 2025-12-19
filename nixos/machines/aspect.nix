@@ -34,6 +34,8 @@
     openFirewall = true;
   };
 
+  services.tailscale.enable = true;
+
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;

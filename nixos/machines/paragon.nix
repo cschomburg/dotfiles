@@ -3,6 +3,11 @@
 {
   nix.settings = {
     experimental-features = [ "nix-command" "flakes "];
+
+    extraOptions = ''
+      extra-substituters = https://devenv.cachix.org
+      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    '';
   };
 
   networking.hostName = "paragon";
@@ -21,13 +26,7 @@
 
   system = {
     stateVersion = 5;
-
-    # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    activationScripts.postUserActivation.text = ''
-      # activateSettings -u will reload the settings from the database and apply them to the current session,
-      # so we do not need to logout and login again to make the changes take effect.
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+    primaryUser = "cschomburg";
 
     defaults = {
       smb.NetBIOSName = "paragon";
@@ -74,7 +73,6 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   environment.systemPackages = with pkgs; [
-    aider-chat
     age
     atuin
     bun
@@ -92,6 +90,7 @@
     intelephense
     jq
     kubie
+    k9s
     nodejs
     shellcheck
     starship
@@ -107,7 +106,8 @@
     enable = true;
 
     onActivation = {
-      autoUpdate = false;
+      autoUpdate = true;
+      upgrade = true;
       # cleanup = "zap";
     };
 
@@ -116,6 +116,9 @@
     ];
 
     brews = [
+      "fzf"
+      "neovim"
+      "ripgrep"
       "gnupg"
       "pinentry-mac"
     ];
@@ -129,7 +132,6 @@
       "ghostty"
       "google-drive"
       "iina"
-      "kitty"
       "obsidian"
       "rancher"
       "raycast"
@@ -137,6 +139,7 @@
       "slack"
       "spotify"
       "syncthing"
+      "tailscale"
       "tunnelblick"
       "visual-studio-code"
 

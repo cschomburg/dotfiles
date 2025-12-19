@@ -23,6 +23,8 @@ return function()
 
         settings = {
             intelephense = {
+                runtime = '/run/current-system/sw/bin/intelephense',
+                maxMemory = 2048,
                 format = {
                     enable = false,
                 },

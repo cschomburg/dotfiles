@@ -13,6 +13,7 @@
   ];
 
   services.fail2ban.enable = true;
+  services.tailscale.enable = true;
 
   virtualisation.libvirtd.enable = true;
 

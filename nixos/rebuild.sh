@@ -40,5 +40,5 @@ elif [[ "$OS" == "darwin" ]]; then
     nix build .#darwinConfigurations.$(hostname).system \
         --extra-experimental-features 'nix-command flakes'
 
-    ./result/sw/bin/darwin-rebuild switch --flake .#paragon
+    sudo ./result/sw/bin/darwin-rebuild switch --flake .#paragon
 fi
