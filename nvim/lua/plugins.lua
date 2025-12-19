@@ -38,7 +38,6 @@ require('lazy').setup({
 
     -- colorschemes
     'sainnhe/gruvbox-material',
-    'u-ra/vim-two-firewatch',
     'morhetz/gruvbox',
     'shaunsingh/nord.nvim',
     'atelierbram/Base2Tone-nvim',

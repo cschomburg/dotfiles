@@ -1,23 +1,24 @@
 return function()
-    local lsp = require('lspconfig')
-
     -- Language servers
     if vim.env.NVIM_IS_DENO then
-        lsp.denols.setup {
+        vim.lsp.enable('denols')
+        vim.lsp.config('denols', {
             init_options = {
                 unstable = true;
             }
-        }
+        })
     else
-        lsp.tsserver.setup {
+        vim.lsp.enable('ts_ls')
+        vim.lsp.config('ts_ls', {
             on_attach = function(client)
                 client.server_capabilities.documentFormattingProvider = false
                 client.server_capabilities.documentRangeFormattingProvider = false
             end,
-        }
+        })
     end
 
-    lsp.intelephense.setup {
+    vim.lsp.enable('intelephense')
+    vim.lsp.config('intelephense', {
         init_options = {
         },
 
@@ -35,12 +36,13 @@ return function()
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
         end,
-    }
+    })
 
-    lsp.pyright.setup {}
-    lsp.rust_analyzer.setup {}
-    lsp.terraformls.setup {}
-    lsp.volar.setup {
+    vim.lsp.enable('pyright')
+    vim.lsp.enable('rust_analyzer')
+    vim.lsp.enable('terraformls')
+    vim.lsp.enable('volar')
+    vim.lsp.config('volar', {
         init_options = {
             vue = {
                 hybridMode = false,
@@ -51,7 +53,7 @@ return function()
             client.server_capabilities.documentFormattingProvider = false
             client.server_capabilities.documentRangeFormattingProvider = false
         end,
-    }
+    })
 
     -- Mappings
     local opts = { noremap=true, silent=true }
