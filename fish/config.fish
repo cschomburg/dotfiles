@@ -1,14 +1,3 @@
-# TMUX autostart new session or connect to previous
-if type tmux &>/dev/null
-    if [ -z "$TMUX" ]
-        if tmux -q has-session -t main
-            exec tmux attach-session -t main
-        else
-            exec tmux new-session -s main
-        end
-    end
-end
-
 set -x GOPATH "$HOME/code/go"
 set NPM_PACKAGES "$HOME/.npm-packages"
 
@@ -20,7 +9,8 @@ fish_add_path \
     "$HOME/.npm-packages/bin" \
     "$HOME/.cargo/bin" \
     "$HOME/.deno/bin" \
-    "$HOME/.rd/bin"
+    "$HOME/.rd/bin" \
+    "$HOME/.local/bin"
 
 alias cp='cp -vi'
 alias mv='mv -v'
