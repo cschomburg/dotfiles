@@ -11,6 +11,7 @@
 bin/hub
 z.sh
 
+/nixos/flake.lock
 /private
 
 systemd/default.target.wants

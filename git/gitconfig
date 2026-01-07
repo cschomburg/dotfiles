@@ -26,6 +26,7 @@
     wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
     pushf = push --force-with-lease
     psub = push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+	rebase-master = !git fetch origin master:master && git rebase -i origin/master
 
 [color]
     ui = auto

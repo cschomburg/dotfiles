@@ -3,7 +3,3 @@ font-size = 15
 cursor-style = bar
 theme = zenbones
 keybind = shift+enter=text:\x1b\r
-
-keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>n=next_tab
-keybind = ctrl+a>p=previous_tab
