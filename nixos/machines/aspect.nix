@@ -16,6 +16,7 @@
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = "1";
+    "net.ipv6.ip_forward" = "1";
   };
 
   # qemu-guest
@@ -35,6 +36,7 @@
   };
 
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "server";
 
   services.nginx = {
     enable = true;

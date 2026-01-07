@@ -140,7 +140,6 @@
       "spotify"
       "syncthing"
       "tailscale"
-      "tunnelblick"
       "visual-studio-code"
 
       "macos-fuse-t/homebrew-cask/fuse-t"

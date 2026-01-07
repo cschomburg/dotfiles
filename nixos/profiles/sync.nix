@@ -4,9 +4,9 @@
   environment.systemPackages = with pkgs; [
     borgbackup
     cryptsetup
-    gitAndTools.git-crypt
-    gitAndTools.gitAnnex
-    gitAndTools.gitRemoteGcrypt
+    git-crypt
+    git-annex
+    git-remote-gcrypt
     gocryptfs
     rclone
     unionfs-fuse

@@ -33,7 +33,7 @@ if [[ "$OS" == "nixos" ]]; then
         operation=$1
     fi
 
-    sudo NIX_CURL_FLAGS='--retry 1000' nixos-rebuild --fast --keep-failed --show-trace $operation
+    sudo NIX_CURL_FLAGS='--retry 1000' nixos-rebuild --keep-failed --show-trace $operation
 
 elif [[ "$OS" == "darwin" ]]; then
     # macOS (Darwin) specific operations

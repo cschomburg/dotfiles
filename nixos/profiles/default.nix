@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+  environment.enableAllTerminfo = true;
+
   environment.systemPackages = with pkgs; [
-    archiver
     binutils
     curl
     file
