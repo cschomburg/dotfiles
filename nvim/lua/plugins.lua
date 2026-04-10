@@ -48,11 +48,12 @@ require('lazy').setup({
     -- treesitter
     {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+        branch = 'main',
+        build = ':TSUpdate',
         config = plugin_config('treesitter'),
     },
     {
-        'romgrk/nvim-treesitter-context',
+        'nvim-treesitter/nvim-treesitter-context',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
 

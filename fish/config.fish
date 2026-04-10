@@ -31,3 +31,10 @@ starship init fish | source
 zoxide init fish | source
 fzf --fish | source
 atuin init fish | source
+
+# pnpm
+set -gx PNPM_HOME "$HOME/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
