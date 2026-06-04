@@ -41,17 +41,18 @@ with lib;
     web.enable = true;
   };
 
-  # nixpkgs.config.packageOverrides = pkgs: rec {
-  #   DigestSHA = pkgs.buildPerlPackage rec {
-  #     name = "Digest-SHA-5.95";
-  #     src = pkgs.fetchurl {
-  #       url = "mirror://cpan/authors/id/M/MS/MSHELOR/${name}.tar.gz";
-  #       sha256 = "c7573f0f3b2bc280f8567c76eb2422ee8da19af5a5fa75988dc47e14de2e1471";
-  #     };
-  #     meta = {
-  #       description = "Perl extension for SHA-1/224/256/384/512";
-  #       license = with stdenv.lib.licenses; [ artistic1 gpl1Plus ];
-  #     };
-  #   };
-  # };
+  services.autobrr = {
+    enable = true;
+    secretFile = "/etc/autobrr-sessionsecret";
+    settings = {
+      host = "0.0.0.0";
+    };
+  };
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 7474 ];
+
+  services.jellyfin = {
+    enable = true;
+    user = "seed";
+    openFirewall = true;
+  };
 }

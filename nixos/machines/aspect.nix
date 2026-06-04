@@ -29,11 +29,6 @@
   services.fail2ban.enable = true;
   services.openssh.enable = true;
   services.cron.enable = true;
-  services.jellyfin = {
-    enable = true;
-    user = "seed";
-    openFirewall = true;
-  };
 
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "server";
@@ -46,7 +41,7 @@
     recommendedTlsSettings = true;
   };
 
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "20.03";
 
   nix.settings.max-jobs = lib.mkDefault 4;
   nix.settings.experimental-features = "nix-command flakes";

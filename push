@@ -2,7 +2,7 @@
 
 set -eu
 
-cd ~/code/conf/dotfiles
+cd ~/code/dotfiles
 MACHINE=$1
 
 rsync -avP \
