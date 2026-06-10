@@ -8,7 +8,6 @@
   imports = [
     ../profiles/seed.nix
     ../profiles/sync.nix
-    ../profiles/vpn.nix
   ];
 
   # Use the GRUB 2 boot loader.

@@ -41,6 +41,19 @@ with lib;
     web.enable = true;
   };
 
+  services.rtorrent = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.flood = {
+    enable = true;
+    host = "::";
+    port = 3000;
+    extraArgs = ["--rtsocket=${config.services.rtorrent.rpcSocket}"];
+  };
+  systemd.services.flood.serviceConfig.SupplementaryGroups = [ config.services.rtorrent.group ];
+
   services.autobrr = {
     enable = true;
     secretFile = "/etc/autobrr-sessionsecret";
@@ -48,7 +61,7 @@ with lib;
       host = "0.0.0.0";
     };
   };
-  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 7474 ];
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 3000 7474 ];
 
   services.jellyfin = {
     enable = true;
