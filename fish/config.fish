@@ -22,7 +22,12 @@ set -x EDITOR "nvim"
 set -x VISUAL "nvim"
 set -x MANPAGER "nvim +Man!"
 
-brew shellenv | source
+if test -d /home/linuxbrew/.linuxbrew
+  /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
+else if test -d /opt/homebrew
+  /opt/homebrew/bin/brew shellenv | source
+end
+
 starship init fish | source
 zoxide init fish | source
 fzf --fish | source
