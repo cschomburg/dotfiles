@@ -15,9 +15,6 @@ fish_add_path \
 alias cp='cp -vi'
 alias mv='mv -v'
 alias ag='rg -S'
-alias top="htop"
-alias curl="curlie"
-alias xclipb='xclip -selection clipboard'
 alias tf="terraform"
 alias k="kubectl"
 
@@ -25,8 +22,7 @@ set -x EDITOR "nvim"
 set -x VISUAL "nvim"
 set -x MANPAGER "nvim +Man!"
 
-eval (/opt/homebrew/bin/brew shellenv)
-
+brew shellenv | source
 starship init fish | source
 zoxide init fish | source
 fzf --fish | source

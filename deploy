@@ -60,9 +60,8 @@ for opt in "$@"; do
         private)
             . $srcdir/private/deploy
             ;;
-        fzf)
-            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-            ~/.fzf/install
+        deps)
+            brew install fish starship zoxide fzf atuin
             ;;
         nixos)
             (cd $srcdir/nixos && ./rebuild.sh)
