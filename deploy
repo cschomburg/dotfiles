@@ -11,7 +11,7 @@ files_default=(
     'nixpkgs-config.nix:.config/nixpkgs/config.nix'
     'nvim:.config/nvim'
     'git/gitconfig:.gitconfig'
-    'git/gitignore:.gitignore'
+    'git/gitignore:.config/git/ignore'
     'bash/bashrc:.bashrc'
     'fish/config.fish:.config/fish/config.fish'
     'tmux:.tmux.conf'

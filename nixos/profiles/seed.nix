@@ -44,14 +44,18 @@ with lib;
   services.rtorrent = {
     enable = true;
     openFirewall = true;
+    user = "seed";
+    group = "seed";
   };
+  systemd.services.rtorrent.serviceConfig.ProtectHome = mkForce false;
 
   services.flood = {
     enable = true;
     host = "::";
     port = 3000;
-    extraArgs = ["--rtsocket=${config.services.rtorrent.rpcSocket}"];
+    extraArgs = ["--rtsocket=${config.services.rtorrent.rpcSocket}" "--tempPath=/home/seed/tmp"];
   };
+  systemd.services.flood.serviceConfig.ProtectHome = mkForce false;
   systemd.services.flood.serviceConfig.SupplementaryGroups = [ config.services.rtorrent.group ];
 
   services.autobrr = {
@@ -62,6 +66,7 @@ with lib;
     };
   };
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 3000 7474 ];
+  systemd.services.autobrr.serviceConfig.SupplementaryGroups = [ config.services.rtorrent.group ];
 
   services.jellyfin = {
     enable = true;
