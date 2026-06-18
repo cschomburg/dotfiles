@@ -7,7 +7,6 @@ dstdir=$HOME
 
 files_default=(
     '.:.dotfiles'
-    'profile:.profile'
     'nixpkgs-config.nix:.config/nixpkgs/config.nix'
     'nvim:.config/nvim'
     'git/gitconfig:.gitconfig'
