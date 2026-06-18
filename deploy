@@ -28,43 +28,96 @@ files_desktop=(
     'ghostty:.config/ghostty'
 )
 
-install_filepair () {
-    src="$srcdir/$1"
-    dst="$dstdir/$2"
+usage () {
+    cat <<'EOF'
+Usage: ./deploy <command>
 
-    if [ -L $dst ] ; then
-        rm $dst
-    elif [ -f $dst ] || [ -d $dst ]; then
+Commands:
+    default          Symlink the core dotfiles into $HOME
+    desktop          Symlink GUI/terminal configs (alacritty, kitty, ghostty, X)
+    skills [name]    Symlink Claude skills into ~/.claude/skills/ (all, or one named)
+    private          Run private/deploy (git-crypt encrypted secrets)
+    deps             Install dependencies via Homebrew
+    nixos            Rebuild the current machine (nixos/rebuild.sh)
+EOF
+}
+
+# Symlink $srcdir/$1 to $dstdir/$2, replacing existing symlinks but never real files.
+install_filepair () {
+    local src="$srcdir/$1"
+    local dst="$dstdir/$2"
+
+    if [ -L "$dst" ] ; then
+        rm "$dst"
+    elif [ -f "$dst" ] || [ -d "$dst" ]; then
         echo "Warning! File '$dst' already exists and won't be overwritten!"
         return 1
     else
         echo "$1 -> $2"
     fi
 
-    mkdir -p ${dst%/*}
-    ln -sf $src $dst
+    mkdir -p "${dst%/*}"
+    ln -sf "$src" "$dst"
 }
 
-for filepair in "${files_default[@]}" ; do
-    install_filepair "${filepair%%:*}" "${filepair##*:}"
-done
+install_filepairs () {
+    local filepair
+    for filepair in "$@" ; do
+        install_filepair "${filepair%%:*}" "${filepair##*:}"
+    done
+}
 
-# Optional tasks
-for opt in "$@"; do
-    case $opt in
-        desktop)
-            for filepair in "${files_desktop[@]}" ; do
-                install_filepair "${filepair%%:*}" "${filepair##*:}"
-            done
-            ;;
-        private)
-            . $srcdir/private/deploy
-            ;;
-        deps)
-            brew install fish starship zoxide fzf atuin
-            ;;
-        nixos)
-            (cd $srcdir/nixos && ./rebuild.sh)
-            ;;
-    esac
-done
+cmd_default () {
+    install_filepairs "${files_default[@]}"
+}
+
+cmd_desktop () {
+    install_filepairs "${files_desktop[@]}"
+}
+
+# Install a single skill by name if given, otherwise every skill in skills/.
+cmd_skills () {
+    if [ -n "${1:-}" ]; then
+        install_filepair "skills/$1" ".claude/skills/$1"
+        return
+    fi
+
+    local dir name
+    for dir in "$srcdir"/skills/*/ ; do
+        name=$(basename "$dir")
+        install_filepair "skills/$name" ".claude/skills/$name"
+    done
+}
+
+cmd_private () {
+    . "$srcdir/private/deploy"
+}
+
+cmd_deps () {
+    brew install fish starship zoxide fzf atuin
+}
+
+cmd_nixos () {
+    (cd "$srcdir/nixos" && ./rebuild.sh)
+}
+
+if [ $# -eq 0 ]; then
+    usage
+    exit 1
+fi
+
+cmd=$1
+shift
+case $cmd in
+    default) cmd_default ;;
+    desktop) cmd_desktop ;;
+    skills) cmd_skills "$@" ;;
+    private) cmd_private ;;
+    deps) cmd_deps ;;
+    nixos) cmd_nixos ;;
+    *)
+        echo "Unknown command: $cmd"
+        usage
+        exit 1
+        ;;
+esac
