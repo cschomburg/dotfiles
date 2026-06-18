@@ -104,13 +104,6 @@ nnoremap <leader>h :%!xxd<CR>
 nnoremap <leader>H :%!xxd -r<CR>
 nnoremap <leader>n :NV<CR>
 
-function! PrettySql()
-	execute 's/\v<(FROM|WHERE|LEFT|INNER|GROUP|ORDER|LIMIT)>/MEOWTWO\1'
-	execute 's/\v,/,MEOWTWO    '
-	execute 's/\v<(AND|OR|ON)>/MEOWTWO    \1'
-	execute 's/MEOWTWO/\r'
-endfunction
-
 " allow using repeat operator with a visual selection
 vnoremap . :normal .<CR>
 
@@ -135,29 +128,6 @@ autocmd FileType graphql setlocal tabstop=2 shiftwidth=2
 " fuzzy finder
 nmap <Leader>e :Buffers<CR>
 nmap <Leader>f :Files<CR>
-" nmap <Leader>e <cmd>Telescope buffers<cr>
-" nmap <Leader>f <cmd>Telescope find_files<cr>
-
-" Go programming language
-if !empty($GOPATH)
-	au FileType go nmap <Leader>i <Plug>(go-info)
-	au FileType go nmap <Leader>gd <Plug>(go-doc-vertical)
-	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-	au FileType go nmap <Leader>t <Plug>(go-test)
-endif
-
-" PHP
-autocmd FileType php let b:surround_45 = "__('\r')"
-nmap <leader>g cs'-
-
-" Easy Align
-vmap <Enter> <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
-let g:easy_align_delimiters = {
-  \ ';': { 'pattern': ';', 'left_margin': 0, 'right_margin': 1, 'stick_to_left': 1 } }
-
-nnoremap <leader>u :MundoToggle<CR>
-nnoremap <leader>s :e ~/.scratchpad.md<CR>
 
 " Ripgrep
 if executable('rg') 

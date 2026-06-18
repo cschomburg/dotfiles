@@ -29,16 +29,11 @@ require('lazy').setup({
     -- tpope essentials
     'tpope/vim-surround',
     'tpope/vim-repeat',
-    'tpope/vim-vinegar',
     'tpope/vim-fugitive',
     'tpope/vim-commentary',
-    'tpope/vim-abolish',
     'tpope/vim-sleuth',
-    'tpope/vim-dadbod',
 
     -- colorschemes
-    'sainnhe/gruvbox-material',
-    'morhetz/gruvbox',
     'shaunsingh/nord.nvim',
     'atelierbram/Base2Tone-nvim',
     'catppuccin/nvim',
@@ -59,34 +54,20 @@ require('lazy').setup({
 
     -- misc
     { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') },
-    'junegunn/vim-easy-align',
     { 'lewis6991/gitsigns.nvim' },
     { 'junegunn/fzf' },
     'junegunn/fzf.vim',
-    'simnalamburt/vim-mundo',
     { 'NvChad/nvim-colorizer.lua', config = plugin_config('colorizer') },
-    'ggandor/lightspeed.nvim',
 
     -- diagnostics & code completion
     { 'neovim/nvim-lspconfig', config = plugin_config('lsp') },
-    { 'nvimtools/none-ls.nvim', config = plugin_config('null-ls') },
     { 'folke/trouble.nvim', config = plugin_config('trouble') },
-    { 'hrsh7th/cmp-vsnip' },
-    { 'hrsh7th/vim-vsnip' },
-    { 'hrsh7th/vim-vsnip-integ' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/nvim-cmp', config = plugin_config('cmp') },
     { 'ray-x/lsp_signature.nvim', config = plugin_config('lsp_signature') },
-    { 'github/copilot.vim' },
-    { 'robitx/gp.nvim', config = plugin_config('gp') },
-
-    {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {'nvim-lua/popup.nvim'}
-    },
 
     -- language specific
     { 'fatih/vim-go', ft = 'go' },
@@ -111,9 +92,6 @@ do
 
     vim.g.slime_target = "tmux"
     vim.g.slime_default_config = { socket_name ='default', target_pane = '{last}' }
-
-    vim.g.mundo_width = 100
-    vim.g.mundo_right = 1
 
     vim.g.nord_borders = true;
 
