@@ -16,7 +16,7 @@ owner's machines and servers. There is no build/test/lint pipeline — changes a
 ./deploy desktop         # link GUI/terminal configs (ghostty, systemd user units)
 ./deploy skills [name]   # symlink Claude skills into ~/.claude/skills/ (all, or one named)
 ./deploy private         # run private/deploy (git-crypt encrypted secrets)
-./deploy deps            # brew install fish starship zoxide fzf atuin
+./deploy deps            # brew bundle (installs packages from ./Brewfile)
 ./deploy nixos           # run nixos/rebuild.sh
 
 cd nixos && ./rebuild.sh # rebuild the current machine (NixOS switch, or darwin-rebuild)

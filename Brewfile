@@ -1,0 +1,5 @@
+brew "fish"
+brew "starship"
+brew "zoxide"
+brew "fzf"
+brew "atuin"

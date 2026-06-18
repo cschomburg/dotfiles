@@ -88,7 +88,7 @@ cmd_private () {
 }
 
 cmd_deps () {
-    brew install fish starship zoxide fzf atuin
+    brew bundle --file="$srcdir/Brewfile"
 }
 
 cmd_nixos () {
