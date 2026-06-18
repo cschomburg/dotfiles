@@ -13,7 +13,7 @@ owner's machines and servers. There is no build/test/lint pipeline — changes a
 ```bash
 ./deploy                 # no args: print usage and exit
 ./deploy default         # symlink the core dotfiles into $HOME
-./deploy desktop         # link GUI/terminal configs (alacritty, kitty, ghostty, X)
+./deploy desktop         # link GUI/terminal configs (ghostty, systemd user units)
 ./deploy skills [name]   # symlink Claude skills into ~/.claude/skills/ (all, or one named)
 ./deploy private         # run private/deploy (git-crypt encrypted secrets)
 ./deploy deps            # brew install fish starship zoxide fzf atuin
@@ -59,8 +59,7 @@ To add a dotfile, add a `src:dst` entry to the appropriate array — do not writ
 ### Other components
 - `nvim/` — Neovim config (`init.vim` + `lua/`, lazy.nvim plugins under `lua/plugins/`).
 - `bin/` — personal scripts, symlinked onto `$PATH` via the `.dotfiles` link.
-- Terminal/shell configs: `fish/`, `bash/`, `tmux`, `starship.toml`, `ghostty/`,
-  `kitty/`, `alacritty.yml`.
+- Terminal/shell configs: `fish/`, `tmux`, `starship.toml`, `ghostty/`.
 
 ## Conventions
 - Shell scripts use `#!/usr/bin/env bash` with `set -eu`; `.shellcheckrc` is deployed.

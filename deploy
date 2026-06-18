@@ -12,7 +12,6 @@ files_default=(
     'nvim:.config/nvim'
     'git/gitconfig:.gitconfig'
     'git/gitignore:.config/git/ignore'
-    'bash/bashrc:.bashrc'
     'fish/config.fish:.config/fish/config.fish'
     'tmux:.tmux.conf'
     'shellcheckrc:.shellcheckrc'
@@ -20,11 +19,7 @@ files_default=(
 )
 
 files_desktop=(
-    'latexmkrc:.latexmkrc'
-    'xresources:.Xresources'
     'systemd:.config/systemd/user'
-    'alacritty.yml:.config/alacritty/alacritty.yml'
-    'kitty:.config/kitty'
     'ghostty:.config/ghostty'
 )
 
@@ -34,7 +29,7 @@ Usage: ./deploy <command>
 
 Commands:
     default          Symlink the core dotfiles into $HOME
-    desktop          Symlink GUI/terminal configs (alacritty, kitty, ghostty, X)
+    desktop          Symlink GUI/terminal configs (ghostty, systemd user units)
     skills [name]    Symlink Claude skills into ~/.claude/skills/ (all, or one named)
     private          Run private/deploy (git-crypt encrypted secrets)
     deps             Install dependencies via Homebrew
