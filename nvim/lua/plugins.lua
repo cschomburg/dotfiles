@@ -40,18 +40,6 @@ require('lazy').setup({
     'rose-pine/neovim',
     { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
 
-    -- treesitter
-    {
-        'nvim-treesitter/nvim-treesitter',
-        branch = 'main',
-        build = ':TSUpdate',
-        config = plugin_config('treesitter'),
-    },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    },
-
     -- misc
     { 'nvim-lualine/lualine.nvim', config = plugin_config('lualine') },
     { 'lewis6991/gitsigns.nvim' },

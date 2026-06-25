@@ -41,19 +41,6 @@ return function()
     vim.lsp.enable('pyright')
     vim.lsp.enable('rust_analyzer')
     vim.lsp.enable('terraformls')
-    -- vim.lsp.enable('volar')
-    -- vim.lsp.config('volar', {
-    --     init_options = {
-    --         vue = {
-    --             hybridMode = false,
-    --         },
-    --     },
-
-    --     on_attach = function(client)
-    --         client.server_capabilities.documentFormattingProvider = false
-    --         client.server_capabilities.documentRangeFormattingProvider = false
-    --     end,
-    -- })
 
     -- Mappings
     local opts = { noremap=true, silent=true }
