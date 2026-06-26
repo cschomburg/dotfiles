@@ -14,18 +14,10 @@ mkdir dotfiles && curl -L https://github.com/xconstruct/dotfiles/tarball/master 
 ./deploy
 ```
 
-The complete configuration of all my devices and servers is also included here, thanks to [NixOS](https://nixos.org).
-To get started, create a machine profile with your hostname similar to [nixos/machines/paragon.nix](nixos/machines/paragon.nix).
-
-```bash
-cd dotfiles/nixos && ./rebuild
-```
-
 ## Shoutouts
 
 Thanks to all of these amazing tools:
 
-- [NixOS](https://nixos.org/) & [nix-darwin](https://github.com/LnL7/nix-darwin)
 - [Neovim](https://neovim.io/)
 - [tmux](https://github.com/tmux/tmux)
 - [Fish](https://fishshell.com/)
