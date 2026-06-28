@@ -16,6 +16,8 @@ Assess how well a codebase's architecture and engineering practices fit its actu
 
 Be concrete: cite file paths, name the missing thing, and link the deeper guidance rather than re-explaining it. Keep each finding to 1–3 lines.
 
+On medium-to-large projects (Tier 3+, or any repo too big to scan in one pass), fan the scan out across **parallel subagents** — e.g. one per bounded context / service / checklist area — then consolidate their findings into a single audit. Keep the classification step (step 1) centralized so every subagent audits against the same tier.
+
 ## Classification
 
 First determine **scale/complexity tier**, then **structural style**. Use evidence: directory layout, service count, dependency manifests, deploy config, team signals (CODEOWNERS, number of contributors), and domain breadth.
