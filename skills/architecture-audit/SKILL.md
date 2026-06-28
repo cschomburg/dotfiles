@@ -82,6 +82,7 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 - **Cost observability (FinOps)** — per-tenant / per-service cost is attributable; unit economics are visible. [FinOps Framework](https://www.finops.org/framework/)
 - **DR & data lifecycle** — tested backups, defined RTO/RPO, and a documented disaster-recovery runbook.
 - **Secrets & key management** — centralized secrets manager and rotation; no long-lived static credentials.
+- **Money-handling correctness (if it touches money)** — no invented/lost data: exact representation (minor units, not floats), double-entry ledgers, idempotent transfers, and reconciliation against external providers. [Fintech Engineering Handbook](https://w.pitula.me/fintech-engineering-handbook/)
 
 ## Output format
 
