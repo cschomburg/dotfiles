@@ -49,6 +49,7 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 - **Linting + formatting enforced** — config committed and run in CI, not just locally (e.g. ruff/eslint/prettier).
 - **Test pyramid** — unit + integration + at least smoke-level e2e (browser or CLI); fast feedback over exhaustive slow tests. [Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
 - **Cursor-based pagination** — a `Page`/`Cursor` type carried through the domain and DB layers, not raw offset/limit leaking into handlers. [Cursor pagination](https://slack.engineering/evolving-api-pagination-at-slack/)
+- **Versioned DB migrations** — schema changes are versioned, reviewed, and applied through a migration tool (Flyway/Alembic/etc.), not hand-run SQL; ideally reversible and forward-compatible. [Evolutionary Database Design](https://martinfowler.com/articles/evodb.html)
 - **CONTEXT.md** — the ubiquitous language, domain model, and key entities written down so the model is shared. [Ubiquitous Language](https://martinfowler.com/bliki/UbiquitousLanguage.html)
 - **ADRs** — architecture decisions recorded with context and consequences, in-repo under `docs/adr/`. [ADR GitHub org](https://adr.github.io/)
 - **Minimal observability** — structured logging and a coherent error-handling strategy (no swallowed exceptions, consistent error responses).
@@ -63,6 +64,7 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 - **Decompose by business capability / subdomain** — services align to domains, not technical layers. [Decompose by subdomain](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)
 - **Database per service** — no shared DB across services; shared schema = distributed monolith. [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
 - **Explicit inter-service communication** — sync (REST/gRPC) vs async (messaging) chosen deliberately and documented. [RPI](https://microservices.io/patterns/communication-style/rpi.html) · [Messaging](https://microservices.io/patterns/communication-style/messaging.html)
+- **API contracts & versioning** — interfaces have a published schema (OpenAPI/protobuf/AsyncAPI), are versioned, and changes are guarded by consumer-driven contract tests so a producer can't silently break consumers. [Consumer-Driven Contracts](https://martinfowler.com/articles/consumerDrivenContracts.html) · [Pact](https://docs.pact.io/)
 - **Data consistency across services** — Saga for cross-service transactions; Transactional Outbox for reliable event publishing. [Saga](https://microservices.io/patterns/data/saga.html) · [Outbox](https://microservices.io/patterns/data/transactional-outbox.html)
 - **Resilience at boundaries** — circuit breakers, timeouts, retries with backoff, idempotent consumers. [Circuit Breaker](https://microservices.io/patterns/reliability/circuit-breaker.html) · [Idempotent Consumer](https://microservices.io/patterns/communication-style/idempotent-consumer.html)
 - **API gateway / BFF** — clients hit a unified edge, not individual services directly. [API Gateway](https://microservices.io/patterns/apigateway.html)
@@ -72,6 +74,8 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 - **Health checks + deployment platform** — every service exposes health endpoints; deploys are containerized and automated. [Health Check API](https://microservices.io/patterns/observability/health-check-api.html)
 - **Standards-based feature flags** — if flags exist, use an OpenFeature-compatible provider, not bespoke booleans. [OpenFeature](https://openfeature.dev/)
 - **Service-to-service security** — propagate identity via signed access tokens; don't trust the network. [Access Token](https://microservices.io/patterns/security/access-token.html)
+- **Tested backups & restore** — persistent data has automated backups and a restore that's actually been exercised, not just configured. (Tier 4 raises this to defined RTO/RPO + DR runbook.)
+- **Supply-chain security** — dependencies and containers are scanned for known vulnerabilities (SCA), an SBOM is produced, and secret-scanning runs in CI; builds are reproducible/provenanced. [SLSA](https://slsa.dev/) · [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
 ### Tier 4 — Enterprise (commercialized SaaS)
 
