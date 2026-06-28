@@ -61,21 +61,23 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 
 ### Tier 3 — High (multiple services / domains)
 
+Each item targets a **boundary**, independent of deployment topology. Items marked _(distributed)_ apply only when contexts are separate services; in a modular monolith, judge their in-process equivalent instead.
+
 - **Repo organized by domain/bounded context** — each context has its own `CONTEXT.md`; a root `CONTEXT-MAP.md` shows how contexts relate. [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html) · [Context Map](https://github.com/ddd-crew/context-mapping)
 - **PRODUCT_BRIEF.md** — high-level business context and product requirements, so technical decisions trace to product intent.
-- **Decompose by business capability / subdomain** — services align to domains, not technical layers. [Decompose by subdomain](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)
-- **Database per service** — no shared DB across services; shared schema = distributed monolith. [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
-- **Explicit inter-service communication** — sync (REST/gRPC) vs async (messaging) chosen deliberately and documented. [RPI](https://microservices.io/patterns/communication-style/rpi.html) · [Messaging](https://microservices.io/patterns/communication-style/messaging.html)
+- **Decompose by business capability / subdomain** — modules/services align to domains, not technical layers. [Decompose by subdomain](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)
+- **Data ownership per context** — each context owns its data; no other context reads its tables directly. In services this is a database per service; in a modular monolith it's an enforced schema/module boundary, not just a convention. (Shared schema across services = distributed monolith.) [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
+- **Explicit inter-context communication** — how contexts talk is a deliberate, documented choice: a module API boundary in a monolith; sync (REST/gRPC) vs async (messaging) _(distributed)_ across services. [RPI](https://microservices.io/patterns/communication-style/rpi.html) · [Messaging](https://microservices.io/patterns/communication-style/messaging.html)
 - **API contracts & versioning** — interfaces have a published schema (OpenAPI/protobuf/AsyncAPI), are versioned, and changes are guarded by consumer-driven contract tests so a producer can't silently break consumers. [Consumer-Driven Contracts](https://martinfowler.com/articles/consumerDrivenContracts.html) · [Pact](https://docs.pact.io/)
-- **Data consistency across services** — Saga for cross-service transactions; Transactional Outbox for reliable event publishing. [Saga](https://microservices.io/patterns/data/saga.html) · [Outbox](https://microservices.io/patterns/data/transactional-outbox.html)
-- **Resilience at boundaries** — circuit breakers, timeouts, retries with backoff, idempotent consumers. [Circuit Breaker](https://microservices.io/patterns/reliability/circuit-breaker.html) · [Idempotent Consumer](https://microservices.io/patterns/communication-style/idempotent-consumer.html)
-- **API gateway / BFF** — clients hit a unified edge, not individual services directly. [API Gateway](https://microservices.io/patterns/apigateway.html)
+- **Data consistency across boundaries** — cross-context writes are handled deliberately: a local transaction in a monolith; Saga + Transactional Outbox _(distributed)_ once writes span services. [Saga](https://microservices.io/patterns/data/saga.html) · [Outbox](https://microservices.io/patterns/data/transactional-outbox.html)
+- **Resilience at boundaries** _(distributed)_ — circuit breakers, timeouts, retries with backoff, idempotent consumers on calls that cross the network. [Circuit Breaker](https://microservices.io/patterns/reliability/circuit-breaker.html) · [Idempotent Consumer](https://microservices.io/patterns/communication-style/idempotent-consumer.html)
+- **API gateway / BFF** _(distributed)_ — clients hit a unified edge, not individual services directly. [API Gateway](https://microservices.io/patterns/apigateway.html)
 - **Webhooks done right (if exposed/consumed)** — signed payloads, replay/idempotency protection, retries with backoff, and a verification/debugging story for consumers. [webhooks.fyi](https://webhooks.fyi/)
 - **High observability** — JSON structured logs, log aggregation, application metrics, and distributed tracing; ideally OpenTelemetry-native. [OpenTelemetry](https://opentelemetry.io/docs/) · [Distributed Tracing](https://microservices.io/patterns/observability/distributed-tracing.html)
 - **Audit logging** — security/compliance-relevant actions recorded immutably, distinct from operational logs.
-- **Health checks + deployment platform** — every service exposes health endpoints; deploys are containerized and automated. [Health Check API](https://microservices.io/patterns/observability/health-check-api.html)
+- **Health checks + deployment platform** — every deployable exposes health endpoints; deploys are containerized and automated. [Health Check API](https://microservices.io/patterns/observability/health-check-api.html)
 - **Standards-based feature flags** — if flags exist, use an OpenFeature-compatible provider, not bespoke booleans. [OpenFeature](https://openfeature.dev/)
-- **Service-to-service security** — propagate identity via signed access tokens; don't trust the network. [Access Token](https://microservices.io/patterns/security/access-token.html)
+- **Service-to-service security** _(distributed)_ — propagate identity via signed access tokens; don't trust the network. [Access Token](https://microservices.io/patterns/security/access-token.html)
 - **Tested backups & restore** — persistent data has automated backups and a restore that's actually been exercised, not just configured.
 - **Supply-chain security** — dependencies and containers are scanned for known vulnerabilities (SCA), an SBOM is produced, and secret-scanning runs in CI; builds are reproducible/provenanced. [SLSA](https://slsa.dev/) · [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
