@@ -32,6 +32,7 @@ starship init fish | source
 zoxide init fish | source
 fzf --fish | source
 atuin init fish | source
+devenv hook fish | source
 
 # pnpm
 set -gx PNPM_HOME "$HOME/pnpm"
