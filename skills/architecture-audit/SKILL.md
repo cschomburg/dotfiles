@@ -74,7 +74,7 @@ Cumulative: include all lower tiers. Each bullet is a principle to verify; the l
 - **Health checks + deployment platform** — every service exposes health endpoints; deploys are containerized and automated. [Health Check API](https://microservices.io/patterns/observability/health-check-api.html)
 - **Standards-based feature flags** — if flags exist, use an OpenFeature-compatible provider, not bespoke booleans. [OpenFeature](https://openfeature.dev/)
 - **Service-to-service security** — propagate identity via signed access tokens; don't trust the network. [Access Token](https://microservices.io/patterns/security/access-token.html)
-- **Tested backups & restore** — persistent data has automated backups and a restore that's actually been exercised, not just configured. (Tier 4 raises this to defined RTO/RPO + DR runbook.)
+- **Tested backups & restore** — persistent data has automated backups and a restore that's actually been exercised, not just configured.
 - **Supply-chain security** — dependencies and containers are scanned for known vulnerabilities (SCA), an SBOM is produced, and secret-scanning runs in CI; builds are reproducible/provenanced. [SLSA](https://slsa.dev/) · [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
 ### Tier 4 — Enterprise (commercialized SaaS)
