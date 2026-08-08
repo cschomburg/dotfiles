@@ -1,0 +1,4 @@
+interface:
+  display_name: "Service Privacy Analysis"
+  short_description: "Research service privacy and data openness"
+  default_prompt: "Use $service-privacy-analysis to assess this service’s EU privacy, portability, APIs, and open-source ecosystem."
