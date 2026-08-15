@@ -2,6 +2,8 @@ set -x GOPATH "$HOME/code/go"
 set NPM_PACKAGES "$HOME/.npm-packages"
 
 fish_add_path \
+    "/run/current-system/sw/bin" \
+    "/nix/var/nix/profiles/default/bin" \
     "$GOPATH/bin" \
     "$DOTFILES/bin" \
     "$DOTFILES/private/bin" \
