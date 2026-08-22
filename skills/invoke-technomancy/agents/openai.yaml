@@ -2,3 +2,5 @@ interface:
   display_name: "Invoke Technomancy"
   short_description: "Infuse a scoped context with technomagic"
   default_prompt: "Use $invoke-technomancy to give this context a focused occult-cyberpunk twist."
+policy:
+  allow_implicit_invocation: false
