@@ -2,6 +2,7 @@
 name: simple-english
 description: Write or rewrite text in ASD-STE100 Simplified Technical English. Use when the user asks for Simple English, STE, or plain unambiguous prose for non-native readers.
 allowed-tools: Read, Write, Edit, Glob, Grep
+disable-model-invocation: true
 ---
 
 # Simple English

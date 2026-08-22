@@ -1,6 +1,7 @@
 ---
 name: book-summary
 description: Summarize a book or long-form document from a source file (PDF, EPUB, etc.) into a Blinkist-style overview plus chapter-by-chapter breakdown. Use when the user wants to digest, summarize, or extract key concepts and terminology from a book.
+disable-model-invocation: true
 ---
 
 # book-summary

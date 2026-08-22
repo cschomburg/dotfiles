@@ -1,6 +1,7 @@
 ---
 name: invoke-technomancy
 description: Establish the user as a technomancer for the current session and infuse only the context named in the invocation with a focused occult-cyberpunk, techno-ritual aesthetic. Use when the user invokes "/invoke-technomancy", "$invoke-technomancy", or asks for a technomagic treatment of a specific surface such as logs, CLI output, UI, copy, visuals, or code behavior.
+disable-model-invocation: true
 ---
 
 # Invoke Technomancy

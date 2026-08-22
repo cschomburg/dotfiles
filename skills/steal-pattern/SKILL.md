@@ -2,6 +2,7 @@
 name: steal-pattern
 description: Extract an architectural pattern from the current codebase into a portable, graftable spec. Identifies essence vs incidentals, captures roles and invariants, and writes a self-contained markdown file you can hand to a different project to re-implement the pattern without dragging this codebase's specifics along.
 allowed-tools: AskUserQuestion, Read, Glob, Grep, Bash(git log:*), Bash(git show:*), Bash(rg:*), Bash(ls:*), Bash(mkdir -p:*), Write, Edit, Agent
+disable-model-invocation: true
 ---
 
 # Steal Pattern

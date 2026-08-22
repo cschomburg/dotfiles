@@ -1,6 +1,7 @@
 ---
 name: project-name-gen
 description: Generate evocative project codenames blending technofuturism and mysticism — cyberpunk, mythology, celestial objects, philosophy, obscure Latin/Mesopotamian roots, Myst-style invented words. Use when the user needs to name a project, repo, service, or codename anything.
+disable-model-invocation: true
 ---
 
 # project-name-gen

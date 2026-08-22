@@ -1,6 +1,7 @@
 ---
 name: kickoff
 description: Kick off a new project from a rough idea. Clarifies intent, estimates scope/complexity tier, interviews the user with a handful of focused questions, writes a PRODUCT_BRIEF.md, then proposes a tech stack and scaffolds the repo with initial stubs. Use when starting a greenfield project, turning an idea into a brief, or bootstrapping a new repo.
+disable-model-invocation: true
 ---
 
 # kickoff

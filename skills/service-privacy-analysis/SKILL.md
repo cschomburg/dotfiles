@@ -1,6 +1,7 @@
 ---
 name: service-privacy-analysis
 description: Research the privacy, data protection, security history, portability, interoperability, and developer ecosystem of an online service, app, connected device, or cloud platform. Use when the user asks for a privacy analysis or due-diligence report for a named service; its GDPR or EEA posture; data residency and international transfers; breaches, vulnerabilities, or regulatory incidents; export, deletion, and import mechanisms; public APIs accessible to hobby developers; third-party integrations; or complementary open-source and reverse-engineered tools.
+disable-model-invocation: true
 ---
 
 # Service Privacy Analysis

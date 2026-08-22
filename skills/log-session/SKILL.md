@@ -1,6 +1,7 @@
 ---
 name: log-session
 description: Write a session note summarizing notable work (what changed, details, learnings) so the next session doesn't re-walk the same rabbit hole. Use after a gnarly debugging session, a non-obvious setup, or any work worth not re-treading.
+disable-model-invocation: true
 ---
 
 # log-session

@@ -1,6 +1,7 @@
 ---
 name: architecture-audit
 description: Audit a codebase's architecture and engineering practices against tiered best-practice checklists. First classifies the project's size/complexity and structural style (monolith, modular monolith, microservices, etc.), then scans for the principles that matter at that tier, and outputs findings plus prioritized recommendations. Use when the user wants an architecture review, a maturity assessment, or a "what should we improve" survey of a repo.
+disable-model-invocation: true
 ---
 
 # architecture-audit
